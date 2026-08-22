@@ -21,7 +21,7 @@ const skillGroups = [
   },
   {
     title: 'Cloud / VPS / Deployment',
-    text: 'Linux VPS, DNS records, static site hosting, GitHub Pages, GitHub Actions, reverse proxy planning, HTTPS planning, Cloudflare planning, backups, public service hosting.',
+    text: 'Linux VPS, DNS records, static site hosting, GitHub Pages, GitHub Actions, reverse proxy planning, HTTPS planning, Cloudflare planning, public service hosting.',
   },
   {
     title: 'Documentation & Troubleshooting',
