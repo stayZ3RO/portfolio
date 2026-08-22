@@ -145,6 +145,43 @@ export const projects = [
     ],
   },
   {
+    title: 'AWS Network Automation Lab',
+    subtitle: 'Terraform VPC Module + Python Drift Check',
+    status: 'Learning Lab / CI Validated',
+    statusTone: 'progress',
+    categories: ['Cloud', 'Networking'],
+    focus:
+      'Reusable Terraform/OpenTofu VPC module, Python drift-check CLI with pytest coverage, GitHub Actions CI — no cloud resources applied',
+    summary:
+      'A focused learning lab that translates on-prem network segmentation practice into AWS infrastructure-as-code: a reusable Terraform/OpenTofu VPC module, a tested Python network-drift-check CLI, and a CI gate that validates both on every push.',
+    proof: ['CI-gated IaC validation', 'Tested Python CLI (pytest)', 'No cloud resources applied'],
+    tools: ['Terraform', 'OpenTofu', 'AWS VPC', 'Python', 'pytest', 'GitHub Actions'],
+    details: [
+      {
+        label: 'Problem',
+        text: 'Wanted hands-on AWS and Terraform practice, plus tested Python automation, to close a specific gap between homelab networking practice and cloud infrastructure-as-code, not to claim production AWS experience.',
+      },
+      {
+        label: 'Implementation',
+        text: 'Built a reusable network module (VPC, public/private subnets across AZs, internet gateway, routing, baseline security group) consumed by a dev environment, plus a Python net-drift-check CLI with pytest coverage, wired into GitHub Actions CI.',
+      },
+      {
+        label: 'Validation',
+        text: 'CI runs tofu fmt -check, tofu validate, and the full pytest suite on every push and pull request. Locally validated with tofu fmt, init -backend=false, and validate; no AWS credentials or cloud resources were applied.',
+      },
+      {
+        label: 'Outcome',
+        text: 'Demonstrates AWS IaC authoring, reusable module design, and CI-gated testing as a scoped learning lab, not a production deployment or long-running project.',
+      },
+    ],
+    links: [
+      {
+        label: 'GitHub Repo',
+        href: 'https://github.com/stayZ3RO/aws-network-automation-lab',
+      },
+    ],
+  },
+  {
     title: 'Service Desk Toolkit',
     subtitle: 'PowerShell Diagnostics & Reporting',
     status: 'Private / In Development',

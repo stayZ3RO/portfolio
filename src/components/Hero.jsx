@@ -6,17 +6,19 @@ function Hero() {
       <div className="hero-content">
         <p className="eyebrow">IT Support | Infrastructure Projects | Cloud & Networking</p>
         <h1 id="hero-title">Christopher Austin Lorenzo</h1>
-        <p className="role-line">IT Service Desk Analyst II | Aspiring Cloud & Network Engineer</p>
+        <p className="role-line">
+          IT Service Desk Analyst II | Growing Toward Cloud, Network & Infrastructure Engineering
+        </p>
 
         <div className="hero-summary">
           <p>
-            I am an IT Service Desk Analyst II building toward cloud and network engineering
-            through hands-on infrastructure projects.
+            I am an IT Service Desk Analyst II building toward cloud, network, and infrastructure
+            engineering through hands-on projects outside of work.
           </p>
           <p>
             My work combines enterprise IT support experience with practical labs covering DNS,
-            monitoring, managed networking, Proxmox, Linux VPS hosting, remote access, and
-            cloud/static deployments.
+            monitoring, managed networking, automation, Proxmox, Linux VPS hosting, remote
+            access, and cloud/static deployments.
           </p>
         </div>
 

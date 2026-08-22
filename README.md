@@ -36,12 +36,12 @@ npm run build
 npm run preview
 ```
 
-The Vite base path is configured for GitHub Pages project hosting at `/stayz3ro-portfolio/`.
+The Vite base path is configured for GitHub Pages project hosting at `/portfolio/`.
 
 ## Repo Structure
 
 ```text
-stayz3ro-portfolio/
+portfolio/
 |-- index.html
 |-- package.json
 |-- vite.config.js

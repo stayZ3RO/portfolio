@@ -24,7 +24,6 @@
 - [ ] Skills section
 - [ ] Resume section
 - [ ] Contact links
-- [ ] CSS DOOM project card
 - [ ] Home Network Infrastructure Lab project card
 
 ## Cross-References
