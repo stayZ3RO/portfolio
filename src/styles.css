@@ -1106,8 +1106,33 @@ h3 {
     font-size: 0.8rem;
   }
 
-  .hero-content::before,
+  .hero-content::before {
+    display: none;
+  }
+
   .infra-panel {
+    min-height: auto;
+  }
+
+  .network-map {
+    display: grid;
+    min-height: auto;
+    gap: 0.6rem;
+    padding-left: 0.9rem;
+    border-left: 2px solid rgba(34, 211, 238, 0.4);
+  }
+
+  .node {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    transform: none;
+  }
+
+  .map-line {
     display: none;
   }
 

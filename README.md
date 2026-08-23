@@ -1,25 +1,38 @@
-# stayZ3RO Portfolio
+# Christopher Austin Lorenzo — Portfolio
 
-Personal technical portfolio for IT support, networking, cloud infrastructure, homelab, and self-hosted projects.
+IT Service Desk Analyst II building toward cloud, network, and infrastructure engineering — documented through hands-on labs, not just tools listed on a resume.
 
-## Overview
+**Live site:** https://stayz3ro.github.io/portfolio/
 
-This portfolio is a recruiter-facing project hub. It highlights documented infrastructure labs, project status, core skills, contact links, and a downloadable resume.
+## Purpose
 
-## Focus Areas
+This repository is the source for my public portfolio: a recruiter-facing site that shows what I've actually built and validated, distinguishes mature work from active buildouts and learning labs, and links out to the real repositories, resume, and contact channels behind each project.
 
-- IT support and troubleshooting
-- Home network infrastructure
-- DNS, DHCP, VLANs, routing, and remote access
-- Proxmox, Docker, Linux VPS hosting, and self-hosted services
-- Monitoring, alerting, and operational validation
-- Documentation and project case studies
+## Key Portfolio Sections
 
-## Tech Stack
+- **Hero** — role, positioning, and a hand-built infrastructure lab diagram (WAN → Edge → Core/DNS → Proxmox → VPS)
+- **About** — how service-desk experience turns into infrastructure practice, including how AI-assisted engineering fits into the workflow (reviewed and validated, not autonomous)
+- **Current Focus** — what's actively in progress right now, kept short and current
+- **Projects** — filterable cards with status badges (mature / active / in progress / private) and expandable Problem → Implementation → Validation → Outcome detail
+- **Skills** — grouped by domain (infrastructure, networking/DNS, cloud/IaC, Linux, automation, observability, enterprise IT), no skill-bar percentages or inflated claims
+- **Resume & Contact** — downloadable resume, email, GitHub, and LinkedIn
+
+## Featured Engineering Projects
+
+| Project | Status | What it shows |
+|---|---|---|
+| [Home Network Infrastructure / HA DNS](https://github.com/stayZ3RO/home-network-infrastructure-HA-DNS) | Mature | Pi-hole + Unbound + Keepalived HA DNS, Prometheus/Grafana/Alertmanager monitoring, validated failover |
+| [Managed Network Infrastructure Lab](https://github.com/stayZ3RO/home-network-managed-infrastructure-lab) | Active | Omada/ER605 managed cutover complete; segmentation, VLAN, and firewall redesign retained as planned future work |
+| [AWS Network Automation Lab](https://github.com/stayZ3RO/aws-network-automation-lab) | Learning lab, CI-validated | Reusable Terraform/OpenTofu VPC module + Python drift-detection CLI, tested and CI-gated, no cloud resources applied |
+| [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-cloud-infra-lab) | In progress | Linux VPS hardening, DNS/public routing; reverse proxy, deployment, monitoring, and backups still in progress |
+
+Service Desk Toolkit (PowerShell diagnostics/reporting) is private and in development — mentioned on the site at a high level only.
+
+## Technology Stack
 
 - Vite
 - React
-- Plain CSS
+- Plain CSS (no framework)
 - GitHub Pages static hosting
 
 ## Local Development
@@ -38,7 +51,7 @@ npm run preview
 
 The Vite base path is configured for GitHub Pages project hosting at `/portfolio/`.
 
-## Repo Structure
+## Repository Structure
 
 ```text
 portfolio/
@@ -57,3 +70,11 @@ portfolio/
 |-- docs/
 `-- resume.pdf
 ```
+
+## Deployment
+
+Pushing to `main` triggers `.github/workflows/deploy-pages.yml`, which builds the Vite app and deploys `dist/` to GitHub Pages automatically. No manual deploy step is required.
+
+## Public-Safety Note
+
+This site and repository are intentionally scoped to public-safe content: no secrets, tokens, credentials, internal IP addresses, sensitive hostnames, or detailed firewall/remote-access configuration. Private or in-progress projects are described at a high level only, without exposing internal operational detail.
