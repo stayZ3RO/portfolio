@@ -2,7 +2,7 @@
 
 IT Service Desk Analyst II building toward cloud, network, and infrastructure engineering — documented through hands-on labs, not just tools listed on a resume.
 
-**Live site:** https://stayz3ro.github.io/portfolio/
+**Live site:** https://chrisalorenzo.com
 
 ## Purpose
 
@@ -33,7 +33,7 @@ Service Desk Toolkit (PowerShell diagnostics/reporting) is private and in develo
 - Vite
 - React
 - Plain CSS (no framework)
-- GitHub Pages static hosting
+- Cloudflare Pages static hosting
 
 ## Local Development
 
@@ -49,7 +49,7 @@ npm run build
 npm run preview
 ```
 
-The Vite base path is configured for GitHub Pages project hosting at `/portfolio/`.
+The Vite base path is `/` — the site is served from the domain root on Cloudflare Pages.
 
 ## Repository Structure
 
@@ -73,7 +73,7 @@ portfolio/
 
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/deploy-pages.yml`, which builds the Vite app and deploys `dist/` to GitHub Pages automatically. No manual deploy step is required.
+Hosted on **Cloudflare Pages**. Pushing to `main` triggers a Cloudflare Pages build (`npm run build`, publish directory `dist/`) which deploys automatically. No manual deploy step is required. `chrisalorenzo.com` and `www.chrisalorenzo.com` are attached as custom domains in the Cloudflare Pages project; DNS is managed in Cloudflare (Porkbun is the registrar only).
 
 ## Public-Safety Note
 
