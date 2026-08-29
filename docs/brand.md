@@ -104,9 +104,6 @@ Plain, specific, no filler. "Migrated my home network off Omada" — not
 "leveraged cutting-edge infrastructure solutions." Name things by what they
 do. Let the work carry the weight; the copy points at it.
 
-## Open choice
+## Status
 
-`pine` (teal, reads infrastructure/network) is the proposed signature
-accent. Alternatives from the same palette, trivially swapped: `iris`
-(muted purple, softer) or `rose` `#ebbcba` (warm, closest to the Rosé Pine
-name). Confirm the accent and this file is settled.
+Settled. Signature accent is **`pine`** (`#31748f` dark / `#286983` light).
