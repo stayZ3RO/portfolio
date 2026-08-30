@@ -177,11 +177,18 @@ select {
 }
 
 .section-heading p,
-.about-card p,
-.focus-card p,
-.skills-grid p,
-.resume-card p {
+.section-body p {
   color: var(--subtle);
+}
+
+.section-body {
+  display: grid;
+  gap: 1rem;
+  max-width: var(--container);
+}
+
+.section-body p {
+  margin: 0;
 }
 
 .eyebrow {
@@ -353,45 +360,9 @@ h3 {
 }
 
 .about-section,
+.current-focus,
 .skills-section {
-  background: var(--surface);
   border-top: 1px solid var(--muted);
-  border-bottom: 1px solid var(--muted);
-}
-
-.about-card,
-.focus-card,
-.skills-grid article,
-.resume-card,
-.contact-grid a {
-  border: 1px solid var(--muted);
-  border-radius: 0.9rem;
-  background: var(--surface);
-}
-
-.about-card,
-.focus-card {
-  max-width: 680px;
-  padding: clamp(1rem, 3vw, 1.35rem);
-}
-
-.about-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.about-card::before,
-.focus-card::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
-  background: var(--pine);
-}
-
-.focus-card {
-  position: relative;
-  overflow: hidden;
 }
 
 .work-list {
@@ -488,107 +459,111 @@ h3 {
   font-size: 0.84rem;
 }
 
-.skills-grid {
+.skills-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 0;
+  border-top: 1px solid var(--muted);
 }
 
-.skills-grid article {
-  position: relative;
+.skills-list article {
   min-width: 0;
-  overflow: hidden;
-  padding: 1rem;
-  transition:
-    transform 160ms ease,
-    border-color 160ms ease;
+  padding: 1.25rem 1.5rem 1.25rem 0;
+  border-bottom: 1px solid var(--muted);
 }
 
-.skills-grid article::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 1rem;
-  bottom: 1rem;
-  width: 3px;
-  border-radius: 999px;
-  background: var(--pine);
+.skills-list article:nth-child(odd) {
+  padding-left: 0;
 }
 
-.skills-grid h3 {
-  margin-bottom: 0.65rem;
+.skills-list article:nth-child(even) {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--muted);
+}
+
+.skills-list h3 {
+  margin-bottom: 0.5rem;
   color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.skills-grid p {
+.skills-list p {
   margin: 0;
+  color: var(--subtle);
+  font-size: 0.9rem;
 }
 
 .resume-contact {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: 1rem;
-  align-items: stretch;
+  gap: 2rem;
+  align-items: start;
 }
 
-.resume-card,
+.resume-panel,
 .contact-block {
   min-width: 0;
 }
 
-.resume-card {
+.resume-panel {
   display: grid;
   align-content: start;
   gap: 0.85rem;
-  padding: 1.25rem;
 }
 
-.resume-card .button {
+.resume-panel .button {
   justify-self: start;
+  margin-top: 0.5rem;
 }
 
 .contact-block .section-heading {
   margin-bottom: 1rem;
 }
 
-.contact-grid {
+.contact-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--muted);
+}
+
+.contact-list a {
+  display: flex;
+  align-items: baseline;
   gap: 1rem;
-}
-
-.contact-grid a {
-  display: grid;
-  min-width: 0;
-  gap: 0.35rem;
-  padding: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--muted);
   text-decoration: none;
-  transition:
-    transform 160ms ease,
-    border-color 160ms ease,
-    background 160ms ease;
+  transition: color 120ms ease;
 }
 
-.contact-grid span {
-  color: var(--muted);
-  font-size: 0.86rem;
-}
-
-.contact-grid strong {
+.contact-list strong {
+  flex: 0 0 auto;
+  width: 5rem;
   color: var(--pine);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 400;
 }
 
-.contact-grid strong,
-.contact-grid span {
+.contact-list span {
+  color: var(--subtle);
+  font-size: 0.92rem;
   overflow-wrap: anywhere;
+  transition: color 120ms ease;
 }
 
-.contact-grid a small {
-  display: block;
-  margin-top: 0.65rem;
-  color: var(--pine);
-  font-size: 0.74rem;
-  font-weight: 500;
+.contact-list a:hover span {
+  color: var(--text);
+}
+
+.contact-list small {
+  margin-left: auto;
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -615,8 +590,7 @@ h3 {
     order: 3;
   }
 
-  .resume-contact,
-  .contact-grid {
+  .resume-contact {
     grid-template-columns: 1fr;
   }
 }
@@ -650,6 +624,12 @@ h3 {
     font-size: 0.8rem;
   }
 
+  .skills-list article,
+  .skills-list article:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
+  }
+
   .work-item {
     grid-template-columns: 1fr;
     gap: 0.75rem;
@@ -661,7 +641,7 @@ h3 {
     justify-self: start;
   }
 
-  .resume-card .button {
+  .resume-panel .button {
     width: 100%;
   }
 }

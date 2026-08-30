@@ -4,9 +4,13 @@ Implementation spec for applying [`brand.md`](brand.md) (Rosé Pine spine, `pine
 signature accent) to this site. `brand.md` sets the shared tokens; this file is
 the portfolio-specific execution plan.
 
-**Current status (2026-08-30):** Build order step 1 (Hero + work-list) done,
-committed on `docs/restyle-plan` (unpushed). Step 3 (About/Skills/Contact +
-`Header.jsx`, folded in) is next — see "Build order" below.
+**Current status (2026-08-30):** Build order steps 1 and 3 done. Step 1
+(Hero + work-list) and step 3 (About/Skills/Resume/Contact restyled to the
+"ruled, not cards" pattern) are committed on `docs/restyle-plan`, not yet
+merged. `Header.jsx` was reviewed and left as-is — it already used
+brand-consistent tokens (pine border, mono brand mark) and didn't share the
+old card pattern the rest of step 3 removed. Step 2 (real diagrams/
+screenshots) is next — see "Build order" below.
 
 ## Direction
 
@@ -46,14 +50,27 @@ document is the durable spec; rebuild the mockup from here if the link dies.
 
 ## Sections not yet built
 
-- About, Skills, Contact — still on the old design; restyle after the work
-  list ships and reads right.
-- Résumé link — carry over from the current site, restyle only.
 - Real diagrams/screenshots, full-bleed between sections — the actual visual
   proof-of-work. This is the highest-value remaining piece; wire in the
   diagrams already merged in `home-network-infrastructure-HA-DNS`,
   `home-network-managed-infrastructure-lab`, `vps-cloud-infra-lab`, and
   `aws-network-automation-lab` once each project's write-up exists.
+
+## About / Skills / Resume / Contact (step 3, done)
+
+- Removed the bordered-card treatment (background, border-radius, pine
+  left-bar) across `About.jsx`, `CurrentFocus.jsx` (sharing the same old
+  card pattern though never named in this plan — fixed alongside step 3
+  rather than left broken), `Skills.jsx`, `Resume.jsx`, and `Contact.jsx`.
+- Body copy now renders directly against the page background inside a
+  `.section-body` container (~680px measure), matching `brand.md`'s
+  "sections divided by a 1px muted rule, not cards."
+- Skills became a ruled two-column grid (`.skills-list`) instead of bordered
+  tiles — same divider language as the work-list, collapses to one column
+  under 680px.
+- Contact became a ruled list (`.contact-list`: mono `pine` label, value,
+  right-aligned mono tag) instead of three boxed tiles.
+- `Header.jsx` needed no changes — already used the right tokens.
 
 ## Motion
 

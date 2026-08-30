@@ -2,7 +2,7 @@ const resumeHref = `${import.meta.env.BASE_URL}resume.pdf`;
 
 function Resume() {
   return (
-    <section className="resume-card" id="resume" aria-labelledby="resume-title">
+    <section className="resume-panel" id="resume" aria-labelledby="resume-title">
       <p className="eyebrow">Resume</p>
       <h2 id="resume-title">Download my current public resume.</h2>
       <p>
