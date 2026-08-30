@@ -1,47 +1,56 @@
-import { useMemo, useState } from 'react';
-import { projectCategories, projects } from '../data/projects.js';
+import { useEffect, useRef } from 'react';
+import { projects } from '../data/projects.js';
 import ProjectCard from './ProjectCard.jsx';
 
 function Projects() {
-  const [activeCategory, setActiveCategory] = useState('All');
+  const sectionRef = useRef(null);
 
-  const filteredProjects = useMemo(() => {
-    if (activeCategory === 'All') {
-      return projects;
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const revealables = section.querySelectorAll('.reveal');
+
+    if (!('IntersectionObserver' in window)) {
+      revealables.forEach((el) => el.classList.add('is-visible'));
+      return;
     }
 
-    return projects.filter((project) => project.categories.includes(activeCategory));
-  }, [activeCategory]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    revealables.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="section projects-section" id="projects" aria-labelledby="projects-title">
-      <div className="section-heading">
-        <p className="eyebrow">Featured Projects</p>
-        <h2 id="projects-title">Projects that show how I build, troubleshoot, and document infrastructure.</h2>
-        <p>
-          Concise cards by default, with details available when you want the problem,
-          implementation, validation, and outcome.
-        </p>
+    <section
+      className="section work-section"
+      id="projects"
+      aria-labelledby="projects-title"
+      ref={sectionRef}
+    >
+      <div className="section-heading reveal">
+        <p className="eyebrow">/ work</p>
+        <h2 id="projects-title">
+          Projects that show how I build, troubleshoot, and document infrastructure.
+        </h2>
       </div>
 
-      <div className="filter-bar" aria-label="Project filters">
-        {projectCategories.map((category) => (
-          <button
-            className={category === activeCategory ? 'filter-button active' : 'filter-button'}
-            key={category}
-            onClick={() => setActiveCategory(category)}
-            type="button"
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      <div className="project-grid">
-        {filteredProjects.map((project) => (
+      <ol className="work-list">
+        {projects.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}
-      </div>
+      </ol>
     </section>
   );
 }

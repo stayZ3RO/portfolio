@@ -6,7 +6,7 @@ function Contact() {
         <h2 id="contact-title">Let's connect.</h2>
       </div>
 
-      <div className="contact-grid">
+      <div className="contact-list">
         <a
           href="mailto:stayz3ro@gmail.com?subject=Portfolio%20Contact%20-%20Christopher%20Austin%20Lorenzo"
           aria-label="Email Christopher Austin Lorenzo"

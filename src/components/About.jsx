@@ -6,7 +6,7 @@ function About() {
         <h2 id="about-title">Support experience turned into infrastructure practice.</h2>
       </div>
 
-      <div className="about-card">
+      <div className="section-body">
         <p>
           I work as an IT Service Desk Analyst II. Outside of that role, I actively practice
           infrastructure, networking, Linux, cloud, automation, observability, and

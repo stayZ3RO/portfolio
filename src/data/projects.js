@@ -100,7 +100,7 @@ export const projects = [
     title: 'VPS Cloud Infrastructure Lab',
     subtitle: 'Linux, Docker & Public Services',
     status: 'In Progress',
-    statusTone: 'progress',
+    statusTone: 'in-progress',
     categories: ['Cloud', 'Infrastructure'],
     focus: 'Linux VPS, Docker, reverse proxy, HTTPS, monitoring, backups',
     summary:
@@ -148,7 +148,7 @@ export const projects = [
     title: 'AWS Network Automation Lab',
     subtitle: 'Terraform VPC Module + Python Drift Check',
     status: 'Learning Lab / CI Validated',
-    statusTone: 'progress',
+    statusTone: 'learning-lab',
     categories: ['Cloud', 'Networking'],
     focus:
       'Reusable Terraform/OpenTofu VPC module, Python drift-check CLI with pytest coverage, GitHub Actions CI — no cloud resources applied',

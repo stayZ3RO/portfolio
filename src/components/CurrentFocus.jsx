@@ -6,7 +6,7 @@ function CurrentFocus() {
         <h2 id="focus-title">Building from support into infrastructure.</h2>
       </div>
 
-      <div className="focus-card">
+      <div className="section-body">
         <p>
           Planning an equivalent-state migration from the current Omada/ER605 managed network to
           UniFi, scoping the cutover before any hardware changes are made.

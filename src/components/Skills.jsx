@@ -49,7 +49,7 @@ function Skills() {
         </p>
       </div>
 
-      <div className="skills-grid">
+      <div className="skills-list">
         {skillGroups.map((skill) => (
           <article key={skill.title}>
             <h3>{skill.title}</h3>
