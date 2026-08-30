@@ -69,7 +69,11 @@ Dawn, tokens in `brand.md`) is supported, not primary.
 1. Port hero + work-list tokens/markup into `Hero.jsx` and the project list
    component (this plan's scope).
 2. Wire in real diagrams/screenshots per project.
-3. About / Skills / Contact restyle.
+3. About / Skills / Contact restyle. Includes `Header.jsx` (nav bar: `Z3`
+   logo mark, `stayZ3RO` wordmark) — originally missing from this build
+   order entirely; folded in here (2026-08-30) rather than left unscoped,
+   since it was sitting inconsistent against the already-restyled
+   Hero/Projects sections.
 4. Résumé link restyle.
 
 Nothing in this file authorizes a commit by itself — it is the spec to build
