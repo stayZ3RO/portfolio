@@ -4,6 +4,10 @@ Implementation spec for applying [`brand.md`](brand.md) (Rosé Pine spine, `pine
 signature accent) to this site. `brand.md` sets the shared tokens; this file is
 the portfolio-specific execution plan.
 
+**Current status (2026-08-30):** Build order step 1 (Hero + work-list) done,
+committed on `docs/restyle-plan` (unpushed). Step 3 (About/Skills/Contact +
+`Header.jsx`, folded in) is next — see "Build order" below.
+
 ## Direction
 
 Personal-engineer site, not a dashboard. Confident, quiet, typographic. The
