@@ -17,7 +17,7 @@ function NetworkBackground() {
 
     const LINK = 150;
     const MOUSE = 190;
-    const NODE = '13, 107, 99';
+    const NODE = '47, 102, 112';
 
     let nodes = [];
 

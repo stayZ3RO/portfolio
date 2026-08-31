@@ -1,17 +1,17 @@
 :root {
-  --bg: #f6f5f3;
-  --bg2: #efedea;
-  --card: #fcfbfa;
-  --line: #e3e0dc;
-  --line2: #d0ccc6;
-  --text: #1c1917;
-  --text-2: #44403c;
-  --muted: #78716c;
-  --faint: #a8a29e;
-  --accent: #0d6b63;
-  --accent2: #0c6b82;
-  --accent-soft: #d6f2ec;
-  --green: #15803d;
+  --bg: #f6f7f8;
+  --bg2: #eef0f2;
+  --card: #fcfdfd;
+  --line: #e4e7ea;
+  --line2: #d2d7db;
+  --text: #1a1c1e;
+  --text-2: #3f4346;
+  --muted: #6b7074;
+  --faint: #9aa0a5;
+  --accent: #2f6670;
+  --accent2: #466d8a;
+  --accent-soft: #dde8ea;
+  --green: #2e7d32;
   --amber: #b45309;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -99,7 +99,7 @@ a {
   gap: 1rem;
   padding: 0.8rem max(1.25rem, calc((100vw - 1160px) / 2));
   border-bottom: 1px solid var(--line);
-  background: rgba(246, 245, 243, 0.8);
+  background: rgba(246, 247, 248, 0.8);
   backdrop-filter: blur(16px);
 }
 

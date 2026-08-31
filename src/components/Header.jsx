@@ -11,7 +11,7 @@ function Header() {
       </nav>
 
       <span className="status-pill">
-        <span className="dot"></span>learning in public
+        <span className="dot"></span>open to opportunities
       </span>
     </header>
   );
