@@ -3,12 +3,12 @@ function Hero() {
     <section className="hero" aria-label="Introduction">
       <p className="eyebrow">/ infrastructure &amp; platform engineering</p>
       <h1>
-        From support desk to <span className="dim">the cloud</span> — documented, validated,{' '}
+        From support desk to <span className="dim">the cloud</span>, documented, validated,{' '}
         <span className="hollow">in public.</span>
       </h1>
       <p className="sub">
         I&apos;m an IT service desk analyst turning hands-on labs into real, documented
-        infrastructure. This is the record of that work — and the safe way I expose it.{' '}
+        infrastructure. This is the record of that work, and the safe way I expose it.{' '}
         <a href="#work">See the work ↓</a>
       </p>
 
@@ -17,14 +17,14 @@ function Hero() {
           <span className="t r"></span>
           <span className="t y"></span>
           <span className="t g"></span>
-          <span className="title">~ — zsh</span>
+          <span className="title">~ zsh</span>
         </div>
         <div className="term-body">
           <span className="ln">
             <span className="p">❯</span> <span className="cmd">whoami</span>
           </span>
           <span className="ln">
-            <span className="out">christopher — IT service desk, building into infra &amp; cloud</span>
+            <span className="out">christopher, IT service desk, building into infra &amp; cloud</span>
           </span>
           <span className="ln">&nbsp;</span>
           <span className="ln">

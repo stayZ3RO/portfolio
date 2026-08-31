@@ -107,7 +107,7 @@ export const projects = [
         src: '/proof/managed-topology.webp',
         alt: 'Managed network current-topology diagram',
         caption:
-          'Current managed topology: ER605 gateway, TL-SG2210P switch, Omada Controller, and the Proxmox service cluster — single flat VLAN today, segmentation next.',
+          'Current managed topology: ER605 gateway, TL-SG2210P switch, Omada Controller, and the Proxmox service cluster. Single flat VLAN today, segmentation next.',
       },
       images: [
         {
@@ -199,7 +199,7 @@ export const projects = [
     statusTone: 'learning-lab',
     categories: ['Cloud', 'Networking'],
     focus:
-      'Reusable Terraform/OpenTofu VPC module, Python drift-check CLI with pytest coverage, GitHub Actions CI — no cloud resources applied',
+      'Reusable Terraform/OpenTofu VPC module, Python drift-check CLI with pytest coverage, GitHub Actions CI. No cloud resources applied',
     summary:
       'A focused learning lab that translates on-prem network segmentation practice into AWS infrastructure-as-code: a reusable Terraform/OpenTofu VPC module, a tested Python network-drift-check CLI, and a CI gate that validates both on every push.',
     proof: ['CI-gated IaC validation', 'Tested Python CLI (pytest)', 'No cloud resources applied'],
