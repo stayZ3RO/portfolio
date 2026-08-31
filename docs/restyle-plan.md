@@ -4,13 +4,14 @@ Implementation spec for applying [`brand.md`](brand.md) (Rosé Pine spine, `pine
 signature accent) to this site. `brand.md` sets the shared tokens; this file is
 the portfolio-specific execution plan.
 
-**Current status (2026-08-30):** Build order steps 1 and 3 done. Step 1
-(Hero + work-list) and step 3 (About/Skills/Resume/Contact restyled to the
-"ruled, not cards" pattern) are committed on `docs/restyle-plan`, not yet
-merged. `Header.jsx` was reviewed and left as-is, it already used
-brand-consistent tokens (pine border, mono brand mark) and didn't share the
-old card pattern the rest of step 3 removed. Step 2 (real diagrams/
-screenshots) is next, see "Build order" below.
+**Status (superseded, 2026-08-31):** The Rosé Pine dark theme described here
+was replaced by a light, corporate-neutral palette (see the current
+`src/styles.css` and `docs/brand.md`'s note). This document is retained as the
+historical execution record for the restyle effort, not the active spec. The
+final direction was a light neutral base, petrol/slate accent, terminal hero,
+horizontal-scroll work strip, and ruled per-project detail, driven by operator
+feedback ("something neutral, professional, corporate, like a director of IT
+infra would expect"). See the repo README for the current section map.
 
 ## Direction
 

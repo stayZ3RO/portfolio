@@ -8,6 +8,16 @@ decisions (semantic red/green/amber, dense tables, grid). This file governs
 the **brand layer**, palette, type, one accent, voice, so the three
 properties read as one person's work without looking identical.
 
+> **Status (superseded, 2026-08-31):** The portfolio moved off the Rosé Pine
+> dark theme below to a light, corporate-neutral palette (petrol/slate accent
+> `#2f6670`, cool gray base `#f6f7f8`). This was an operator decision
+> ("something neutral, professional, corporate, like a director of IT infra
+> would expect"). The blog (`stayz3ro.dev`) still uses the Rosé Pine dark
+> theme for its dark mode and the light warm-stone for its light mode. The
+> active portfolio tokens live in `src/styles.css`; treat that file, not this
+> one, as the current source of truth for the portfolio palette. This file
+> is retained as the origin record of the Rosé Pine system.
+
 ## Direction
 
 Muted, low-contrast, warm-dark, the aesthetic of the colour schemes

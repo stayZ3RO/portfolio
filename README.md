@@ -10,12 +10,11 @@ This repository is the source for my public portfolio: a recruiter-facing site t
 
 ## Key Portfolio Sections
 
-- **Hero**, name set in JetBrains Mono, a `/`-prefixed pine eyebrow, and a one-line positioning subhead
-- **About**, how service-desk experience turns into infrastructure practice, including how AI-assisted engineering fits into the workflow (reviewed and validated, not autonomous)
-- **Current Focus**, what's actively in progress right now, kept short and current
-- **Projects**, a ruled work-list with color-coded status kickers (mature / active / learning lab / in progress / private), followed by a full-bleed proof band of architecture diagrams and screenshots per project
-- **Skills**, grouped by domain (infrastructure, networking/DNS, cloud/IaC, Linux, automation, observability, enterprise IT), no skill-bar percentages or inflated claims
-- **Resume & Contact**, downloadable resume, email, GitHub, and LinkedIn
+- **Hero**, terminal-style intro (`whoami` / `ls ~/projects`) with clickable repo, blog, and dashboard links, plus a one-line positioning statement and status pill
+- **Now**, a timestamped list of current work with a relative "updated X ago" label
+- **Work**, a horizontal-scroll strip of project panels (architecture diagram or code snippet, tool stack, status) that moves as you scroll
+- **Detail**, a ruled Problem / Implementation / Validation / Outcome breakdown for each project, with the color-coded status kicker (mature / active / learning lab / in progress / private)
+- **Links**, cards to the blog, the public status dashboard, and GitHub
 
 ## Featured Engineering Projects
 
@@ -34,6 +33,8 @@ Service Desk Toolkit (PowerShell diagnostics/reporting) is private and in develo
 - React
 - Plain CSS (no framework)
 - Cloudflare Pages static hosting
+- Custom canvas network background (no animation library)
+- IntersectionObserver scroll-reveal (no reveal library)
 
 ## Local Development
 
@@ -73,6 +74,14 @@ portfolio/
 |   |-- main.jsx
 |   |-- styles.css
 |   |-- components/
+|   |   |-- Header.jsx
+|   |   |-- Hero.jsx
+|   |   |-- Now.jsx
+|   |   |-- WorkSection.jsx
+|   |   |-- ProjectDetails.jsx
+|   |   |-- Links.jsx
+|   |   |-- NetworkBackground.jsx
+|   |   `-- Reveal.jsx
 |   `-- data/
 |       `-- projects.js
 `-- docs/
