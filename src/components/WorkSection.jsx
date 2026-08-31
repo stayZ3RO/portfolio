@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { projects } from '../data/projects.js';
+import Reveal from './Reveal.jsx';
 
 const toneClass = {
   mature: 'k-mature',
@@ -47,10 +48,12 @@ function WorkSection() {
   return (
     <>
       <section className="section" id="work" aria-label="Projects">
-        <div className="sec-head">
-          <p className="eyebrow">/ work</p>
-          <h2>Projects that show how I build, troubleshoot, and document.</h2>
-        </div>
+        <Reveal>
+          <div className="sec-head">
+            <p className="eyebrow">/ work</p>
+            <h2>Projects that show how I build, troubleshoot, and document.</h2>
+          </div>
+        </Reveal>
       </section>
 
       <div id="hwrap">

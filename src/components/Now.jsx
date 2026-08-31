@@ -1,3 +1,5 @@
+import Reveal from './Reveal.jsx';
+
 const LAST_UPDATED = '2026-08-30';
 
 function relativeLabel(iso) {
@@ -17,23 +19,33 @@ function relativeLabel(iso) {
 function Now() {
   return (
     <section className="now" aria-label="Currently working on">
-      <p className="label">/ now</p>
-      <div className="line">
-        <span className="t">
-          migrating managed network <b>Omada → UniFi</b>
-        </span>
-      </div>
-      <div className="line">
-        <span className="t">
-          hardening the VPS <b>reverse-proxy + HTTPS</b> edge
-        </span>
-      </div>
-      <div className="line">
-        <span className="t">
-          CI-gating the AWS <b>Terraform</b> module
-        </span>
-      </div>
-      <div className="now-meta">{relativeLabel(LAST_UPDATED)}</div>
+      <Reveal>
+        <p className="label">/ now</p>
+      </Reveal>
+      <Reveal delay={40}>
+        <div className="line">
+          <span className="t">
+            migrating managed network <b>Omada → UniFi</b>
+          </span>
+        </div>
+      </Reveal>
+      <Reveal delay={80}>
+        <div className="line">
+          <span className="t">
+            hardening the VPS <b>reverse-proxy + HTTPS</b> edge
+          </span>
+        </div>
+      </Reveal>
+      <Reveal delay={120}>
+        <div className="line">
+          <span className="t">
+            CI-gating the AWS <b>Terraform</b> module
+          </span>
+        </div>
+      </Reveal>
+      <Reveal delay={160}>
+        <div className="now-meta">{relativeLabel(LAST_UPDATED)}</div>
+      </Reveal>
     </section>
   );
 }
