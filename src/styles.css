@@ -109,15 +109,11 @@ a {
   font-weight: 500;
   letter-spacing: -0.01em;
   margin-right: auto;
-}
-
-.wordmark .tilde {
-  color: var(--accent);
   transition: color 160ms ease;
 }
 
-.wordmark:hover .tilde {
-  color: var(--amber);
+.wordmark:hover {
+  color: var(--accent);
 }
 
 .site-nav {

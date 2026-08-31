@@ -2,7 +2,7 @@ function Header() {
   return (
     <header className="site-header">
       <a className="wordmark" href="#top">
-        <span className="tilde">~/</span>stayz3ro
+        Christopher Austin Lorenzo
       </a>
 
       <nav className="site-nav" aria-label="Primary navigation">
