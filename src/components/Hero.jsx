@@ -1,26 +1,37 @@
+import Reveal from './Reveal.jsx';
+
 function Hero() {
   return (
     <section className="hero" aria-label="Introduction">
-      <p className="eyebrow">/ infrastructure &amp; platform engineering</p>
-      <h1>
-        From support desk to <span className="dim">the cloud</span>, documented, validated,{' '}
-        <span className="hollow">in public.</span>
-      </h1>
-      <p className="sub">
-        I&apos;m an IT service desk analyst turning hands-on labs into real, documented
-        infrastructure. This is the record of that work, and the safe way I expose it.{' '}
-        <a href="#work">See the work ↓</a>
-      </p>
-
-      <div className="hero-about">
-        <p>
-          I work in IT support by day and build toward cloud, network, and infrastructure
-          engineering on my own time. Every project here is labeled by status, so what is
-          validated reads differently from what is still in progress.
+      <Reveal>
+        <p className="eyebrow">/ infrastructure &amp; platform engineering</p>
+      </Reveal>
+      <Reveal delay={60}>
+        <h1>
+          From support desk to <span className="dim">the cloud</span>, documented, validated,{' '}
+          <span className="hollow">in public.</span>
+        </h1>
+      </Reveal>
+      <Reveal delay={120}>
+        <p className="sub">
+          I&apos;m an IT service desk analyst turning hands-on labs into real, documented
+          infrastructure. This is the record of that work, and the safe way I expose it.{' '}
+          <a href="#work">See the work ↓</a>
         </p>
-      </div>
+      </Reveal>
 
-      <div className="term">
+      <Reveal delay={180}>
+        <div className="hero-about">
+          <p>
+            I work in IT support by day and build toward cloud, network, and infrastructure
+            engineering on my own time. Every project here is labeled by status, so what is
+            validated reads differently from what is still in progress.
+          </p>
+        </div>
+      </Reveal>
+
+      <Reveal delay={240}>
+        <div className="term">
         <div className="term-bar">
           <span className="t r"></span>
           <span className="t y"></span>
@@ -106,7 +117,8 @@ function Hero() {
             <span className="p">❯</span> <span className="cursor"></span>
           </span>
         </div>
-      </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
