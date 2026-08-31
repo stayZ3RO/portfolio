@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { projects } from '../data/projects.js';
 import ProjectCard from './ProjectCard.jsx';
+import ProjectProof from './ProjectProof.jsx';
 
 function Projects() {
   const sectionRef = useRef(null);
@@ -51,6 +52,8 @@ function Projects() {
           <ProjectCard key={project.title} project={project} />
         ))}
       </ol>
+
+      <ProjectProof />
     </section>
   );
 }

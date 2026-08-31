@@ -1,5 +1,3 @@
-export const projectCategories = ['All', 'Infrastructure', 'Networking', 'Cloud', 'Tools'];
-
 export const projects = [
   {
     title: 'Home Network Infrastructure Lab',
@@ -42,6 +40,21 @@ export const projects = [
         text: 'Created a documented infrastructure foundation that demonstrates DNS control, service monitoring, high availability concepts, remote access, and operational validation.',
       },
     ],
+    visuals: {
+      figure: {
+        src: '/proof/ha-dns-foundation.webp',
+        alt: 'Home Network Infrastructure Lab final architecture diagram',
+        caption:
+          'Final home-network architecture: Pi-hole HA pair behind a Keepalived VIP, Unbound recursion, Prometheus/Grafana monitoring, and Tailscale remote access.',
+      },
+      images: [
+        {
+          src: '/proof/ha-dns-failover-dashboard.webp',
+          alt: 'Grafana DNS-failover dashboard during a live VIP failover',
+          caption: 'Grafana DNS-failover dashboard capturing a live VIP failover between the Pi-hole nodes.',
+        },
+      ],
+    },
     links: [
       {
         label: 'GitHub Repo',
@@ -89,6 +102,21 @@ export const projects = [
         text: 'Continue subnetting, VLAN planning, firewall policy design, pilot VLAN testing, and controlled renumbering without overstating segmentation as finished.',
       },
     ],
+    visuals: {
+      figure: {
+        src: '/proof/managed-topology.webp',
+        alt: 'Managed network current-topology diagram',
+        caption:
+          'Current managed topology: ER605 gateway, TL-SG2210P switch, Omada Controller, and the Proxmox service cluster — single flat VLAN today, segmentation next.',
+      },
+      images: [
+        {
+          src: '/proof/managed-omada-topology.webp',
+          alt: 'Omada Controller final topology and client list after cutover',
+          caption: 'Omada Controller topology and client list after the managed cutover.',
+        },
+      ],
+    },
     links: [
       {
         label: 'GitHub Repo',
@@ -137,6 +165,26 @@ export const projects = [
         text: 'Creates a cloud infrastructure learning path that connects homelab operations with Linux server administration, public DNS, hosting, and future self-hosted applications.',
       },
     ],
+    visuals: {
+      figure: {
+        src: '/proof/vps-architecture.webp',
+        alt: 'VPS cloud infrastructure architecture diagram',
+        caption:
+          'VPS target architecture: Cloudflare DNS, Caddy TLS termination on 80/443, Tailscale-only admin path, and backend services on an internal Docker network.',
+      },
+      images: [
+        {
+          src: '/proof/vps-ufw-firewall.webp',
+          alt: 'UFW firewall status on the VPS',
+          caption: 'UFW firewall posture on the VPS.',
+        },
+        {
+          src: '/proof/vps-dns-records.webp',
+          alt: 'Public DNS records for stayz3ro.dev',
+          caption: 'Public DNS records routing stayz3ro.dev to the VPS.',
+        },
+      ],
+    },
     links: [
       {
         label: 'GitHub Repo',

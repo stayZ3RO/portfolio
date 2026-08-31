@@ -459,6 +459,65 @@ h3 {
   font-size: 0.84rem;
 }
 
+.proof-band {
+  display: grid;
+  gap: clamp(3rem, 7vw, 5rem);
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+
+.proof-project {
+  min-width: 0;
+}
+
+.proof-eyebrow {
+  margin: 0 0 1.5rem;
+}
+
+.proof-figure,
+.proof-subfigure {
+  margin: 0;
+}
+
+.proof-subfigure {
+  margin-top: 2rem;
+}
+
+.proof-figure-image {
+  display: block;
+  width: 100vw;
+  max-width: 100vw;
+  height: auto;
+  margin-left: calc(50% - 50vw);
+  border-top: 1px solid var(--muted);
+  border-bottom: 1px solid var(--muted);
+  background: var(--surface);
+}
+
+.proof-subfigure-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--muted);
+}
+
+.proof-caption {
+  margin: 0.85rem 0 0;
+  color: var(--subtle);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.proof-caption a {
+  color: var(--pine);
+  text-decoration: none;
+  transition: color 120ms ease;
+}
+
+.proof-caption a:hover {
+  color: var(--text);
+}
+
 .skills-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
