@@ -441,7 +441,7 @@ a {
 /* ---------- horizontal scroll work ---------- */
 #hwrap {
   position: relative;
-  height: 340vh;
+  min-height: 100vh;
 }
 
 #hstage {
@@ -462,7 +462,7 @@ a {
 
 .panel {
   flex: 0 0 auto;
-  width: min(78vw, 760px);
+  width: min(64vw, 520px);
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -637,47 +637,6 @@ a {
   font-family: var(--font-mono);
   font-size: 2rem;
   color: #0e7490;
-}
-
-/* scroll hint */
-.scrollhint {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--faint);
-  margin-top: 2rem;
-}
-
-.scrollhint .bar {
-  width: 3rem;
-  height: 1px;
-  background: var(--line2);
-  position: relative;
-  overflow: hidden;
-}
-
-.scrollhint .bar::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 40%;
-  height: 100%;
-  background: var(--accent);
-  animation: slide 1.8s ease-in-out infinite;
-}
-
-@keyframes slide {
-  0% {
-    left: -40%;
-  }
-
-  100% {
-    left: 100%;
-  }
 }
 
 /* ---------- list ---------- */

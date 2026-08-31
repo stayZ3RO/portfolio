@@ -18,11 +18,15 @@ function WorkSection() {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const update = () => {
+      const move = Math.max(0, track.scrollWidth - window.innerWidth);
+      // total scroll distance = horizontal overflow + one viewport of settle
+      const desired = move + window.innerHeight;
+      wrap.style.height = `${Math.max(desired, window.innerHeight)}px`;
+
       const rect = wrap.getBoundingClientRect();
       const total = wrap.offsetHeight - window.innerHeight;
       const scrolled = Math.min(Math.max(-rect.top, 0), total);
       const p = total > 0 ? scrolled / total : 0;
-      const move = Math.max(0, track.scrollWidth - window.innerWidth);
       track.style.transform = `translateX(${-p * move}px)`;
     };
 
@@ -46,7 +50,6 @@ function WorkSection() {
         <div className="sec-head">
           <p className="eyebrow">/ work</p>
           <h2>Projects that show how I build, troubleshoot, and document.</h2>
-          <p className="hint">Scroll — the panels move with you.</p>
         </div>
       </section>
 
@@ -103,11 +106,6 @@ function WorkSection() {
               );
             })}
           </div>
-        </div>
-        <div className="scrollhint">
-          <span className="bar"></span>
-          <span>keep scrolling — the work moves sideways</span>
-          <span className="bar"></span>
         </div>
       </div>
     </>
