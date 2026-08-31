@@ -12,6 +12,14 @@ function Hero() {
         <a href="#work">See the work ↓</a>
       </p>
 
+      <div className="hero-about">
+        <p>
+          I work in IT support by day and build toward cloud, network, and infrastructure
+          engineering on my own time. Every project here is labeled by status, so what is
+          validated reads differently from what is still in progress.
+        </p>
+      </div>
+
       <div className="term">
         <div className="term-bar">
           <span className="t r"></span>

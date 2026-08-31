@@ -84,8 +84,13 @@ function WorkSection() {
                     {first ? (
                       <img src={first} alt={figure.alt} loading="lazy" />
                     ) : (
-                      <div className="placeholder-media">
-                        <span>▙▚▞▟</span>
+                      <div className="code-media" aria-hidden="true">
+                        {project.codeMedia.map((line, i) => (
+                          <span className="code-line" key={i}>
+                            {line.prompt ? <span className="code-p">$ </span> : null}
+                            <span className={line.prompt ? 'code-cmd' : 'code-out'}>{line.text}</span>
+                          </span>
+                        ))}
                       </div>
                     )}
                   </div>

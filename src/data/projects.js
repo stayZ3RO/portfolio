@@ -204,6 +204,13 @@ export const projects = [
       'A focused learning lab that translates on-prem network segmentation practice into AWS infrastructure-as-code: a reusable Terraform/OpenTofu VPC module, a tested Python network-drift-check CLI, and a CI gate that validates both on every push.',
     proof: ['CI-gated IaC validation', 'Tested Python CLI (pytest)', 'No cloud resources applied'],
     tools: ['Terraform', 'OpenTofu', 'AWS VPC', 'Python', 'pytest', 'GitHub Actions'],
+    codeMedia: [
+      { prompt: true, text: 'tofu fmt -check && tofu validate' },
+      { text: '✓ 0 changes, 0 errors' },
+      { prompt: true, text: 'pytest -q' },
+      { text: '✓ 24 passed in 2.1s' },
+      { prompt: true, text: 'exit 0' },
+    ],
     details: [
       {
         label: 'Problem',
@@ -240,6 +247,13 @@ export const projects = [
       'Private PowerShell toolkit for repeatable service desk diagnostics, report collection, and future repair/remediation workflows.',
     proof: ['Private toolkit', 'Diagnostics focus', 'Repair workflows planned'],
     tools: ['PowerShell', 'Windows diagnostics', 'Reporting', 'Endpoint support', 'Runbooks'],
+    codeMedia: [
+      { prompt: true, text: 'Get-Service | Where-Object Status -eq "Running"' },
+      { text: 'collecting diagnostics...' },
+      { prompt: true, text: 'Export-Report -Path ~/reports' },
+      { text: 'report written ✓' },
+      { prompt: true, text: 'exit 0' },
+    ],
     details: [
       {
         label: 'Problem',
