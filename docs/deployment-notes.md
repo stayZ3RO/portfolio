@@ -33,7 +33,7 @@ chrisalorenzo.com  /  www.chrisalorenzo.com
 
 ## Notes
 
-- `vite.config.js` `base` is `/` — the site serves from the domain root.
+- `vite.config.js` `base` is `/`, the site serves from the domain root.
 - GitHub Pages is not used; there is no deploy workflow in `.github/workflows/`.
 - Migrating to self-hosting (VPS + Caddy behind Cloudflare) later would not
-  require domain or repo changes — only the Pages project is swapped out.
+  require domain or repo changes, only the Pages project is swapped out.

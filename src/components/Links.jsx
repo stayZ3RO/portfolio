@@ -10,7 +10,7 @@ function Links() {
       <a className="lcard" href="https://status.stayz3ro.dev" target="_blank" rel="noreferrer">
         <span className="tag">/ dashboard</span>
         <h3>status.stayz3ro.dev</h3>
-        <p>A public status view of the live services — exposed safely, no admin access.</p>
+        <p>A public status view of the live services, exposed safely, no admin access.</p>
         <span className="go">view →</span>
       </a>
       <a className="lcard" href="https://github.com/stayZ3RO" target="_blank" rel="noreferrer">
