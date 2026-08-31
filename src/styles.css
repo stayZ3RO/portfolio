@@ -239,6 +239,16 @@ a {
   border-color: var(--amber);
 }
 
+.hero-about {
+  max-width: 56ch;
+}
+
+.hero-about p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
 /* ---------- terminal ---------- */
 .term {
   border: 1px solid var(--line2);
@@ -398,13 +408,6 @@ a {
   transform: translateX(4px);
 }
 
-.now .line time {
-  color: var(--faint);
-  font-size: 0.72rem;
-  flex: 0 0 auto;
-  width: 4.5rem;
-}
-
 .now .line .t {
   color: var(--text);
 }
@@ -412,6 +415,13 @@ a {
 .now .line .t b {
   color: var(--amber);
   font-weight: 500;
+}
+
+.now-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--faint);
+  letter-spacing: 0.04em;
 }
 
 /* ---------- section head ---------- */
@@ -626,17 +636,34 @@ a {
   border-color: var(--accent);
 }
 
-.placeholder-media {
-  background: linear-gradient(135deg, #f0fdfa, #e0f2fe);
+.code-media {
+  background: #0c0a09;
+  color: #e7e5e4;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 2;
+  padding: 1.25rem 1.4rem;
   display: grid;
-  place-items: center;
-  height: 260px;
+  gap: 0.15rem;
+  min-height: 260px;
+  align-content: center;
 }
 
-.placeholder-media span {
-  font-family: var(--font-mono);
-  font-size: 2rem;
-  color: #0e7490;
+.code-media .code-line {
+  display: block;
+  white-space: pre;
+}
+
+.code-p {
+  color: var(--accent);
+}
+
+.code-cmd {
+  color: #e7e5e4;
+}
+
+.code-out {
+  color: #a8a29e;
 }
 
 /* ---------- list ---------- */
