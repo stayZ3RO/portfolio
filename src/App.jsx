@@ -23,7 +23,7 @@ function App() {
         </section>
       </main>
       <footer className="site-footer">
-        <p>Built with Vite, React, CSS, GitHub, and GitHub Pages.</p>
+        <p>Built with Vite, React, CSS, and GitHub — hosted on Cloudflare Pages.</p>
       </footer>
     </>
   );

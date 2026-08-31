@@ -10,10 +10,10 @@ This repository is the source for my public portfolio: a recruiter-facing site t
 
 ## Key Portfolio Sections
 
-- **Hero** — role, positioning, and a hand-built infrastructure lab diagram (WAN → Edge → Core/DNS → Proxmox → VPS)
+- **Hero** — name set in JetBrains Mono, a `/`-prefixed pine eyebrow, and a one-line positioning subhead
 - **About** — how service-desk experience turns into infrastructure practice, including how AI-assisted engineering fits into the workflow (reviewed and validated, not autonomous)
 - **Current Focus** — what's actively in progress right now, kept short and current
-- **Projects** — filterable cards with status badges (mature / active / in progress / private) and expandable Problem → Implementation → Validation → Outcome detail
+- **Projects** — a ruled work-list with color-coded status kickers (mature / active / learning lab / in progress / private), followed by a full-bleed proof band of architecture diagrams and screenshots per project
 - **Skills** — grouped by domain (infrastructure, networking/DNS, cloud/IaC, Linux, automation, observability, enterprise IT), no skill-bar percentages or inflated claims
 - **Resume & Contact** — downloadable resume, email, GitHub, and LinkedIn
 
@@ -59,7 +59,15 @@ portfolio/
 |-- package.json
 |-- vite.config.js
 |-- public/
-|   `-- resume.pdf
+|   |-- resume.pdf
+|   `-- proof/
+|       |-- ha-dns-foundation.webp
+|       |-- ha-dns-failover-dashboard.webp
+|       |-- managed-topology.webp
+|       |-- managed-omada-topology.webp
+|       |-- vps-architecture.webp
+|       |-- vps-ufw-firewall.webp
+|       `-- vps-dns-records.webp
 |-- src/
 |   |-- App.jsx
 |   |-- main.jsx
@@ -67,8 +75,7 @@ portfolio/
 |   |-- components/
 |   `-- data/
 |       `-- projects.js
-|-- docs/
-`-- resume.pdf
+`-- docs/
 ```
 
 ## Deployment
