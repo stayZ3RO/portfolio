@@ -3,6 +3,7 @@ import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import Now from './components/Now.jsx';
 import WorkSection from './components/WorkSection.jsx';
+import ProjectDetails from './components/ProjectDetails.jsx';
 import Links from './components/Links.jsx';
 import NetworkBackground from './components/NetworkBackground.jsx';
 
@@ -39,6 +40,7 @@ function App() {
           <Now />
         </div>
         <WorkSection />
+        <ProjectDetails />
         <div className="wrap">
           <Links />
         </div>
