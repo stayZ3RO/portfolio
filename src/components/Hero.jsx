@@ -4,18 +4,18 @@ function Hero() {
   return (
     <section className="hero" aria-label="Introduction">
       <Reveal>
-        <p className="eyebrow">/ infrastructure &amp; platform engineering</p>
+        <p className="eyebrow">/ IT support &amp; infrastructure</p>
       </Reveal>
       <Reveal delay={60}>
         <h1>
-          From support desk to <span className="dim">the cloud</span>, documented, validated,{' '}
-          <span className="hollow">in public.</span>
+          IT service desk, building toward <span className="dim">infrastructure</span> and{' '}
+          <span className="hollow">platform engineering.</span>
         </h1>
       </Reveal>
       <Reveal delay={120}>
         <p className="sub">
-          I&apos;m an IT service desk analyst turning hands-on labs into real, documented
-          infrastructure. This is the record of that work, and the safe way I expose it.{' '}
+          I run documented, validated infrastructure labs alongside a day job in IT support.
+          Every project here links to the evidence behind it, and is labeled by status.{' '}
           <a href="#work">See the work ↓</a>
         </p>
       </Reveal>
@@ -23,9 +23,8 @@ function Hero() {
       <Reveal delay={180}>
         <div className="hero-about">
           <p>
-            I work in IT support by day and build toward cloud, network, and infrastructure
-            engineering on my own time. Every project here is labeled by status, so what is
-            validated reads differently from what is still in progress.
+            Current focus: HA DNS and monitoring at home, a managed network cutover, and cloud
+            infrastructure as code. The work is validated and written up, not just screenshots.
           </p>
         </div>
       </Reveal>
