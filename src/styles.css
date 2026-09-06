@@ -1,5 +1,8 @@
 :root {
+  color-scheme: light dark;
+
   --bg: #f6f7f8;
+  --bg-rgb: 246, 247, 248;
   --bg2: #eef0f2;
   --card: #fcfdfd;
   --line: #e4e7ea;
@@ -13,9 +16,50 @@
   --accent-soft: #dde8ea;
   --green: #2e7d32;
   --amber: #b45309;
+  --node-rgb: 47, 102, 112;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #14181a;
+    --bg-rgb: 20, 24, 26;
+    --bg2: #1b1f22;
+    --card: #1f2427;
+    --line: #2a3033;
+    --line2: #363d41;
+    --text: #eef1f2;
+    --text-2: #c7ccce;
+    --muted: #8b9296;
+    --faint: #676d70;
+    --accent: #4fa3ad;
+    --accent2: #6f9bc4;
+    --accent-soft: rgba(79, 163, 173, 0.14);
+    --green: #4caf50;
+    --amber: #e0912b;
+    --node-rgb: 79, 163, 173;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #14181a;
+  --bg-rgb: 20, 24, 26;
+  --bg2: #1b1f22;
+  --card: #1f2427;
+  --line: #2a3033;
+  --line2: #363d41;
+  --text: #eef1f2;
+  --text-2: #c7ccce;
+  --muted: #8b9296;
+  --faint: #676d70;
+  --accent: #4fa3ad;
+  --accent2: #6f9bc4;
+  --accent-soft: rgba(79, 163, 173, 0.14);
+  --green: #4caf50;
+  --amber: #e0912b;
+  --node-rgb: 79, 163, 173;
 }
 
 *,
@@ -99,7 +143,7 @@ a {
   gap: 1rem;
   padding: 0.8rem max(1.25rem, calc((100vw - 1160px) / 2));
   border-bottom: 1px solid var(--line);
-  background: rgba(246, 247, 248, 0.8);
+  background: rgba(var(--bg-rgb), 0.8);
   backdrop-filter: blur(16px);
 }
 
@@ -155,6 +199,28 @@ a {
   color: var(--text);
   transform: translateY(-1px);
   box-shadow: 0 6px 18px -12px rgba(15, 118, 110, 0.4);
+}
+
+#theme-toggle {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+#theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
 .status-pill .dot {
