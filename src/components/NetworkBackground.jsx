@@ -17,7 +17,17 @@ function NetworkBackground() {
 
     const LINK = 150;
     const MOUSE = 190;
-    const NODE = '47, 102, 112';
+
+    const readNodeRgb = () =>
+      getComputedStyle(document.documentElement).getPropertyValue('--node-rgb').trim() ||
+      '47, 102, 112';
+    let NODE = readNodeRgb();
+    const onThemeChange = () => {
+      NODE = readNodeRgb();
+    };
+    window.addEventListener('themechange', onThemeChange);
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    darkQuery.addEventListener('change', onThemeChange);
 
     let nodes = [];
 
@@ -125,6 +135,8 @@ function NetworkBackground() {
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseleave', onLeave);
+      window.removeEventListener('themechange', onThemeChange);
+      darkQuery.removeEventListener('change', onThemeChange);
     };
   }, []);
 
