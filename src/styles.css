@@ -951,7 +951,6 @@ a {
   *::before,
   *::after {
     animation: none !important;
-    transition: none !important;
   }
 
   #hwrap {
@@ -967,11 +966,5 @@ a {
   #htrack {
     transform: none !important;
     flex-wrap: wrap;
-  }
-
-  .grid-layer,
-  .grain,
-  .network-canvas {
-    display: none;
   }
 }
