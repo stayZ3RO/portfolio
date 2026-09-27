@@ -53,9 +53,9 @@ document is the durable spec; rebuild the mockup from here if the link dies.
 
 - Real diagrams/screenshots, full-bleed between sections, the actual visual
   proof-of-work. This is the highest-value remaining piece; wire in the
-  diagrams already merged in `home-network-infrastructure-HA-DNS`,
-  `home-network-managed-infrastructure-lab`, `vps-cloud-infra-lab`, and
-  `aws-network-automation-lab` once each project's write-up exists.
+  diagrams already merged in `dns`,
+  `netlab`, `vps-lab`, and
+  `cloud-netlab` once each project's write-up exists.
 
 ## About / Skills / Resume / Contact (step 3, done)
 
