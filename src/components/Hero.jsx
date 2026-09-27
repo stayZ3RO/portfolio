@@ -51,7 +51,7 @@ function Hero() {
           <span className="ln">
             <a
               className="dir"
-              href="https://github.com/stayZ3RO/home-network-infrastructure-HA-DNS"
+              href="https://github.com/stayZ3RO/dns"
               target="_blank"
               rel="noreferrer"
             >
@@ -62,7 +62,7 @@ function Hero() {
           <span className="ln">
             <a
               className="dir"
-              href="https://github.com/stayZ3RO/home-network-managed-infrastructure-lab"
+              href="https://github.com/stayZ3RO/netlab"
               target="_blank"
               rel="noreferrer"
             >
@@ -73,7 +73,7 @@ function Hero() {
           <span className="ln">
             <a
               className="dir"
-              href="https://github.com/stayZ3RO/vps-cloud-infra-lab"
+              href="https://github.com/stayZ3RO/vps-lab"
               target="_blank"
               rel="noreferrer"
             >
@@ -84,7 +84,7 @@ function Hero() {
           <span className="ln">
             <a
               className="dir"
-              href="https://github.com/stayZ3RO/aws-network-automation-lab"
+              href="https://github.com/stayZ3RO/cloud-netlab"
               target="_blank"
               rel="noreferrer"
             >
