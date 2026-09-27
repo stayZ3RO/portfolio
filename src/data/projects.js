@@ -58,7 +58,7 @@ export const projects = [
     links: [
       {
         label: 'GitHub Repo',
-        href: 'https://github.com/stayZ3RO/home-network-infrastructure-HA-DNS',
+        href: 'https://github.com/stayZ3RO/dns',
       },
     ],
   },
@@ -120,7 +120,7 @@ export const projects = [
     links: [
       {
         label: 'GitHub Repo',
-        href: 'https://github.com/stayZ3RO/home-network-managed-infrastructure-lab',
+        href: 'https://github.com/stayZ3RO/netlab',
       },
     ],
   },
@@ -188,7 +188,7 @@ export const projects = [
     links: [
       {
         label: 'GitHub Repo',
-        href: 'https://github.com/stayZ3RO/vps-cloud-infra-lab',
+        href: 'https://github.com/stayZ3RO/vps-lab',
       },
     ],
   },
@@ -232,7 +232,7 @@ export const projects = [
     links: [
       {
         label: 'GitHub Repo',
-        href: 'https://github.com/stayZ3RO/aws-network-automation-lab',
+        href: 'https://github.com/stayZ3RO/cloud-netlab',
       },
     ],
   },
