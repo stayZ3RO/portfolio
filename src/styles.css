@@ -153,6 +153,17 @@ a {
   font-weight: 500;
   letter-spacing: -0.01em;
   margin-right: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: color 160ms ease;
+}
+
+.wordmark-mark {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  color: var(--accent);
   transition: color 160ms ease;
 }
 
