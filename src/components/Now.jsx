@@ -16,36 +16,33 @@ function relativeLabel(iso) {
   return `updated ${Math.floor(days / 30)} months ago`;
 }
 
+const ITEMS = [
+  <>migrating managed network <b>Omada → UniFi</b></>,
+  <>hardening the VPS <b>reverse-proxy + HTTPS</b> edge</>,
+  <>CI-gating the AWS <b>Terraform</b> module</>,
+];
+
 function Now() {
   return (
     <section className="now" aria-label="Currently working on">
-      <Reveal>
-        <p className="label">/ now</p>
-      </Reveal>
-      <Reveal delay={40}>
-        <div className="line">
-          <span className="t">
-            migrating managed network <b>Omada → UniFi</b>
-          </span>
+      <Reveal variant="fade">
+        <div className="now-head">
+          <p className="label">/ now</p>
+          <p className="now-meta">{relativeLabel(LAST_UPDATED)}</p>
         </div>
       </Reveal>
-      <Reveal delay={80}>
-        <div className="line">
-          <span className="t">
-            hardening the VPS <b>reverse-proxy + HTTPS</b> edge
-          </span>
-        </div>
-      </Reveal>
-      <Reveal delay={120}>
-        <div className="line">
-          <span className="t">
-            CI-gating the AWS <b>Terraform</b> module
-          </span>
-        </div>
-      </Reveal>
-      <Reveal delay={160}>
-        <div className="now-meta">{relativeLabel(LAST_UPDATED)}</div>
-      </Reveal>
+      <ul className="now-list">
+        {ITEMS.map((item, i) => (
+          <Reveal as="li" key={i} className="now-line" variant="soft" delay={i * 90}>
+            <span className="now-row">
+              <span className="now-idx" aria-hidden="true">
+                0{i + 1}
+              </span>
+              <span className="t">{item}</span>
+            </span>
+          </Reveal>
+        ))}
+      </ul>
     </section>
   );
 }
