@@ -1,0 +1,272 @@
+/* ==========================================================================
+   Design tokens: Christopher Lorenzo portfolio
+   One centralized token definition. Themes switch through variables only;
+   no per-theme restyles live anywhere else. Built to extend to platform
+   subdomains (nocstation, z3ros, cheech): semantic names, single source.
+   Palette values are the published upstream hexes (Catppuccin palette,
+   folke/tokyonight.nvim, rose-pine/neovim). Dracula light is derived, as
+   Dracula ships no official light variant.
+   ========================================================================== */
+
+/* ---------- theme-invariant tokens ---------- */
+:root {
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+
+  /* spacing scale, 4px base */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* radii: calm, mostly sharp */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* shadows: restrained, theme-tinted via color-mix */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.12);
+  --shadow-pop: 0 8px 32px rgb(0 0 0 / 0.22);
+
+  /* motion: transform/opacity only, compositor-friendly */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur-med: 200ms;
+  --dur-slow: 320ms;
+
+  --header-h: 64px;
+  --wrap-max: 1120px;
+}
+
+/* ==========================================================================
+   Theme: Catppuccin dark (Mocha)
+   ========================================================================== */
+:root[data-theme='catppuccin-dark'] {
+  color-scheme: dark;
+
+  --bg: #1e1e2e;
+  --bg-rgb: 30, 30, 46;
+  --bg2: #181825;
+  --card: #313244;
+  --line: #313244;
+  --line2: #45475a;
+  --text: #cdd6f4;
+  --text-2: #bac2de;
+  --muted: #7f849c;
+  --faint: #6c7086;
+  --accent: #cba6f7;
+  --accent2: #b4befe;
+  --accent-soft: rgb(203 166 247 / 0.14);
+  --green: #a6e3a1;
+  --amber: #f9e2af;
+  --ok: #a6e3a1;
+  --warn: #f9e2af;
+  --err: #f38ba8;
+  --info: #89b4fa;
+  --node-rgb: 203, 166, 247;
+}
+
+/* ==========================================================================
+   Theme: Catppuccin light (Latte)
+   ========================================================================== */
+:root[data-theme='catppuccin-light'] {
+  color-scheme: light;
+
+  --bg: #eff1f5;
+  --bg-rgb: 239, 241, 245;
+  --bg2: #e6e9ef;
+  --card: #fbfcfe;
+  --line: #dce0e8;
+  --line2: #ccd0da;
+  --text: #4c4f69;
+  --text-2: #5c5f77;
+  --muted: #8c8fa1;
+  --faint: #9ca0b0;
+  --accent: #8839ef;
+  --accent2: #1e66f5;
+  --accent-soft: rgb(136 57 239 / 0.12);
+  --green: #40a02b;
+  --amber: #df8e1d;
+  --ok: #40a02b;
+  --warn: #df8e1d;
+  --err: #d20f39;
+  --info: #209fb5;
+  --node-rgb: 136, 57, 239;
+}
+
+/* ==========================================================================
+   Theme: Tokyo Night dark (Night)
+   ========================================================================== */
+:root[data-theme='tokyo-night-dark'] {
+  color-scheme: dark;
+
+  --bg: #1a1b26;
+  --bg-rgb: 26, 27, 38;
+  --bg2: #16161e;
+  --card: #24283b;
+  --line: #292e42;
+  --line2: #3b4261;
+  --text: #c0caf5;
+  --text-2: #a9b1d6;
+  --muted: #737aa2;
+  --faint: #565f89;
+  --accent: #7aa2f7;
+  --accent2: #7dcfff;
+  --accent-soft: rgb(122 162 247 / 0.14);
+  --green: #9ece6a;
+  --amber: #e0af68;
+  --ok: #9ece6a;
+  --warn: #e0af68;
+  --err: #f7768e;
+  --info: #2ac3de;
+  --node-rgb: 122, 162, 247;
+}
+
+/* ==========================================================================
+   Theme: Tokyo Night light (Day)
+   ========================================================================== */
+:root[data-theme='tokyo-night-light'] {
+  color-scheme: light;
+
+  --bg: #e1e2e7;
+  --bg-rgb: 225, 226, 231;
+  --bg2: #d5d6db;
+  --card: #f4f5f8;
+  --line: #c4c8da;
+  --line2: #a8aecb;
+  --text: #3760bf;
+  --text-2: #6172b0;
+  --muted: #848cb5;
+  --faint: #a8aecb;
+  --accent: #2e7de9;
+  --accent2: #007197;
+  --accent-soft: rgb(46 125 233 / 0.12);
+  --green: #587539;
+  --amber: #8c6c3e;
+  --ok: #587539;
+  --warn: #8c6c3e;
+  --err: #f52a65;
+  --info: #188092;
+  --node-rgb: 46, 125, 233;
+}
+
+/* ==========================================================================
+   Theme: Rose Pine dark (Main)
+   ========================================================================== */
+:root[data-theme='rose-pine-dark'] {
+  color-scheme: dark;
+
+  --bg: #191724;
+  --bg-rgb: 25, 23, 36;
+  --bg2: #1f1d2e;
+  --card: #26233a;
+  --line: #26233a;
+  --line2: #403d52;
+  --text: #e0def4;
+  --text-2: #908caa;
+  --muted: #6e6a86;
+  --faint: #524f67;
+  --accent: #eb6f92;
+  --accent2: #c4a7e7;
+  --accent-soft: rgb(235 111 146 / 0.14);
+  --green: #95b1ac;
+  --amber: #f6c177;
+  --ok: #95b1ac;
+  --warn: #f6c177;
+  --err: #eb6f92;
+  --info: #9ccfd8;
+  --node-rgb: 235, 111, 146;
+}
+
+/* ==========================================================================
+   Theme: Rose Pine light (Dawn)
+   ========================================================================== */
+:root[data-theme='rose-pine-light'] {
+  color-scheme: light;
+
+  --bg: #faf4ed;
+  --bg-rgb: 250, 244, 237;
+  --bg2: #f2e9e1;
+  --card: #fffdf9;
+  --line: #f2e9e1;
+  --line2: #dfdad9;
+  --text: #464261;
+  --text-2: #797593;
+  --muted: #9893a5;
+  --faint: #cecacd;
+  --accent: #b4637a;
+  --accent2: #907aa9;
+  --accent-soft: rgb(180 99 122 / 0.14);
+  --green: #6d8f89;
+  --amber: #ea9d34;
+  --ok: #6d8f89;
+  --warn: #ea9d34;
+  --err: #b4637a;
+  --info: #56949f;
+  --node-rgb: 180, 99, 122;
+}
+
+/* ==========================================================================
+   Theme: Dracula dark
+   ========================================================================== */
+:root[data-theme='dracula-dark'] {
+  color-scheme: dark;
+
+  --bg: #282a36;
+  --bg-rgb: 40, 42, 54;
+  --bg2: #1f2029;
+  --card: #30323f;
+  --line: #44475a;
+  --line2: #6272a4;
+  --text: #f8f8f2;
+  --text-2: #c9cede;
+  --muted: #8b93b8;
+  --faint: #4a5170;
+  --accent: #bd93f9;
+  --accent2: #ff79c6;
+  --accent-soft: rgb(189 147 249 / 0.14);
+  --green: #50fa7b;
+  --amber: #ffb86c;
+  --ok: #50fa7b;
+  --warn: #ffb86c;
+  --err: #ff5555;
+  --info: #8be9fd;
+  --node-rgb: 189, 147, 249;
+}
+
+/* ==========================================================================
+   Theme: Dracula light (derived: role inversion, contrast-adjusted accents)
+   ========================================================================== */
+:root[data-theme='dracula-light'] {
+  color-scheme: light;
+
+  --bg: #f8f8f2;
+  --bg-rgb: 248, 248, 242;
+  --bg2: #efeee6;
+  --card: #ffffff;
+  --line: #e2e0d4;
+  --line2: #cfccc0;
+  --text: #282a36;
+  --text-2: #44475a;
+  --muted: #6272a4;
+  --faint: #9aa0b8;
+  --accent: #7d5fc4;
+  --accent2: #c05a96;
+  --accent-soft: rgb(125 95 196 / 0.12);
+  --green: #1e8e4e;
+  --amber: #b35c00;
+  --ok: #1e8e4e;
+  --warn: #b35c00;
+  --err: #d63a3a;
+  --info: #2b8a9c;
+  --node-rgb: 125, 95, 196;
+}

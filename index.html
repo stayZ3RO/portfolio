@@ -18,21 +18,41 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>Christopher Austin Lorenzo | IT Support, Cloud & Networking Portfolio</title>
     <script>
+      /* Apply the stored theme before first paint. Migrates the old
+         light/dark-only values to the eight-theme ids. */
       try {
         var t = localStorage.getItem('theme');
-        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+        var known = {
+          'catppuccin-dark': 1,
+          'catppuccin-light': 1,
+          'tokyo-night-dark': 1,
+          'tokyo-night-light': 1,
+          'rose-pine-dark': 1,
+          'rose-pine-light': 1,
+          'dracula-dark': 1,
+          'dracula-light': 1,
+        };
+        if (t === 'light') t = 'catppuccin-light';
+        else if (t === 'dark') t = 'tokyo-night-dark';
+        if (!known[t]) {
+          t = window.matchMedia('(prefers-color-scheme: light)').matches
+            ? 'catppuccin-light'
+            : 'tokyo-night-dark';
+        }
+        document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
     <script>
       function syncFavicon() {
-        var t = 'light';
+        var t = 'catppuccin-light';
         try {
-          t =
-            document.documentElement.dataset.theme ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          t = document.documentElement.dataset.theme || t;
         } catch (e) {}
         var el = document.getElementById('favicon');
-        if (el) el.href = t === 'dark' ? '/favicon-dark.svg' : '/favicon-light.svg';
+        if (el) {
+          el.href =
+            t.slice(-5) === 'light' ? '/favicon-light.svg' : '/favicon-dark.svg';
+        }
       }
       syncFavicon();
       window.addEventListener('themechange', syncFavicon);

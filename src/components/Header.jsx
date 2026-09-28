@@ -1,27 +1,105 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { THEMES, applyTheme, currentTheme } from '../theme.js';
 
-function Header() {
+const FAMILIES = ['Catppuccin', 'Tokyo Night', 'Rosé Pine', 'Dracula'];
+
+function Swatch({ bg, accent }) {
+  return (
+    <span className="theme-swatch" style={{ background: bg }} aria-hidden="true">
+      <i style={{ background: accent }} />
+    </span>
+  );
+}
+
+function ThemeSwitcher() {
+  const [current, setCurrent] = useState(() => currentTheme());
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+  const buttonRef = useRef(null);
+
   useEffect(() => {
-    const btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-
-    const onClick = () => {
-      const root = document.documentElement;
-      const current =
-        root.dataset.theme ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      const next = current === 'dark' ? 'light' : 'dark';
-      root.dataset.theme = next;
-      try {
-        localStorage.setItem('theme', next);
-      } catch (e) {}
-      window.dispatchEvent(new Event('themechange'));
-    };
-
-    btn.addEventListener('click', onClick);
-    return () => btn.removeEventListener('click', onClick);
+    setCurrent(currentTheme());
+    const onThemeChange = () => setCurrent(currentTheme());
+    window.addEventListener('themechange', onThemeChange);
+    return () => window.removeEventListener('themechange', onThemeChange);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    const onPointer = (e) => {
+      if (rootRef.current && !rootRef.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('mousedown', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('mousedown', onPointer);
+    };
+  }, [open ]);
+
+  const active = THEMES.find((t) => t.id === current) || THEMES[0];
+
+  const pick = (id) => {
+    setCurrent(applyTheme(id));
+    setOpen(false);
+    buttonRef.current?.focus();
+  };
+
+  return (
+    <div className="theme-switcher" ref={rootRef}>
+      <button
+        type="button"
+        ref={buttonRef}
+        className="theme-button"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-label={`Theme: ${active.label}. Change theme`}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <Swatch bg={active.bg} accent={active.accent} />
+        <span>{active.family}</span>
+        <span className="caret" aria-hidden="true">
+          ▾
+        </span>
+      </button>
+      {open && (
+        <ul className="theme-menu" role="menu" aria-label="Themes">
+          {FAMILIES.map((family) => (
+            <li key={family}>
+              <div className="theme-group-label" aria-hidden="true">
+                {family}
+              </div>
+              {THEMES.filter((t) => t.family === family).map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  role="menuitemradio"
+                  aria-checked={t.id === current}
+                  className="theme-option"
+                  onClick={() => pick(t.id)}
+                >
+                  <Swatch bg={t.bg} accent={t.accent} />
+                  {t.label}
+                  <span className="check" aria-hidden="true">
+                    ✓
+                  </span>
+                </button>
+              ))}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function Header() {
   return (
     <header className="site-header">
       <a className="wordmark" href="#top">
@@ -49,9 +127,7 @@ function Header() {
       <nav className="site-nav" aria-label="Primary navigation">
         <a href="#work">work</a>
         <a href="#links">links</a>
-        <button id="theme-toggle" type="button" aria-label="Toggle color theme">
-          ◐
-        </button>
+        <ThemeSwitcher />
       </nav>
 
       <span className="status-pill">
