@@ -1,6 +1,14 @@
 import { useEffect, useRef } from 'react';
 
-function Reveal({ children, className = '', delay = 0, as: Tag = 'div' }) {
+/* Reveal variants (transform/opacity only, compositor-friendly):
+   rise  - 24px rise + blur settle (default; preserves existing behavior)
+   soft  - 10px rise, no blur, quicker (terminal lines, dense lists)
+   fade  - opacity only
+   scale - 8px rise + 0.985 scale
+   lines - no own motion; children with .hl-line animate inside masks
+   none  - toggles rv-in only, styling left to CSS
+*/
+function Reveal({ children, className = '', delay = 0, as: Tag = 'div', variant = 'rise' }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -32,7 +40,7 @@ function Reveal({ children, className = '', delay = 0, as: Tag = 'div' }) {
   return (
     <Tag
       ref={ref}
-      className={`rv ${className}`.trim()}
+      className={`rv rv-${variant} ${className}`.trim()}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}
