@@ -17,7 +17,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   background: var(--bg);
-  color: var(--text);
+  color: var(--fg);
   font-family: var(--font-sans);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -56,7 +56,7 @@ a {
   inset: -40% -20%;
   z-index: -3;
   pointer-events: none;
-  background-image: radial-gradient(var(--line2) 1px, transparent 1px);
+  background-image: radial-gradient(var(--line-2) 1px, transparent 1px);
   background-size: 34px 34px;
   opacity: 0.5;
   will-change: transform;
@@ -79,7 +79,7 @@ a {
   width: 100%;
   z-index: 60;
   transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   transform: scaleX(0);
 }
 
@@ -151,13 +151,13 @@ a {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--muted);
-  background: var(--card);
+  background: var(--surface);
   transition: all 180ms ease;
 }
 
 .status-pill:hover {
   border-color: var(--accent);
-  color: var(--text);
+  color: var(--fg);
   transform: translateY(-1px);
   box-shadow: 0 6px 18px -12px rgba(15, 118, 110, 0.4);
 }
@@ -187,7 +187,7 @@ a {
 }
 
 .theme-button:hover {
-  color: var(--text);
+  color: var(--fg);
   border-color: var(--accent);
   transform: translateY(-1px);
 }
@@ -207,7 +207,7 @@ a {
   height: 0.85rem;
   border-radius: 50%;
   flex: none;
-  border: 1px solid var(--line2);
+  border: 1px solid var(--line-2);
   position: relative;
   overflow: hidden;
 }
@@ -226,7 +226,7 @@ a {
   margin: 0;
   padding: 0.4rem;
   list-style: none;
-  background: var(--card);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-pop);
@@ -263,7 +263,7 @@ a {
   border: 0;
   border-radius: var(--radius-sm);
   background: transparent;
-  color: var(--text-2);
+  color: var(--fg-2);
   font-family: var(--font-mono);
   font-size: 0.78rem;
   cursor: pointer;
@@ -275,7 +275,7 @@ a {
 
 .theme-option:hover {
   background: var(--accent-soft);
-  color: var(--text);
+  color: var(--fg);
 }
 
 .theme-option[aria-checked='true'] {
@@ -296,7 +296,7 @@ a {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: var(--green);
+  background: var(--ok);
   box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4);
   animation: pulse 2.4s infinite;
 }
@@ -353,11 +353,11 @@ a {
 
 .hero h1 .hollow {
   color: transparent;
-  -webkit-text-stroke: 1px var(--line2);
+  -webkit-text-stroke: 1px var(--line-2);
 }
 
 .hero .sub {
-  color: var(--text-2);
+  color: var(--fg-2);
   font-size: clamp(1rem, 1.6vw, 1.12rem);
   max-width: 56ch;
   margin: 0;
@@ -370,8 +370,8 @@ a {
 }
 
 .hero .sub a:hover {
-  color: var(--amber);
-  border-color: var(--amber);
+  color: var(--warn);
+  border-color: var(--warn);
 }
 
 .hero-about {
@@ -386,9 +386,9 @@ a {
 
 /* ---------- terminal ---------- */
 .term {
-  border: 1px solid var(--line2);
+  border: 1px solid var(--line-2);
   border-radius: 0.9rem;
-  background: var(--card);
+  background: var(--surface);
   overflow: hidden;
   box-shadow: 0 20px 50px -35px rgba(28, 25, 23, 0.35);
   transition: box-shadow 300ms ease, transform 300ms ease;
@@ -405,7 +405,7 @@ a {
   gap: 0.55rem;
   padding: 0.65rem 0.95rem;
   border-bottom: 1px solid var(--line);
-  background: var(--bg2);
+  background: var(--bg-2);
 }
 
 .term-bar .t {
@@ -467,7 +467,7 @@ a {
 }
 
 .cmd {
-  color: var(--text);
+  color: var(--fg);
   font-weight: 500;
 }
 
@@ -476,7 +476,7 @@ a {
 }
 
 .dir {
-  color: var(--accent2);
+  color: var(--accent-2);
   font-weight: 500;
   border-radius: 3px;
   transition: all 140ms ease;
@@ -538,17 +538,17 @@ a {
 }
 
 .now .line:hover {
-  background: var(--bg2);
-  color: var(--text);
+  background: var(--bg-2);
+  color: var(--fg);
   transform: translateX(4px);
 }
 
 .now .line .t {
-  color: var(--text);
+  color: var(--fg);
 }
 
 .now .line .t b {
-  color: var(--amber);
+  color: var(--warn);
   font-weight: 500;
 }
 
@@ -608,7 +608,7 @@ a {
 .panel {
   flex: 0 0 auto;
   width: min(64vw, 520px);
-  background: var(--card);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 1rem;
   overflow: hidden;
@@ -620,7 +620,7 @@ a {
 
 .panel:hover {
   transform: translateY(-8px) scale(1.01);
-  border-color: var(--line2);
+  border-color: var(--line-2);
   box-shadow: 0 40px 80px -40px rgba(28, 25, 23, 0.3);
 }
 
@@ -638,11 +638,11 @@ a {
 }
 
 .k-mature {
-  color: var(--green);
+  color: var(--ok);
 }
 
 .k-active {
-  color: var(--amber);
+  color: var(--warn);
 }
 
 .k-learning {
@@ -677,7 +677,7 @@ a {
   margin-top: 1rem;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: var(--bg2);
+  background: var(--bg-2);
   overflow: hidden;
   position: relative;
 }
@@ -738,7 +738,7 @@ a {
   font-family: var(--font-mono);
   font-size: 0.76rem;
   color: var(--accent);
-  border: 1px solid var(--line2);
+  border: 1px solid var(--line-2);
   border-radius: 999px;
   padding: 0.35rem 0.7rem;
   transition: all 160ms ease;
@@ -746,7 +746,7 @@ a {
 
 .repo:hover {
   border-color: var(--accent);
-  color: var(--text);
+  color: var(--fg);
   background: var(--accent-soft);
 }
 
@@ -875,7 +875,7 @@ a {
 }
 
 .detail-link:hover {
-  color: var(--text);
+  color: var(--fg);
 }
 
 .detail-link.muted {
@@ -899,7 +899,7 @@ a {
 }
 
 .lcard {
-  background: var(--card);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 0.9rem;
   padding: 1.4rem;
@@ -945,7 +945,7 @@ a {
 }
 
 .lcard:hover .go {
-  color: var(--amber);
+  color: var(--warn);
   transform: translateX(3px);
 }
 
