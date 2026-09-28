@@ -1,19 +1,42 @@
 /* ==========================================================================
    Design tokens: Christopher Lorenzo portfolio
    One centralized token definition. Themes switch through variables only;
-   no per-theme restyles live anywhere else. Built to extend to platform
-   subdomains (nocstation, z3ros, cheech): semantic names, single source.
+   no per-theme restyles live anywhere else. Token NAMES follow the shared
+   cross-site contract (blog + portfolio): roles, not colors. Portfolio keeps
+   its own VALUES. Built to extend to platform subdomains (nocstation, z3ros,
+   cheech): semantic names, single source.
    Palette values are the published upstream hexes (Catppuccin palette,
    folke/tokyonight.nvim, rose-pine/neovim). Dracula light is derived, as
    Dracula ships no official light variant.
    ========================================================================== */
 
-/* ---------- theme-invariant tokens ---------- */
+/* ---------- theme-invariant tokens (shared cross-site contract) ---------- */
 :root {
   --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
     monospace;
+  --font-display: var(--font-mono);
+  --font-body: var(--font-sans);
+
+  /* type scale */
+  --text-display: clamp(2.75rem, 6vw, 4.5rem);
+  --text-h1: 2rem;
+  --text-h2: 1.5rem;
+  --text-h3: 1.25rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-caption: 0.75rem;
+
+  /* leading + tracking */
+  --leading-tight: 1.05;
+  --leading-snug: 1.25;
+  --leading-body: 1.6;
+  --leading-code: 1.5;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
+  --tracking-mega: 0.18em;
 
   /* spacing scale, 4px base */
   --space-1: 0.25rem;
@@ -24,6 +47,11 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* layout */
+  --maxw-prose: 720px;
+  --maxw-wide: 1120px;
 
   /* radii: calm, mostly sharp */
   --radius-sm: 4px;
@@ -32,19 +60,29 @@
   --radius-pill: 999px;
 
   /* shadows: restrained, theme-tinted via color-mix */
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
-  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.12);
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.08);
+  --shadow-2: 0 4px 16px rgb(0 0 0 / 0.12);
   --shadow-pop: 0 8px 32px rgb(0 0 0 / 0.22);
 
   /* motion: transform/opacity only, compositor-friendly */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-fast: 120ms;
-  --dur-med: 200ms;
-  --dur-slow: 320ms;
+  --dur-instant: 120ms;
+  --dur-fast: 160ms;
+  --dur-med: 280ms;
+  --dur-slow: 550ms;
+  --dur-view: 320ms;
+  --dur-pulse: 2.6s;
+  --dur-blink: 1.1s;
+  --reveal-distance: 12px;
+  --reveal-stagger-1: 55ms;
+  --reveal-stagger-2: 110ms;
+
+  /* stacking */
+  --z-header: 40;
+  --z-pop: 60;
 
   --header-h: 64px;
-  --wrap-max: 1120px;
 }
 
 /* ==========================================================================
@@ -55,19 +93,21 @@
 
   --bg: #1e1e2e;
   --bg-rgb: 30, 30, 46;
-  --bg2: #181825;
-  --card: #313244;
+  --bg-2: #181825;
+  --surface: #313244;
   --line: #313244;
-  --line2: #45475a;
-  --text: #cdd6f4;
-  --text-2: #bac2de;
+  --line-2: #45475a;
+  --fg: #cdd6f4;
+  --fg-2: #bac2de;
   --muted: #7f849c;
   --faint: #6c7086;
   --accent: #cba6f7;
-  --accent2: #b4befe;
+  --accent-2: #b4befe;
   --accent-soft: rgb(203 166 247 / 0.14);
-  --green: #a6e3a1;
-  --amber: #f9e2af;
+  --accent-strong: #f5c2e7;
+  --mark: var(--fg);
+  --code-bg: #11111b;
+  --focus-ring: color-mix(in srgb, var(--accent) 55%, transparent);
   --ok: #a6e3a1;
   --warn: #f9e2af;
   --err: #f38ba8;
@@ -83,19 +123,21 @@
 
   --bg: #eff1f5;
   --bg-rgb: 239, 241, 245;
-  --bg2: #e6e9ef;
-  --card: #fbfcfe;
+  --bg-2: #e6e9ef;
+  --surface: #fbfcfe;
   --line: #dce0e8;
-  --line2: #ccd0da;
-  --text: #4c4f69;
-  --text-2: #5c5f77;
+  --line-2: #ccd0da;
+  --fg: #4c4f69;
+  --fg-2: #5c5f77;
   --muted: #8c8fa1;
   --faint: #9ca0b0;
   --accent: #8839ef;
-  --accent2: #1e66f5;
+  --accent-2: #1e66f5;
   --accent-soft: rgb(136 57 239 / 0.12);
-  --green: #40a02b;
-  --amber: #df8e1d;
+  --accent-strong: #ea76cb;
+  --mark: var(--fg);
+  --code-bg: #dce0e8;
+  --focus-ring: color-mix(in srgb, var(--accent) 55%, transparent);
   --ok: #40a02b;
   --warn: #df8e1d;
   --err: #d20f39;
@@ -111,19 +153,21 @@
 
   --bg: #1a1b26;
   --bg-rgb: 26, 27, 38;
-  --bg2: #16161e;
-  --card: #24283b;
+  --bg-2: #16161e;
+  --surface: #24283b;
   --line: #292e42;
-  --line2: #3b4261;
-  --text: #c0caf5;
-  --text-2: #a9b1d6;
+  --line-2: #3b4261;
+  --fg: #c0caf5;
+  --fg-2: #a9b1d6;
   --muted: #737aa2;
   --faint: #565f89;
   --accent: #7aa2f7;
-  --accent2: #7dcfff;
+  --accent-2: #7dcfff;
   --accent-soft: rgb(122 162 247 / 0.14);
-  --green: #9ece6a;
-  --amber: #e0af68;
+  --accent-strong: #bb9af7;
+  --mark: var(--fg);
+  --code-bg: #101014;
+  --focus-ring: color-mix(in srgb, var(--accent) 55%, transparent);
   --ok: #9ece6a;
   --warn: #e0af68;
   --err: #f7768e;
@@ -139,19 +183,21 @@
 
   --bg: #e1e2e7;
   --bg-rgb: 225, 226, 231;
-  --bg2: #d5d6db;
-  --card: #f4f5f8;
+  --bg-2: #d5d6db;
+  --surface: #f4f5f8;
   --line: #c4c8da;
-  --line2: #a8aecb;
-  --text: #3760bf;
-  --text-2: #6172b0;
+  --line-2: #a8aecb;
+  --fg: #3760bf;
+  --fg-2: #6172b0;
   --muted: #848cb5;
   --faint: #a8aecb;
   --accent: #2e7de9;
-  --accent2: #007197;
+  --accent-2: #007197;
   --accent-soft: rgb(46 125 233 / 0.12);
-  --green: #587539;
-  --amber: #8c6c3e;
+  --accent-strong: #9854f1;
+  --mark: var(--fg);
+  --code-bg: #c9cad1;
+  --focus-ring: color-mix(in srgb, var(--accent) 55%, transparent);
   --ok: #587539;
   --warn: #8c6c3e;
   --err: #f52a65;
@@ -167,19 +213,21 @@
 
   --bg: #191724;
   --bg-rgb: 25, 23, 36;
-  --bg2: #1f1d2e;
-  --card: #26233a;
+  --bg-2: #1f1d2e;
+  --surface: #26233a;
   --line: #26233a;
-  --line2: #403d52;
-  --text: #e0def4;
-  --text-2: #908caa;
+  --line-2: #403d52;
+  --fg: #e0def4;
+  --fg-2: #908caa;
   --muted: #6e6a86;
   --faint: #524f67;
   --accent: #eb6f92;
-  --accent2: #c4a7e7;
+  --accent-2: #c4a7e7;
   --accent-soft: rgb(235 111 146 / 0.14);
-  --green: #95b1ac;
-  --amber: #f6c177;
+  --accent-strong: #ebbcba;
+  --mark: var(--fg);
+  --code-bg: #14131d;
+  --focus-ring: color-mix(in srgb, var(--accent) 55%, transparent);
   --ok: #95b1ac;
   --warn: #f6c177;
   --err: #eb6f92;
@@ -195,19 +243,21 @@
 
   --bg: #faf4ed;
   --bg-rgb: 250, 244, 237;
-  --bg2: #f2e9e1;
-  --card: #fffdf9;
+  --bg-2: #f2e9e1;
+  --surface: #fffdf9;
   --line: #f2e9e1;
-  --line2: #dfdad9;
-  --text: #464261;
-  --text-2: #797593;
+  --line-2: #dfdad9;
+  --fg: #464261;
+  --fg-2: #797593;
   --muted: #9893a5;
   --faint: #cecacd;
   --accent: #b4637a;
-  --accent2: #907aa9;
+  --accent-2: #907aa9;
   --accent-soft: rgb(180 99 122 / 0.14);
-  --green: #6d8f89;
-  --amber: #ea9d34;
+  --accent-strong: #d7827e;
+  --mark: var(--fg);
+  --code-bg: #eaddd2;
+  --focus-ring: color-mix(in srgb, var(--accent) 55%, transparent);
   --ok: #6d8f89;
   --warn: #ea9d34;
   --err: #b4637a;
@@ -223,19 +273,21 @@
 
   --bg: #282a36;
   --bg-rgb: 40, 42, 54;
-  --bg2: #1f2029;
-  --card: #30323f;
+  --bg-2: #1f2029;
+  --surface: #30323f;
   --line: #44475a;
-  --line2: #6272a4;
-  --text: #f8f8f2;
-  --text-2: #c9cede;
+  --line-2: #6272a4;
+  --fg: #f8f8f2;
+  --fg-2: #c9cede;
   --muted: #8b93b8;
   --faint: #4a5170;
   --accent: #bd93f9;
-  --accent2: #ff79c6;
+  --accent-2: #ff79c6;
   --accent-soft: rgb(189 147 249 / 0.14);
-  --green: #50fa7b;
-  --amber: #ffb86c;
+  --accent-strong: #ff79c6;
+  --mark: var(--fg);
+  --code-bg: #191a21;
+  --focus-ring: color-mix(in srgb, var(--accent) 55%, transparent);
   --ok: #50fa7b;
   --warn: #ffb86c;
   --err: #ff5555;
@@ -251,19 +303,21 @@
 
   --bg: #f8f8f2;
   --bg-rgb: 248, 248, 242;
-  --bg2: #efeee6;
-  --card: #ffffff;
+  --bg-2: #efeee6;
+  --surface: #ffffff;
   --line: #e2e0d4;
-  --line2: #cfccc0;
-  --text: #282a36;
-  --text-2: #44475a;
+  --line-2: #cfccc0;
+  --fg: #282a36;
+  --fg-2: #44475a;
   --muted: #6272a4;
   --faint: #9aa0b8;
   --accent: #7d5fc4;
-  --accent2: #c05a96;
+  --accent-2: #c05a96;
   --accent-soft: rgb(125 95 196 / 0.12);
-  --green: #1e8e4e;
-  --amber: #b35c00;
+  --accent-strong: #c05a96;
+  --mark: var(--fg);
+  --code-bg: #e4e3d8;
+  --focus-ring: color-mix(in srgb, var(--accent) 55%, transparent);
   --ok: #1e8e4e;
   --warn: #b35c00;
   --err: #d63a3a;
