@@ -21,11 +21,11 @@ This repository is the source for my public portfolio: a recruiter-facing site t
 | Project | Status | What it shows |
 |---|---|---|
 | [Home Network Infrastructure / HA DNS](https://github.com/stayZ3RO/dns) | Mature | Pi-hole + Unbound + Keepalived HA DNS, Prometheus/Grafana/Alertmanager monitoring, validated failover |
-| [Managed Network Infrastructure Lab](https://github.com/stayZ3RO/netlab) | Active | Omada/ER605 managed cutover complete; segmentation, VLAN, and firewall redesign retained as planned future work |
+| [Managed Network Infrastructure Lab](https://github.com/stayZ3RO/netlab) | Active | Omada/ER605 managed cutover complete, then a UniFi hardware refresh on 2026-09-27 (same flat network); segmentation, VLAN, and firewall redesign next |
 | [AWS Network Automation Lab](https://github.com/stayZ3RO/cloud-netlab) | Learning lab, CI-validated | Reusable Terraform/OpenTofu VPC module + Python drift-detection CLI, tested and CI-gated, no cloud resources applied |
-| [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-lab) | In progress | Linux VPS hardening, DNS/public routing; reverse proxy, deployment, monitoring, and backups still in progress |
+| [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-lab) | In progress | Linux VPS hardening, DNS/public routing, and a Caddy HTTPS reverse proxy done; app deployment in progress; monitoring and backups planned |
 
-Service Desk Toolkit (PowerShell diagnostics/reporting) is private and in development, mentioned on the site at a high level only.
+A private PowerShell diagnostics and reporting project is mentioned on the site at a high level only.
 
 ## Technology Stack
 
