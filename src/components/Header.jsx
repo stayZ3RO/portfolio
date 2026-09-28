@@ -25,7 +25,25 @@ function Header() {
   return (
     <header className="site-header">
       <a className="wordmark" href="#top">
-        Christopher Austin Lorenzo
+        <svg
+          className="wordmark-mark"
+          viewBox="0 0 64 64"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <g
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="8"
+            strokeLinecap="square"
+            strokeLinejoin="miter"
+          >
+            <path d="M 52 14 H 12 V 50 H 52" />
+            <path d="M 28 26 V 38 H 44" />
+          </g>
+          <circle cx="46" cy="38" r="5.5" fill="currentColor" />
+        </svg>
+        <span>Christopher Austin Lorenzo</span>
       </a>
 
       <nav className="site-nav" aria-label="Primary navigation">
