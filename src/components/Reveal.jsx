@@ -15,7 +15,9 @@ function Reveal({ children, className = '', delay = 0, as: Tag = 'div', variant 
     const el = ref.current;
     if (!el) return;
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce =
+      document.documentElement.dataset.motion === 'reduced' ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) {
       el.classList.add('rv-in');
       return;

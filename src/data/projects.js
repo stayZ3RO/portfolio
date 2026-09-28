@@ -1,6 +1,7 @@
 export const projects = [
   {
     title: 'Home Network Infrastructure Lab',
+    dir: 'home-network-infra/',
     subtitle: 'HA DNS & Core Services',
     status: 'Mature / Finalizing',
     statusTone: 'mature',
@@ -55,6 +56,8 @@ export const projects = [
         },
       ],
     },
+    /* Phase 5: field-notes deep links (blog posts per project). Empty until written. */
+    posts: [],
     links: [
       {
         label: 'GitHub Repo',
@@ -64,6 +67,7 @@ export const projects = [
   },
   {
     title: 'Managed Network Infrastructure Lab',
+    dir: 'managed-network/',
     subtitle: 'Router, Switching & Segmentation',
     status: 'Active / Phase 1 Complete',
     statusTone: 'active',
@@ -117,6 +121,8 @@ export const projects = [
         },
       ],
     },
+    /* Phase 5: field-notes deep links (blog posts per project). Empty until written. */
+    posts: [],
     links: [
       {
         label: 'GitHub Repo',
@@ -126,6 +132,7 @@ export const projects = [
   },
   {
     title: 'VPS Cloud Infrastructure Lab',
+    dir: 'vps-cloud/',
     subtitle: 'Linux, Docker & Public Services',
     status: 'In Progress',
     statusTone: 'in-progress',
@@ -185,6 +192,8 @@ export const projects = [
         },
       ],
     },
+    /* Phase 5: field-notes deep links (blog posts per project). Empty until written. */
+    posts: [],
     links: [
       {
         label: 'GitHub Repo',
@@ -194,6 +203,7 @@ export const projects = [
   },
   {
     title: 'AWS Network Automation Lab',
+    dir: 'aws-automation/',
     subtitle: 'Terraform VPC Module + Python Drift Check',
     status: 'Learning Lab / CI Validated',
     statusTone: 'learning-lab',
@@ -229,6 +239,8 @@ export const projects = [
         text: 'Demonstrates AWS IaC authoring, reusable module design, and CI-gated testing as a scoped learning lab, not a production deployment or long-running project.',
       },
     ],
+    /* Phase 5: field-notes deep links (blog posts per project). Empty until written. */
+    posts: [],
     links: [
       {
         label: 'GitHub Repo',
@@ -238,6 +250,7 @@ export const projects = [
   },
   {
     title: 'Service Desk Toolkit',
+    dir: 'service-desk-toolkit/',
     subtitle: 'PowerShell Diagnostics & Reporting',
     status: 'Private / In Development',
     statusTone: 'private',
@@ -268,6 +281,8 @@ export const projects = [
         text: 'Aims to improve support consistency, speed up information gathering, and reinforce practical scripting habits without exposing internal or sensitive workflows.',
       },
     ],
+    /* Phase 5: field-notes deep links (blog posts per project). Empty until written. */
+    posts: [],
     links: [],
   },
 ];
