@@ -1256,12 +1256,81 @@ a {
   max-width: 720px;
 }
 
+/* expanded card visual spread: editorial two-column.
+   Figure left (contained, capped height); caption + key facts right. */
+.wvisual {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.wvisual .wfigure {
+  margin: 0;
+  max-width: none;
+  background: var(--surface);
+}
+
+.wvisual .wfigure img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 460px;
+  margin: 0 auto;
+}
+
+.wvisual-side {
+  display: grid;
+  gap: 1.05rem;
+  align-content: start;
+  min-width: 0;
+  padding-top: 0.15rem;
+}
+
+.wside-row {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+}
+
+.wfigcaption {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: var(--leading-body);
+  color: var(--muted);
+}
+
+.wstatus-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  color: var(--fg-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 0.32rem 0.75rem;
+}
+
+.wvisual-side .wev-block {
+  margin-top: 0;
+}
+
 .wempty {
   padding: 1.2rem 0 0.4rem;
 }
 
 @media (max-width: 720px) {
   .wflag {
+    grid-template-columns: 1fr;
+  }
+
+  .wvisual {
     grid-template-columns: 1fr;
   }
 

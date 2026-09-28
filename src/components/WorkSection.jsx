@@ -183,12 +183,35 @@ function Entry({ project, visible, stagger }) {
 
         <div className={`wdetail ${open ? 'is-open' : ''}`}>
           <div className="wdetail-inner">
-            {figure && (
-              <figure className="wfigure wfigure-lead">
-                <img src={figure.src} alt={figure.alt} loading="lazy" />
-                <figcaption>{figure.caption}</figcaption>
-              </figure>
-            )}
+            {figure ? (
+              <div className="wvisual">
+                <figure className="wfigure wfigure-lead">
+                  <img src={figure.src} alt={figure.alt} loading="lazy" />
+                </figure>
+                <div className="wvisual-side">
+                  <div className="wside-row">
+                    <span className="wlabel">figure</span>
+                    <p className="wfigcaption">{figure.caption}</p>
+                  </div>
+                  <div className="wside-row">
+                    <span className="wlabel">status</span>
+                    <span className="wstatus-pill">
+                      <span className={`wdot ${tone}`} aria-hidden="true"></span>
+                      {project.status}
+                    </span>
+                  </div>
+                  <div className="wside-row">
+                    <span className="wlabel">stack</span>
+                    <span className="wtool-chips">
+                      {(project.tools || []).map((tool) => (
+                        <span className="wtool" key={tool}>{tool}</span>
+                      ))}
+                    </span>
+                  </div>
+                  <Evidence project={project} />
+                </div>
+              </div>
+            ) : null}
             <h3 className="wtitle">{project.title}</h3>
             <p className="wsub">{project.subtitle}</p>
             <p className="wsummary">{project.summary}</p>
@@ -206,16 +229,18 @@ function Entry({ project, visible, stagger }) {
               </div>
             )}
 
-            <div className="wtools">
-              <span className="wlabel">stack</span>
-              <span className="wtool-chips">
-                {(project.tools || []).map((tool) => (
-                  <span className="wtool" key={tool}>{tool}</span>
-                ))}
-              </span>
-            </div>
+            {!figure && (
+              <div className="wtools">
+                <span className="wlabel">stack</span>
+                <span className="wtool-chips">
+                  {(project.tools || []).map((tool) => (
+                    <span className="wtool" key={tool}>{tool}</span>
+                  ))}
+                </span>
+              </div>
+            )}
 
-            <Evidence project={project} />
+            {!figure && <Evidence project={project} />}
 
             {project.details && project.details.length > 0 && (
               <dl className="wnotes">
