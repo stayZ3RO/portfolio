@@ -1,0 +1,66 @@
+{
+  "builtAt": "2026-09-29T20:31:32.906Z",
+  "buildDate": "sep 29, 2026",
+  "commits": [
+    {
+      "hash": "9741a54",
+      "subject": "feat(site): add recruiter scan strip and field notes blog band"
+    },
+    {
+      "hash": "7c4d76c",
+      "subject": "fix: separate overlapping tailnet device labels in lab figure"
+    },
+    {
+      "hash": "eb2a9dd",
+      "subject": "feat: rebuild portfolio as approved v18 single-page design"
+    },
+    {
+      "hash": "d87869d",
+      "subject": "feat: Phase 4 work section - art-directed field-manual index with live lab"
+    },
+    {
+      "hash": "99f4e48",
+      "subject": "feat: Phase 4 art-direction pass - field-manual work section with live lab"
+    },
+    {
+      "hash": "5daf909",
+      "subject": "fix: expanded work card as editorial two-column, kills figure void"
+    },
+    {
+      "hash": "c2277da",
+      "subject": "feat: Phase 4 rework - display headline, flagship spotlight, thumbnails, section controls"
+    },
+    {
+      "hash": "535b4ef",
+      "subject": "feat: work section as terminal project index with filter and chips"
+    },
+    {
+      "hash": "aecb69c",
+      "subject": "copy: recruiter-pass hero wording, AI positioning in headline"
+    },
+    {
+      "hash": "5818c71",
+      "subject": "Merge Phase 3: hero line-mask headline, staggered terminal, indexed now list"
+    },
+    {
+      "hash": "9127afe",
+      "subject": "refactor: merge token alignment into hero-now; adopt contract names"
+    },
+    {
+      "hash": "d6503ac",
+      "subject": "feat: hero line-mask headline, staggered terminal, indexed now list"
+    },
+    {
+      "hash": "ec67a64",
+      "subject": "refactor: align design tokens to shared cross-site contract"
+    },
+    {
+      "hash": "04c3adf",
+      "subject": "Merge feature/design-tokens-themes: design token system with eight-theme switcher"
+    },
+    {
+      "hash": "f3b4e42",
+      "subject": "feat: design token system with eight-theme switcher"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { REDUCED, SVG_NS, stepMesh } from './env';
 import { hideTip, showTip } from './tip';
+import { STATUS_URL, fetchLiveStatus } from './status';
 
 function labDesktopLayout() {
   return {
@@ -64,6 +65,30 @@ function labMobileLayout() {
 export default function LabFigure({ sectionRef, apiRef }) {
   const deskRef = useRef(null);
   const mobRef = useRef(null);
+
+  /* Live node state: null = documented (static) state. When STATUS_URL is
+     set, fetchLiveStatus() attempts the public status page on mount; on any
+     failure we stay on the documented state, honestly labeled. */
+  const [liveInfo, setLiveInfo] = useState(null);
+  const [live, setLive] = useState(false);
+  const statesRef = useRef(null);
+  const paintRef = useRef(null);
+
+  useEffect(() => {
+    if (!STATUS_URL) return;
+    let alive = true;
+    fetchLiveStatus().then((s) => {
+      if (!alive || !s) return;
+      statesRef.current = s;
+      setLiveInfo(s);
+      setLive(true);
+    });
+    return () => { alive = false; };
+  }, []);
+
+  useEffect(() => {
+    if (paintRef.current) paintRef.current();
+  }, [liveInfo]);
 
   useEffect(() => {
     const labSVGd = deskRef.current;
@@ -141,6 +166,37 @@ export default function LabFigure({ sectionRef, apiRef }) {
       t.textContent = text;
       labGLinks.appendChild(t);
     }
+
+    /* Paint live node states onto the core dots. Mapping mirrors the
+       tag dot styles: running = solid, building = hollow, unknown = dimmed.
+       Nodes not covered by live data (e.g. vps-edge) keep the default. */
+    function paintNodeStates() {
+      const states = statesRef.current;
+      labNodeEls.forEach(({ id, g, sub }) => {
+        const core = g.querySelector('.core');
+        if (!core) return;
+        if (!states || !(id in states)) {
+          g.setAttribute('aria-label', `${id}: ${sub}`);
+          return;
+        }
+        const s = states[id] || 'unknown';
+        core.removeAttribute('opacity');
+        core.removeAttribute('stroke');
+        core.removeAttribute('stroke-width');
+        if (s === 'running') {
+          core.setAttribute('fill', '#f4f4f2');
+        } else if (s === 'building') {
+          core.setAttribute('fill', 'none');
+          core.setAttribute('stroke', '#9a9da3');
+          core.setAttribute('stroke-width', '1.5');
+        } else { /* unknown */
+          core.setAttribute('fill', '#9a9da3');
+          core.setAttribute('opacity', '0.35');
+        }
+        g.setAttribute('aria-label', `${id}: ${sub} · state: ${s}`);
+      });
+    }
+    paintRef.current = paintNodeStates;
 
     function buildLabFigure() {
       labGen++;
@@ -221,7 +277,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
           `<text y="${n.ldy}" text-anchor="middle" fill="#f4f4f2" font-size="${n.fs}" font-weight="600" font-family="ui-monospace,monospace">${n.id}</text>`;
         outer.appendChild(inner);
         labGNodes.appendChild(outer);
-        labNodeEls.push({ id: n.id, g: inner });
+        labNodeEls.push({ id: n.id, g: inner, sub: n.sub });
         const card = section.querySelector(`.node-card[data-node="${n.id}"],.edge-card[data-node="${n.id}"]`);
         const setCard = (on) => { if (card) card.classList.toggle('hot-card', on); };
         const onEnter = () => { showTip(n, inner); setCard(true); };
@@ -246,6 +302,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
           inner.removeEventListener('keydown', onKey);
         });
       });
+      paintNodeStates();
       return disposers;
     }
 
@@ -314,6 +371,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
       teardownLab();
       nodeDisposers.forEach((d) => d());
       nodeDisposers = buildLabFigure();
+      paintNodeStates();
       if (labStarted) startLab(true);
     };
     labMQ.addEventListener('change', onMQ);
@@ -343,18 +401,39 @@ export default function LabFigure({ sectionRef, apiRef }) {
     };
   }, [sectionRef, apiRef]);
 
+  const mapAria = live
+    ? 'Infrastructure map: three Proxmox nodes, public-edge VPS, tailnet devices, and sensors. Node dots show live status from the public status page'
+    : 'Infrastructure map: three Proxmox nodes, public-edge VPS, tailnet devices, and sensors. Documented state · live status not connected';
+
   return (
     <>
-      <svg id="labsvg" ref={deskRef} viewBox="0 0 800 340" role="img" aria-label="Full infrastructure map: three Proxmox nodes, public-edge VPS, tailnet devices, and sensors">
+      <svg id="labsvg" ref={deskRef} viewBox="0 0 800 340" role="img" aria-label={mapAria}>
         <g className="lab-links" stroke="#c9ccd1" strokeWidth="1" fill="none" opacity="0.55"></g>
         <g className="lab-packets" fill="#ffffff"></g>
         <g className="lab-nodes"></g>
       </svg>
-      <svg id="labsvg-m" ref={mobRef} viewBox="0 0 360 340" role="img" aria-label="Infrastructure map, simplified: three Proxmox nodes, public-edge VPS, tailnet devices, and sensors">
+      <svg id="labsvg-m" ref={mobRef} viewBox="0 0 360 340" role="img" aria-label={mapAria}>
         <g className="lab-links" stroke="#c9ccd1" strokeWidth="1" fill="none" opacity="0.55"></g>
         <g className="lab-packets" fill="#ffffff"></g>
         <g className="lab-nodes"></g>
       </svg>
+      <div
+        className="lab-status-note"
+        role="note"
+        style={{
+          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+          fontSize: '11px',
+          letterSpacing: '1px',
+          textTransform: 'uppercase',
+          color: '#9a9da3',
+          marginTop: '10px',
+          textAlign: 'center',
+        }}
+      >
+        {live
+          ? 'live node status · public status page connected'
+          : 'documented state · live status not connected'}
+      </div>
     </>
   );
 }
