@@ -1,7 +1,15 @@
 {
-  "builtAt": "2026-09-29T20:38:05.012Z",
+  "builtAt": "2026-09-29T22:29:26.353Z",
   "buildDate": "sep 29, 2026",
   "commits": [
+    {
+      "hash": "551dc6c",
+      "subject": "chore: refresh buildmeta snapshot (ticker fallback)"
+    },
+    {
+      "hash": "db903f0",
+      "subject": "chore: remove dead LAB_STATUS stub from data.js (superseded by status.js)"
+    },
     {
       "hash": "7a82beb",
       "subject": "feat(systems): rewrite decision-log rows and case study from verified sources"
@@ -53,14 +61,6 @@
     {
       "hash": "5818c71",
       "subject": "Merge Phase 3: hero line-mask headline, staggered terminal, indexed now list"
-    },
-    {
-      "hash": "9127afe",
-      "subject": "refactor: merge token alignment into hero-now; adopt contract names"
-    },
-    {
-      "hash": "d6503ac",
-      "subject": "feat: hero line-mask headline, staggered terminal, indexed now list"
     }
   ]
 }
