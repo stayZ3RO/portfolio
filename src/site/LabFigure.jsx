@@ -19,7 +19,7 @@ function labDesktopLayout() {
     halo: { cx: 110, cy: 236, rx: 70, ry: 62, tag: 'tailnet', tagX: 110, tagY: 314 },
     devices: [
       { label: 'phone', x: 85, y: 210 }, { label: 'laptop', x: 135, y: 210 },
-      { label: 'mac-mini', x: 85, y: 262 }, { label: 'gaming-pc', x: 135, y: 262 },
+      { label: 'mac-mini', x: 68, y: 262 }, { label: 'gaming-pc', x: 152, y: 262 },
     ],
     deviceUplink: { x: 260, y: 195 },
     haloUplink: { x: 260, y: 195, R: 30 },
