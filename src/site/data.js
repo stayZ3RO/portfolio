@@ -55,6 +55,7 @@ export const SYSTEMS = [
     title: 'HA DNS lab',
     outcome: 'High-availability DNS with recursive resolution, moved from Raspberry Pis to Proxmox VMs.',
     pills: ['Pi-hole', 'Unbound', 'Keepalived', 'Proxmox'],
+    links: { github: 'https://github.com/stayZ3RO/home-network-infrastructure-HA-DNS' },
     body: {
       type: 'declog',
       blocks: [
@@ -78,12 +79,13 @@ export const SYSTEMS = [
     title: 'Managed network infrastructure lab',
     outcome: 'Managed routing and switching cutover complete; a stable baseline for VLAN segmentation.',
     pills: ['TP-Link ER605', 'TL-SG2210P', 'Omada', 'VLANs'],
+    links: { github: 'https://github.com/stayZ3RO/home-network-managed-infrastructure-lab' },
     body: {
       type: 'declog',
       blocks: [
         {
           label: 'WHAT I BUILT',
-          text: 'Moved routing off the consumer mesh and onto a dedicated TP-Link ER605 router with a managed TL-SG2210P switch. The Deco units dropped to AP mode, an Omada SDN controller handles device visibility, and Pi-hole HA with VIP failover stayed up through the cutover. Monitoring validation after the move confirmed the baseline.',
+          text: 'Moved routing off the consumer mesh and onto a dedicated TP-Link ER605 router with a managed TL-SG2210P switch. The Deco units dropped to AP mode, an Omada SDN controller handles device visibility, and Pi-hole HA with VIP failover stayed up through the cutover. Post-cutover validation covered internet access, DNS behavior, client connectivity, and service reachability.',
         },
         {
           label: 'WHAT BROKE',
@@ -101,6 +103,7 @@ export const SYSTEMS = [
     title: 'VPS cloud edge',
     outcome: 'Public edge on a Netcup VPS: Caddy, HTTPS, and a hardened host.',
     pills: ['Netcup', 'Caddy', 'Docker', 'Tailscale'],
+    links: { github: 'https://github.com/stayZ3RO/vps-cloud-infra-lab' },
     body: {
       type: 'list',
       items: [
@@ -113,9 +116,24 @@ export const SYSTEMS = [
   },
   {
     status: 'building',
+    title: 'Homelab command center',
+    outcome: 'A self-hosted ops console for the lab: inventory, monitoring, and subscriptions in one place.',
+    pills: ['React', 'FastAPI', 'MongoDB', 'Proxmox'],
+    body: {
+      type: 'list',
+      items: [
+        'Single-tenant console: Proxmox discovery, device inventory, an alert inbox, and subscription tracking with a public status page on the roadmap',
+        'v1 is code-complete on a local branch; the backend security review closed with the test suite green',
+        'Honest scope: not yet deployed against the live lab. Proxmox live discovery and real notification delivery still need hardware validation',
+      ],
+    },
+  },
+  {
+    status: 'building',
     title: 'Cloud networking as code',
     outcome: 'The VLAN mental model from my rack, expressed as reviewable infrastructure as code. Nothing applied yet.',
     pills: ['OpenTofu', 'Python', 'pytest', 'GitHub Actions'],
+    links: { github: 'https://github.com/stayZ3RO/aws-network-automation-lab' },
     body: {
       type: 'list',
       items: [

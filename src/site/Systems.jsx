@@ -117,10 +117,12 @@ function LogRow({ row, open, onToggle, delay }) {
                 <span className="pill" key={p}>{p}</span>
               ))}
             </div>
-            <div className="rowlinks">
-              <a href="#">write-up <span className="arr">↗</span></a>
-              <a href="#">github <span className="arr">↗</span></a>
-            </div>
+            {row.links && (row.links.writeup || row.links.github) && (
+              <div className="rowlinks">
+                {row.links.writeup && <a href={row.links.writeup}>write-up <span className="arr">↗</span></a>}
+                {row.links.github && <a href={row.links.github}>github <span className="arr">↗</span></a>}
+              </div>
+            )}
           </div>
         </div>
       </div>

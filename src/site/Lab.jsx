@@ -25,8 +25,8 @@ export default function Lab() {
       <Reveal>
         <p className="lab-copy">
           <strong>Three nodes, 80 gigs of RAM, one Tailscale mesh, and a VPS holding the public edge.</strong>{' '}
-          This is where I learn how systems work before I touch them at work. Everything here is real,
-          running, and documented in each project&apos;s repo. Hover a node card to find it on the map.
+          This is where I learn how systems work before I touch them at work. Everything here is real
+          and running, and the builds are written up in the field notes. Hover a node card to find it on the map.
         </p>
       </Reveal>
       <Reveal as="figure" className="lab-fig" aria-label="Homelab topology map">
