@@ -1,0 +1,64 @@
+/* field notes: slim logbook-excerpt band linking the real blog.
+   Not a second blog homepage: three ruled rows, dates, nothing more. */
+
+.fieldnotes{
+  margin:0 0 8px;
+  border-top:1px solid var(--hairline);
+  border-bottom:1px solid var(--hairline);
+  padding:24px 0;
+}
+
+.fn-kicker{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  color:var(--muted);margin-bottom:10px;
+}
+
+.fn-head{
+  font-size:26px;font-weight:650;letter-spacing:-.02em;
+  color:var(--text);line-height:1.2;
+}
+
+.fn-sub{margin-top:6px;font-size:14.5px;color:var(--muted)}
+.fn-link{color:var(--text);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-color:var(--hairline)}
+.fn-link:hover{text-decoration-color:var(--text)}
+.fn-link:focus-visible,.fn-a:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+
+.fn-list{list-style:none;margin:16px 0 0;padding:0}
+
+.fn-row{border-top:1px solid var(--hairline)}
+.fn-row:last-child{border-bottom:1px solid var(--hairline)}
+
+.fn-a{
+  display:flex;align-items:baseline;gap:16px;
+  padding:12px 4px;
+  text-decoration:none;color:var(--text);
+  transition:background .2s ease,padding-left .2s ease;
+}
+
+.fn-a:hover{background:var(--surface);padding-left:12px}
+
+.fn-date{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  color:var(--muted);flex-shrink:0;min-width:88px;
+}
+
+.fn-title{font-size:15.5px;font-weight:500;line-height:1.45}
+
+.fn-arrow{
+  margin-left:auto;flex-shrink:0;
+  font-family:var(--mono);font-size:14px;color:var(--muted);
+}
+
+@media (max-width:560px){
+  .fieldnotes{padding:20px 0}
+  .fn-head{font-size:22px}
+  .fn-a{gap:10px;padding:11px 2px}
+  .fn-date{min-width:0}
+  .fn-title{font-size:14.5px}
+  .fn-arrow{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .fieldnotes *{animation:none!important;transition:none!important}
+}

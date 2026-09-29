@@ -1,0 +1,44 @@
+/* scan strip: recruiter fast-scan band, sits between hero and systems.
+   Monochrome machine-room register: mono labels, hairline rules, no color. */
+
+.scanstrip{
+  margin:0 0 8px;
+  border-top:1px solid var(--hairline);
+  border-bottom:1px solid var(--hairline);
+  padding:20px 0;
+}
+
+.scanstrip-facts{
+  display:flex;flex-wrap:wrap;align-items:baseline;
+  gap:8px 14px;
+  font-family:var(--mono);font-size:13px;letter-spacing:.04em;
+  color:var(--text);
+}
+
+.scan-fact{display:inline-flex;align-items:baseline;gap:8px}
+.scan-key{color:var(--muted);letter-spacing:.14em;font-size:11px;text-transform:uppercase}
+.scan-sep{color:var(--muted);opacity:.55;user-select:none}
+
+.scan-chips{
+  list-style:none;margin:14px 0 0;padding:0;
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+
+.scan-chip{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;
+  color:var(--secondary);
+  border:1px solid var(--hairline);border-radius:6px;
+  background:var(--surface);
+  padding:5px 11px;
+  line-height:1.5;
+}
+
+@media (max-width:560px){
+  .scanstrip{padding:16px 0}
+  .scanstrip-facts{font-size:12.5px}
+  .scan-chip{font-size:12px;padding:4px 10px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .scanstrip *{animation:none!important;transition:none!important}
+}

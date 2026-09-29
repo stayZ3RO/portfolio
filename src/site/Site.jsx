@@ -1,8 +1,10 @@
 import Ambient from './Ambient';
 import Nav from './Nav';
 import Hero from './Hero';
+import ScanStrip from './ScanStrip';
 import Systems from './Systems';
 import Lab from './Lab';
+import FieldNotes from './FieldNotes';
 import Now from './Now';
 import Experience from './Experience';
 import Contact from './Contact';
@@ -17,8 +19,10 @@ export default function Site() {
         <Nav />
         <main id="main">
           <Hero />
+          <ScanStrip />
           <Systems />
           <Lab />
+          <FieldNotes />
           <Now />
           <Experience />
           <Contact />
