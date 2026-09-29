@@ -17,9 +17,31 @@
     <meta name="twitter:title" content="Christopher Lorenzo" />
     <meta name="twitter:description" content="I study systems by building them. Homelab, automation, and the road to platform engineering." />
     <meta name="twitter:image" content="https://chrisalorenzo.com/og.png" />
+  <style>
+    /* Layer 6 loading splash: visible before React hydrates, removed on mount. */
+    #splash{position:fixed;inset:0;z-index:1000;background:#141518;display:flex;align-items:center;justify-content:center;gap:14px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;letter-spacing:.14em;color:#9a9da3}
+    #splash .splash-mark{width:36px;height:36px;border:1px solid #2e3138;border-radius:8px;display:flex;align-items:center;justify-content:center;
+      color:#f4f4f2;font-size:14px;font-weight:700;letter-spacing:.02em}
+    #splash .splash-word{animation:splash-pulse 1.6s ease-in-out infinite}
+    @keyframes splash-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+    @media (prefers-reduced-motion:reduce){#splash .splash-word{animation:none}}
+  </style>
   </head>
   <body>
+    <div id="splash" role="status" aria-label="Loading portfolio">
+      <span class="splash-mark" aria-hidden="true">CL</span>
+      <span class="splash-word">INITIALIZING PORTFOLIO</span>
+    </div>
+    <noscript><style>#splash{display:none}</style></noscript>
     <div id="root"></div>
+    <script>
+      /* Layer 6 failsafe: never let the splash trap the page if the app bundle fails to load. */
+      setTimeout(function () {
+        var s = document.getElementById('splash');
+        if (s && !window.__portfolioBooted) s.parentNode.removeChild(s);
+      }, 8000);
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
