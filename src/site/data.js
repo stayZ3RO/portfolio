@@ -2,33 +2,8 @@
    from verified sources (homelab-ops-private service map/inventory, project
    repo READMEs, memory notes). Status words are honest: running / building
    reflect verified state, and rows say what is pending instead of implying
-   completion. LAB_STATUS/fetchLabStatus stub untouched. */
-
-/* ---------- lab status config ----------
-   Static by design: this asserts states ([running]/[building])
-   rather than streaming telemetry. Production swap: set
-   LAB_STATUS.source = 'uptime-kuma' and paste the public status page
-   slug below; the stub fetches /api/status-page/:slug and falls back
-   to static on failure. */
-export const LAB_STATUS = {
-  source: 'static', // 'static' | 'uptime-kuma'
-  uptimeKumaStatusSlug: '', // e.g. 'homelab' -> GET /api/status-page/homelab
-  nodes: { pve01: 'running', pve02: 'running', pve03: 'running' },
-};
-
-export async function fetchLabStatus() {
-  if (LAB_STATUS.source !== 'uptime-kuma' || !LAB_STATUS.uptimeKumaStatusSlug)
-    return LAB_STATUS.nodes;
-  try {
-    const r = await fetch(
-      '/api/status-page/' + encodeURIComponent(LAB_STATUS.uptimeKumaStatusSlug),
-    );
-    if (!r.ok) throw new Error('status ' + r.status);
-    return await r.json(); // expected shape: { pve01: 'running'|'building', ... }
-  } catch (e) {
-    return LAB_STATUS.nodes;
-  } // graceful fallback to static
-}
+   completion. Live lab status now lives in status.js; the old LAB_STATUS
+   stub was removed 2026-09-29 as dead code. */
 
 /* ---------- ticker: git log as signal ----------
    TICKER_COMMITS is a snapshot of REAL commits, captured read-only with
