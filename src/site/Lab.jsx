@@ -26,7 +26,7 @@ export default function Lab() {
         <p className="lab-copy">
           <strong>Three nodes, 80 gigs of RAM, one Tailscale mesh, and a VPS holding the public edge.</strong>{' '}
           This is where I learn how systems work before I touch them at work. Everything here is real,
-          running, and documented in the write-ups. Hover a node card to find it on the map.
+          running, and documented in each project&apos;s repo. Hover a node card to find it on the map.
         </p>
       </Reveal>
       <Reveal as="figure" className="lab-fig" aria-label="Homelab topology map">
@@ -81,8 +81,8 @@ export default function Lab() {
           <div className="ec-spec">phone · gaming PC · Mac mini · laptop, via the subnet routers</div>
         </Reveal>
         <Reveal className="edge-card">
-          <div className="ec-id">sensors</div>
-          <div className="ec-spec">2x PoE Raspberry Pi · on-LAN sensors (post-cutover plan)</div>
+          <div className="ec-id">retired pis</div>
+          <div className="ec-spec">ashpi-1 · ashpi-2 · cold standby, no production role</div>
         </Reveal>
       </div>
     </section>

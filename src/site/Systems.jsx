@@ -3,6 +3,73 @@ import Reveal from './Reveal';
 import SecHead from './SecHead';
 import { SYSTEMS } from './data';
 import { REDUCED } from './env';
+import './case-study.css';
+
+function CaseStudy() {
+  return (
+    <Reveal as="article" className="case-study" aria-labelledby="cs-title">
+      <div className="cs-eyebrow">FEATURED CASE STUDY</div>
+      <h3 id="cs-title">The service desk automation platform</h3>
+      <p className="cs-status">
+        <span className="tag running"><span className="dot"></span>[running]</span> dashboards live
+        <span className="cs-sep" aria-hidden="true">/</span>
+        <span className="tag building"><span className="dot"></span>[building]</span> workflows pending approval
+      </p>
+      <p className="cs-lede">
+        The desk&apos;s queue and knowledge base needed continuous eyes on them. I built automations
+        in my off hours that my team runs on, with one rule: they may never report a clean queue
+        they did not actually verify.
+      </p>
+      <div className="cs-grid">
+        <div className="cs-cell">
+          <div className="cs-label">THE ARCHITECTURE</div>
+          <p>
+            Around <strong>10 n8n workflows</strong> sit on manual trigger and talk to the ticketing
+            API. Each one validates auth up front and refuses to emit a false &ldquo;zero open
+            tickets&rdquo; report when auth fails.
+          </p>
+          <p>
+            Results feed <strong>2 native platform pages</strong>, live queue status and KB health,
+            refreshed hourly and viewable by every licensed user. Each page links a live Grafana
+            board, and <strong>two leadership stakeholders</strong> hold read-only viewer accounts
+            over the <strong>4 Grafana dashboards</strong>.
+          </p>
+        </div>
+        <div className="cs-cell">
+          <div className="cs-label">THE DASHBOARDS</div>
+          <ul>
+            <li><strong>Leadership queue split</strong>, plus assignee workload, aging backlog, and SLA watchlist with 10-day and 20-day thresholds</li>
+            <li><strong>Personal execution view</strong> for day-to-day triage</li>
+            <li><strong>KB operations view</strong> tracking knowledge base health</li>
+            <li><strong>Queue trends time series</strong> for the longer arc</li>
+          </ul>
+        </div>
+        <div className="cs-cell">
+          <div className="cs-label">VALIDATION NOTES</div>
+          <p>
+            The auth-failure guard is the design, not a fallback: a workflow that cannot prove it
+            reached the ticketing API will not say the queue is empty. Manual triggers keep a human
+            in the loop, and the dashboards read live data, so what leadership sees is what the
+            API returned.
+          </p>
+        </div>
+        <div className="cs-cell">
+          <div className="cs-label">HONEST STATUS</div>
+          <p>
+            <strong>Dashboards: live.</strong> The native pages and Grafana boards are deployed,
+            and both directors have seen the work and want more of it. My direct supervisor sees
+            me in a dev/systems engineer role because of it.
+          </p>
+          <p>
+            <strong>Workflows: staged.</strong> They are waiting on leadership approval and
+            platform activation. The AI Metrics variant is excluded from that batch and stays in
+            manual internal testing only.
+          </p>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
 
 function RowBody({ row }) {
   if (row.body.type === 'declog') {
@@ -107,6 +174,7 @@ export default function Systems() {
           />
         ))}
       </div>
+      {filter === 'all' && <CaseStudy />}
     </section>
   );
 }

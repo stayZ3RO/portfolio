@@ -22,8 +22,8 @@ export default function Hero() {
       </p>
       <p className="bio hero-fade" style={{ transitionDelay: '.62s' }}>
         I&apos;m into tech, AI, and building things. I run a homelab where I teach myself how
-        systems work, then I bring what I learn to my day job on the service desk. I&apos;m
-        looking for platform and systems engineering roles where I can keep growing.
+        systems work, then I bring what I learn to my day job on the service desk, where the
+        automations I build in my off hours are reviewed with my directors.
       </p>
       <div className="ctas hero-fade" style={{ transitionDelay: '.74s' }}>
         <a className="btn btn-solid magnetic" href="#systems">View systems</a>
