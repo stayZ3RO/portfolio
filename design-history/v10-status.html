@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christopher Lorenzo - systems status</title>
+<style>
+  :root {
+    --bg: #1e1c19;
+    --surface: #27241f;
+    --text: #f0ebe0;
+    --secondary: #cfc7b5;
+    --muted: #a39a88;
+    --hairline: #3a352b;
+    --accent: #f5f1e6;
+    --pill-bg: #2e2a23;
+    --pill-text: #b5ac99;
+    --green: #7fa663;
+    --amber: #c4965a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  #canvas {
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; opacity: 1;
+  }
+  .page { position: relative; z-index: 1; }
+
+  /* header bar */
+  .statusbar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 32px;
+    background: rgba(30, 28, 25, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--hairline);
+    font-size: 13px;
+  }
+  .brand { font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+  .statusbar-right { display: flex; align-items: center; gap: 10px; color: var(--secondary); }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(127,166,99,0.5); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(127,166,99,0); }
+  }
+  .nominal { color: var(--text); font-weight: 500; }
+  .clock { font-variant-numeric: tabular-nums; color: var(--muted); }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+  /* hero */
+  .hero { padding: 96px 0 72px; }
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 76px);
+    font-weight: 650; letter-spacing: -0.025em; line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .role { font-size: 17px; font-weight: 400; color: var(--muted); margin-bottom: 28px; }
+  .bio { font-size: 18px; color: var(--secondary); max-width: 620px; line-height: 1.65; }
+  .bio strong { color: var(--text); font-weight: 600; }
+
+  section { padding: 56px 0; border-top: 1px solid var(--hairline); }
+  .sec-head {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;
+  }
+  .sec-num { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; }
+  .sec-title { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; }
+  .sec-sub { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
+
+  /* service rows */
+  .svc {
+    display: block; width: 100%; text-align: left;
+    background: transparent; border: 1px solid var(--hairline); border-radius: 12px;
+    padding: 24px 26px; margin-bottom: 14px; cursor: pointer;
+    color: inherit; font: inherit;
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+  .svc:hover { background: var(--surface); border-color: #4a4438; transform: translateY(-2px); }
+  .svc-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+  .svc-name { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12.5px; font-weight: 500; padding: 4px 12px; border-radius: 999px;
+    border: 1px solid var(--hairline); color: var(--pill-text); background: var(--pill-bg);
+    white-space: nowrap;
+  }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .pill.op .dot { background: var(--green); animation: pulse 2s ease-in-out infinite; }
+  .pill.prog .dot { background: var(--amber); animation: pulse 2.6s ease-in-out infinite; }
+  .svc-desc { color: var(--secondary); font-size: 15.5px; margin-bottom: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .tag {
+    font-size: 12.5px; color: var(--pill-text);
+    background: var(--pill-bg); border: 1px solid var(--hairline);
+    padding: 3px 11px; border-radius: 999px;
+  }
+  .svc-links { display: flex; gap: 20px; }
+  .svc-links a {
+    color: var(--accent); font-size: 14px; font-weight: 500; text-decoration: none;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0% 1px; background-repeat: no-repeat; background-position: left bottom;
+    transition: background-size 220ms ease;
+    padding-bottom: 2px;
+  }
+  .svc-links a:hover { background-size: 100% 1px; }
+  .svc-links a::after { content: " \2192"; }
+
+  /* expandable detail */
+  .svc-detail {
+    display: grid; grid-template-rows: 0fr; opacity: 0;
+    transition: grid-template-rows 320ms ease, opacity 280ms ease;
+  }
+  .svc.open .svc-detail { grid-template-rows: 1fr; opacity: 1; }
+  .svc-detail-inner { overflow: hidden; }
+  .svc-detail ul { list-style: none; padding: 14px 0 4px; }
+  .svc-detail li {
+    color: var(--secondary); font-size: 15px; padding: 6px 0 6px 18px; position: relative;
+  }
+  .svc-detail li::before { content: ""; position: absolute; left: 2px; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+  .chev {
+    display: inline-block; margin-left: 8px; color: var(--muted); font-size: 14px;
+    transition: transform 240ms ease;
+  }
+  .svc.open .chev { transform: rotate(90deg); }
+
+  /* experience */
+  .job { margin-bottom: 28px; }
+  .job-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 6px; }
+  .job-title { font-size: 19px; font-weight: 600; }
+  .job-when { color: var(--muted); font-size: 14px; white-space: nowrap; }
+  .job ul { list-style: none; }
+  .job li { color: var(--secondary); font-size: 15.5px; padding: 5px 0 5px 18px; position: relative; }
+  .job li::before { content: ""; position: absolute; left: 2px; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+
+  /* contact */
+  .contact-email {
+    display: inline-block; font-size: clamp(24px, 4vw, 40px); font-weight: 600;
+    color: var(--accent); text-decoration: none; letter-spacing: -0.02em;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0% 2px; background-repeat: no-repeat; background-position: left bottom;
+    transition: background-size 260ms ease; padding-bottom: 4px; margin: 12px 0 24px;
+  }
+  .contact-email:hover { background-size: 100% 2px; }
+  .contact-row { display: flex; gap: 24px; }
+  .contact-row a { color: var(--secondary); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 200ms ease; }
+  .contact-row a:hover { color: var(--accent); }
+  .contact-row a::after { content: " \2197"; color: var(--muted); }
+
+  footer {
+    border-top: 1px solid var(--hairline); padding: 28px 0 40px; margin-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted); font-size: 13.5px;
+  }
+  footer .clock { font-variant-numeric: tabular-nums; }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* entrance + reveal */
+  .rise { opacity: 0; transform: translateY(20px); }
+  .rise.in { opacity: 1; transform: none; transition: opacity 500ms ease-out, transform 500ms ease-out; }
+
+  @media (max-width: 640px) {
+    .statusbar { padding: 12px 18px; }
+    .wrap { padding: 0 20px; }
+    .hero { padding: 64px 0 52px; }
+    .svc-top { flex-direction: column; align-items: flex-start; gap: 10px; }
+    footer { flex-direction: column; gap: 8px; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rise { opacity: 1; transform: none; }
+    .rise.in { transition: none; }
+    .live-dot, .pill .dot { animation: none; }
+    #canvas { display: none; }
+    .svc, .svc-links a, .contact-email { transition: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="canvas" aria-hidden="true"></canvas>
+<div class="page">
+
+  <header class="statusbar">
+    <div class="brand">chrisalorenzo.com</div>
+    <div class="statusbar-right">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span class="nominal">all systems nominal</span>
+      <span class="clock" id="clock-top" aria-label="Current UTC time">--:--:-- UTC</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="hero rise">
+      <h1>Christopher Lorenzo</h1>
+      <p class="role">I study systems by building them.</p>
+      <p class="bio">I'm into tech, AI, and building things. I run a homelab where I teach myself how systems work, then I bring what I learn to my day job on the service desk. I'm looking for <strong>platform and systems engineering roles</strong> where I can keep growing.</p>
+    </div>
+
+    <section id="services">
+      <div class="sec-head rise"><span class="sec-num">01</span><h2 class="sec-title">Services</h2></div>
+      <p class="sec-sub rise">Everything below is real, running, and documented. Click a service for detail.</p>
+
+      <button class="svc rise" aria-expanded="false">
+        <div class="svc-top">
+          <span class="svc-name">Home network infrastructure lab <span class="chev">&#8250;</span></span>
+          <span class="pill op"><span class="dot"></span>operational</span>
+        </div>
+        <p class="svc-desc">DNS, monitoring, and Tailscale across a 3-node Proxmox cluster.</p>
+        <div class="tags"><span class="tag">Proxmox</span><span class="tag">Tailscale</span><span class="tag">Prometheus</span></div>
+        <div class="svc-links"><a href="#">write-up</a><a href="#">github</a></div>
+        <div class="svc-detail"><div class="svc-detail-inner"><ul>
+          <li>3-node Proxmox cluster with keepalived failover</li>
+          <li>Tailscale mesh across VMs and personal machines</li>
+          <li>Prometheus and Grafana for monitoring</li>
+        </ul></div></div>
+      </button>
+
+      <button class="svc rise" aria-expanded="false">
+        <div class="svc-top">
+          <span class="svc-name">Managed network infrastructure lab <span class="chev">&#8250;</span></span>
+          <span class="pill prog"><span class="dot"></span>in progress</span>
+        </div>
+        <p class="svc-desc">VLAN design, firewall policy, and a controlled renumbering, in progress.</p>
+        <div class="tags"><span class="tag">UniFi</span><span class="tag">VLANs</span><span class="tag">Firewall</span></div>
+        <div class="svc-links"><a href="#">write-up</a><a href="#">github</a></div>
+        <div class="svc-detail"><div class="svc-detail-inner"><ul>
+          <li>VLAN segmentation design, phase 1 complete</li>
+          <li>Firewall policy built around least privilege</li>
+          <li>Controlled subnet renumbering in flight</li>
+        </ul></div></div>
+      </button>
+
+      <button class="svc rise" aria-expanded="false">
+        <div class="svc-top">
+          <span class="svc-name">Homelab command center <span class="chev">&#8250;</span></span>
+          <span class="pill prog"><span class="dot"></span>in progress</span>
+        </div>
+        <p class="svc-desc">Inventory, monitoring, and status page in one console.</p>
+        <div class="tags"><span class="tag">React</span><span class="tag">Grafana</span><span class="tag">Uptime Kuma</span></div>
+        <div class="svc-links"><a href="#">write-up</a><a href="#">github</a></div>
+        <div class="svc-detail"><div class="svc-detail-inner"><ul>
+          <li>Single console for inventory and monitoring</li>
+          <li>Public status page from the same data</li>
+          <li>Eight-theme design system, motion preferences persisted</li>
+        </ul></div></div>
+      </button>
+
+      <button class="svc rise" aria-expanded="false">
+        <div class="svc-top">
+          <span class="svc-name">Service desk automation <span class="chev">&#8250;</span></span>
+          <span class="pill op"><span class="dot"></span>operational</span>
+        </div>
+        <p class="svc-desc">Automations and dashboards my team runs on, every day.</p>
+        <div class="tags"><span class="tag">n8n</span><span class="tag">Python</span><span class="tag">Grafana</span></div>
+        <div class="svc-links"><a href="#">write-up</a><a href="#">github</a></div>
+        <div class="svc-detail"><div class="svc-detail-inner"><ul>
+          <li>Workflow automations with ticketing API validation</li>
+          <li>Live queue status and KB health dashboards</li>
+          <li>Everything in Git, linted and secret-scanned</li>
+        </ul></div></div>
+      </button>
+    </section>
+
+    <section id="experience">
+      <div class="sec-head rise"><span class="sec-num">02</span><h2 class="sec-title">Experience</h2></div>
+      <p class="sec-sub rise">The short version.</p>
+      <div class="job rise">
+        <div class="job-top">
+          <span class="job-title">IT Service Desk Analyst II</span>
+          <span class="job-when">present</span>
+        </div>
+        <ul>
+          <li>I build the automations and dashboards my team runs on.</li>
+          <li>Promoted twice in about a year; escalations routed to me by name.</li>
+          <li>Everything in Git, local CI with lint and secret scanning.</li>
+        </ul>
+        <div class="tags" style="margin-top:12px"><span class="tag">Python</span><span class="tag">PowerShell</span><span class="tag">Bash</span><span class="tag">n8n</span><span class="tag">Docker</span></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="sec-head rise"><span class="sec-num">03</span><h2 class="sec-title">Contact</h2></div>
+      <p class="sec-sub rise">The fastest way to reach me is email.</p>
+      <div class="rise">
+        <a class="contact-email" href="mailto:stayz3ro@gmail.com">stayz3ro@gmail.com</a>
+        <div class="contact-row">
+          <a href="https://github.com/stayZ3ro">GitHub</a>
+          <a href="https://www.linkedin.com/in/christopher-l-2118351ab">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Built and operated by Christopher Lorenzo.</span>
+      <span class="clock" id="clock-foot">--:--:-- UTC</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Live UTC clock (real time)
+  function tick() {
+    var d = new Date();
+    function p(n) { return String(n).padStart(2, '0'); }
+    var s = p(d.getUTCFullYear()) + '-' + p(d.getUTCMonth() + 1) + '-' + p(d.getUTCDate()) +
+            ' ' + p(d.getUTCHours()) + ':' + p(d.getUTCMinutes()) + ':' + p(d.getUTCSeconds()) + ' UTC';
+    document.getElementById('clock-top').textContent = s;
+    document.getElementById('clock-foot').textContent = s;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Staggered entrance + scroll reveals
+  var els = Array.prototype.slice.call(document.querySelectorAll('.rise'));
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i * 60, 420) + 'ms';
+      io.observe(el);
+    });
+  }
+
+  // Expandable service rows, one open at a time
+  var svcs = Array.prototype.slice.call(document.querySelectorAll('.svc'));
+  svcs.forEach(function (svc) {
+    svc.addEventListener('click', function (ev) {
+      if (ev.target.tagName === 'A') return;
+      var wasOpen = svc.classList.contains('open');
+      svcs.forEach(function (s) { s.classList.remove('open'); s.setAttribute('aria-expanded', 'false'); });
+      if (!wasOpen) { svc.classList.add('open'); svc.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+
+  // Faint ambient constellation canvas
+  if (!reduce) {
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var w, h, pts = [];
+    var DPR = Math.min(window.devicePixelRatio || 1, 2);
+    function resize() {
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = w * DPR; canvas.height = h * DPR;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      pts = [];
+      var n = Math.floor(w * h / 26000);
+      for (var i = 0; i < n; i++) {
+        pts.push({ x: Math.random() * w, y: Math.random() * h,
+                   vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.22,
+                   r: 1 + Math.random() * 1.4, ph: Math.random() * Math.PI * 2 });
+      }
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    var t = 0, running = true;
+    document.addEventListener('visibilitychange', function () { running = !document.hidden; if (running) requestAnimationFrame(frame); });
+    function frame() {
+      if (!running) return;
+      t += 0.016;
+      ctx.clearRect(0, 0, w, h);
+      var i, j, a, b, dx, dy, d;
+      for (i = 0; i < pts.length; i++) {
+        a = pts[i];
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < 0) a.x = w; if (a.x > w) a.x = 0;
+        if (a.y < 0) a.y = h; if (a.y > h) a.y = 0;
+        var pulse = 0.07 + 0.05 * (0.5 + 0.5 * Math.sin(t * 1.4 + a.ph));
+        ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(245,241,230,' + pulse.toFixed(3) + ')';
+        ctx.fill();
+      }
+      for (i = 0; i < pts.length; i++) {
+        for (j = i + 1; j < pts.length; j++) {
+          a = pts[i]; b = pts[j];
+          dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy;
+          if (d < 150 * 150) {
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = 'rgba(245,241,230,' + (0.05 * (1 - d / 22500)).toFixed(3) + ')';
+            ctx.lineWidth = 1; ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+})();
+</script>
+</body>
+</html>

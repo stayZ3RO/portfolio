@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christopher Lorenzo</title>
+<style>
+  :root{
+    --bg:#1e1c19;
+    --surface:#27241f;
+    --text:#f0ebe0;
+    --body:#cfc7b5;
+    --muted:#a39a88;
+    --hairline:#3a352b;
+    --accent:#f5f1e6;
+    --pill-bg:#2e2a23;
+    --pill-text:#b5ac99;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  #stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.9}
+  .wrap{position:relative;z-index:1}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 48px;
+    background:linear-gradient(to bottom, rgba(30,28,25,.92), rgba(30,28,25,0));
+  }
+  nav .brand{font-weight:600;font-size:15px;letter-spacing:.01em;color:var(--text);text-decoration:none}
+  nav .links{display:flex;gap:28px}
+  nav .links a{
+    color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
+    transition:color .2s ease;cursor:pointer;
+  }
+  nav .links a:hover{color:var(--accent)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding:0 48px;max-width:1200px;margin:0 auto;position:relative;
+  }
+  .hero h1{
+    font-size:clamp(56px,9vw,104px);font-weight:650;letter-spacing:-.03em;line-height:1.02;
+    color:var(--text);
+  }
+  .hero .role{margin-top:18px;font-size:17px;font-weight:400;color:var(--muted)}
+  .hero .bio{margin-top:28px;max-width:620px;font-size:17px;line-height:1.7;color:var(--body);font-weight:400}
+  .hero .bio + .bio{margin-top:16px}
+  .mesh-mini{margin-top:36px;width:340px;max-width:80vw;opacity:.85}
+  .scroll-cue{
+    position:absolute;bottom:36px;left:48px;
+    display:flex;align-items:center;gap:12px;
+    color:var(--muted);font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .scroll-cue .line{width:1px;height:44px;background:var(--hairline);position:relative;overflow:hidden}
+  .scroll-cue .line::after{
+    content:"";position:absolute;left:0;top:-44px;width:1px;height:44px;background:var(--accent);
+    animation:cue 2.2s ease-in-out infinite;
+  }
+  @keyframes cue{0%{top:-44px}60%,100%{top:44px}}
+
+  /* entrance */
+  .rise{opacity:0;transform:translateY(22px);animation:rise .7s cubic-bezier(.22,.8,.3,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.16s}.d3{animation-delay:.28s}.d4{animation-delay:.4s}.d5{animation-delay:.52s}
+
+  /* ---------- sections ---------- */
+  section.block{max-width:1200px;margin:0 auto;padding:110px 48px}
+  .sec-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .sec-label .num{color:var(--accent);margin-right:10px;font-weight:700}
+  .sec-title{font-size:clamp(28px,3.4vw,40px);font-weight:600;letter-spacing:-.02em;margin-top:14px;color:var(--text)}
+  .sec-body{margin-top:22px;max-width:640px;font-size:16.5px;line-height:1.7;color:var(--body)}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease-out,transform .5s ease-out}
+  .reveal.in{opacity:1;transform:none}
+
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .pill{
+    font-size:13px;font-weight:500;color:var(--pill-text);
+    background:var(--pill-bg);border:1px solid var(--hairline);
+    padding:6px 13px;border-radius:999px;
+  }
+
+  /* ---------- horizontal systems strip ---------- */
+  #systems{padding:0}
+  .hwrap{height:340vh;position:relative}
+  .hsticky{
+    position:sticky;top:0;height:100vh;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .hhead{max-width:1200px;margin:0 auto;padding:0 48px;width:100%}
+  .htrack-viewport{overflow:hidden;width:100%;margin-top:44px}
+  .htrack{
+    display:flex;gap:4vw;padding:0 8vw;width:max-content;will-change:transform;
+  }
+  .hcard{
+    width:64vw;max-width:760px;flex-shrink:0;
+    background:var(--surface);border:1px solid var(--hairline);border-radius:18px;
+    padding:48px 52px;position:relative;
+    transition:transform .25s ease,border-color .25s ease;
+  }
+  .hcard:hover{transform:translateY(-4px);border-color:#4a4436}
+  .hcard .idx{font-size:15px;font-weight:700;color:var(--accent);letter-spacing:.12em}
+  .hcard h3{font-size:clamp(24px,2.6vw,34px);font-weight:600;letter-spacing:-.015em;margin-top:16px;color:var(--text);line-height:1.2}
+  .hcard .out{margin-top:16px;font-size:16.5px;line-height:1.65;color:var(--body)}
+  .hcard .status{
+    display:inline-flex;align-items:center;gap:8px;margin-top:20px;
+    font-size:13.5px;font-weight:500;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;
+  }
+  .hcard .status .dot{width:8px;height:8px;border-radius:50%;background:#8a9a6b;box-shadow:0 0 10px #8a9a6b88}
+  .hcard .status.building .dot{background:#c4965a;box-shadow:0 0 10px #c4965a88}
+  .hcard .cardlinks{margin-top:26px;display:flex;gap:22px}
+  .hcard .cardlinks a{
+    color:var(--accent);text-decoration:none;font-size:15px;font-weight:500;position:relative;cursor:pointer;
+  }
+  .hcard .cardlinks a::after{
+    content:"";position:absolute;left:0;bottom:-3px;height:1px;width:100%;
+    background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .22s ease;
+  }
+  .hcard .cardlinks a:hover::after{transform:scaleX(1)}
+  .hprogress{max-width:1200px;margin:40px auto 0;padding:0 48px;width:100%}
+  .hprogress .bar{height:2px;background:var(--hairline);border-radius:2px;overflow:hidden}
+  .hprogress .bar span{display:block;height:100%;width:0;background:var(--accent);border-radius:2px}
+  .hprogress .hint{margin-top:12px;font-size:12.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+  /* ---------- experience ---------- */
+  .job{margin-top:34px;border-top:1px solid var(--hairline);padding-top:28px;max-width:720px}
+  .job h3{font-size:20px;font-weight:600;color:var(--text)}
+  .job .when{font-size:13.5px;color:var(--muted);margin-top:6px;letter-spacing:.04em}
+  .job ul{margin-top:16px;list-style:none}
+  .job ul li{font-size:16px;line-height:1.7;color:var(--body);padding-left:22px;position:relative;margin-top:8px}
+  .job ul li::before{content:"";position:absolute;left:2px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:.7}
+
+  /* ---------- contact ---------- */
+  .contact-mail{
+    display:inline-block;margin-top:30px;font-size:clamp(26px,3.6vw,44px);font-weight:600;
+    color:var(--accent);text-decoration:none;letter-spacing:-.02em;position:relative;cursor:pointer;
+  }
+  .contact-mail::after{
+    content:"";position:absolute;left:0;bottom:-6px;height:2px;width:100%;background:var(--accent);
+    transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+  }
+  .contact-mail:hover::after{transform:scaleX(1)}
+  .socials{display:flex;gap:26px;margin-top:30px}
+  .socials a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;transition:color .2s ease;cursor:pointer}
+  .socials a:hover{color:var(--accent)}
+
+  footer{
+    border-top:1px solid var(--hairline);margin-top:40px;
+    padding:28px 48px;max-width:1200px;margin-left:auto;margin-right:auto;
+    display:flex;justify-content:space-between;color:var(--muted);font-size:13.5px;
+  }
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+  @media (max-width:760px){
+    nav{padding:16px 24px}
+    .hero,.block{padding-left:24px;padding-right:24px}
+    .scroll-cue{left:24px}
+    .hcard{width:82vw;padding:34px 30px}
+    .hhead,.hprogress{padding-left:24px;padding-right:24px}
+    .htrack{padding:0 6vw}
+    footer{padding-left:24px;padding-right:24px;flex-direction:column;gap:8px}
+  }
+
+  /* ---------- reduced motion: strip becomes a normal vertical stack ---------- */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .rise{opacity:1;transform:none;animation:none}
+    .reveal{opacity:1;transform:none;transition:none}
+    .scroll-cue .line::after{animation:none}
+    .hwrap{height:auto}
+    .hsticky{position:static;height:auto;display:block;padding:110px 0}
+    .htrack-viewport{overflow:visible}
+    .htrack{flex-direction:column;width:auto;padding:0 48px;transform:none!important;gap:24px}
+    .hcard{width:auto;max-width:720px}
+    .hcard:hover{transform:none}
+    .hprogress{display:none}
+    #stars{display:none}
+  }
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="wrap">
+
+  <nav>
+    <a class="brand" href="#top">Christopher Lorenzo</a>
+    <div class="links">
+      <a href="#about">about</a>
+      <a href="#systems">systems</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <h1 class="rise d1">Christopher<br>Lorenzo</h1>
+    <p class="role rise d2">I study systems by building them.</p>
+    <p class="bio rise d3">I'm into tech, AI, and building things. I run a homelab where I teach myself how systems work, then I bring what I learn to my day job on the service desk.</p>
+    <p class="bio rise d4">I'm looking for platform and systems engineering roles where I can keep growing.</p>
+    <svg class="mesh-mini rise d5" viewBox="0 0 340 120" fill="none" aria-hidden="true">
+      <g stroke="#f5f1e6" stroke-width="1" opacity="0.55">
+        <line x1="60" y1="60" x2="170" y2="30" stroke-dasharray="5 5" class="flow"/>
+        <line x1="60" y1="60" x2="170" y2="92" stroke-dasharray="5 5" class="flow"/>
+        <line x1="170" y1="30" x2="285" y2="60" stroke-dasharray="5 5" class="flow"/>
+        <line x1="170" y1="92" x2="285" y2="60" stroke-dasharray="5 5" class="flow"/>
+        <circle cx="60" cy="60" r="14"/><circle cx="60" cy="60" r="3.5" fill="#f5f1e6" stroke="none"/>
+        <circle cx="170" cy="30" r="14"/><circle cx="170" cy="30" r="3.5" fill="#f5f1e6" stroke="none"/>
+        <circle cx="170" cy="92" r="14"/><circle cx="170" cy="92" r="3.5" fill="#f5f1e6" stroke="none"/>
+        <circle cx="285" cy="60" r="14"/><circle cx="285" cy="60" r="3.5" fill="#f5f1e6" stroke="none"/>
+      </g>
+      <style>.flow{animation:dash 3s linear infinite}@keyframes dash{to{stroke-dashoffset:-20}}</style>
+    </svg>
+    <div class="scroll-cue rise d5"><span class="line"></span><span>scroll</span></div>
+  </header>
+
+  <section class="block" id="about">
+    <p class="sec-label reveal"><span class="num">01</span>About</p>
+    <h2 class="sec-title reveal">How I work</h2>
+    <p class="sec-body reveal">By day I'm an IT Service Desk Analyst II. I build the automations and dashboards my team runs on. Nights and weekends, the homelab is where I learn: networking, virtualization, monitoring, and whatever system I'm curious about next.</p>
+    <div class="pills reveal">
+      <span class="pill">Python</span><span class="pill">PowerShell</span><span class="pill">Bash</span>
+      <span class="pill">n8n</span><span class="pill">Docker</span><span class="pill">Proxmox</span>
+    </div>
+  </section>
+
+  <section id="systems">
+    <div class="hwrap" id="hwrap">
+      <div class="hsticky">
+        <div class="hhead">
+          <p class="sec-label"><span class="num">02</span>Selected systems</p>
+          <h2 class="sec-title">Things I built to learn, now running for real.</h2>
+        </div>
+        <div class="htrack-viewport">
+          <div class="htrack" id="htrack">
+            <article class="hcard">
+              <p class="idx">01</p>
+              <h3>Home network infrastructure lab</h3>
+              <p class="out">DNS, monitoring, and Tailscale across a 3-node Proxmox cluster.</p>
+              <div class="pills"><span class="pill">Proxmox</span><span class="pill">Tailscale</span><span class="pill">Prometheus</span></div>
+              <p class="status"><span class="dot"></span>running</p>
+              <div class="cardlinks"><a href="#contact">write-up &#8599;</a><a href="#contact">github &#8599;</a></div>
+            </article>
+            <article class="hcard">
+              <p class="idx">02</p>
+              <h3>Managed network infrastructure lab</h3>
+              <p class="out">VLAN design, firewall policy, and a controlled renumbering, in progress.</p>
+              <div class="pills"><span class="pill">UniFi</span><span class="pill">VLANs</span><span class="pill">Firewall</span></div>
+              <p class="status building"><span class="dot"></span>building</p>
+              <div class="cardlinks"><a href="#contact">write-up &#8599;</a><a href="#contact">github &#8599;</a></div>
+            </article>
+            <article class="hcard">
+              <p class="idx">03</p>
+              <h3>Homelab command center</h3>
+              <p class="out">Inventory, monitoring, and status page in one console.</p>
+              <div class="pills"><span class="pill">React</span><span class="pill">Grafana</span><span class="pill">Uptime Kuma</span></div>
+              <p class="status building"><span class="dot"></span>building</p>
+              <div class="cardlinks"><a href="#contact">write-up &#8599;</a><a href="#contact">github &#8599;</a></div>
+            </article>
+          </div>
+        </div>
+        <div class="hprogress">
+          <div class="bar"><span id="hbar"></span></div>
+          <p class="hint">keep scrolling</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <p class="sec-label reveal"><span class="num">03</span>Experience</p>
+    <h2 class="sec-title reveal">Where I apply it</h2>
+    <div class="job reveal">
+      <h3>IT Service Desk Analyst II</h3>
+      <p class="when">Global Service Desk</p>
+      <ul>
+        <li>I build the automations and dashboards my team runs on.</li>
+        <li>Promoted twice in about a year, contractor to Analyst II.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <p class="sec-label reveal"><span class="num">04</span>Contact</p>
+    <h2 class="sec-title reveal">Let's talk.</h2>
+    <p class="sec-body reveal">The fastest way to reach me is email.</p>
+    <a class="contact-mail reveal" href="mailto:stayz3ro@gmail.com">stayz3ro@gmail.com</a>
+    <div class="socials reveal">
+      <a href="https://github.com/stayZ3ro" target="_blank" rel="noopener">GitHub &#8599;</a>
+      <a href="https://www.linkedin.com/in/christopher-l-2118351ab" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Christopher Lorenzo</span>
+    <span>Built by hand, running for real.</span>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveals */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* ambient constellation canvas */
+  var cv = document.getElementById('stars');
+  if(!reduce && cv){
+    var ctx = cv.getContext('2d'), W, H, pts = [], running = true;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    function size(){
+      W = window.innerWidth; H = window.innerHeight;
+      cv.width = W*dpr; cv.height = H*dpr;
+      cv.style.width = W+'px'; cv.style.height = H+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    size(); window.addEventListener('resize', size);
+    var N = Math.min(70, Math.floor(W*H/26000));
+    for(var i=0;i<N;i++) pts.push({x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.18, vy:(Math.random()-.5)*.18, r:Math.random()*1.4+.6, ph:Math.random()*6.28});
+    var t = 0;
+    function frame(){
+      if(!running){ requestAnimationFrame(frame); return; }
+      t += .008;
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<pts.length;i++){
+        var p = pts[i];
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+        var a = .05 + .05*Math.sin(t*2 + p.ph);
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.28);
+        ctx.fillStyle = 'rgba(245,241,230,'+a.toFixed(3)+')'; ctx.fill();
+      }
+      ctx.strokeStyle = 'rgba(245,241,230,0.045)'; ctx.lineWidth = 1;
+      for(var i=0;i<pts.length;i++) for(var j=i+1;j<pts.length;j++){
+        var dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=dx*dx+dy*dy;
+        if(d<150*150){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke(); }
+      }
+      requestAnimationFrame(frame);
+    }
+    document.addEventListener('visibilitychange', function(){ running = !document.hidden; });
+    frame();
+  }
+
+  /* pinned horizontal strip with lerped translation */
+  var wrap = document.getElementById('hwrap'),
+      track = document.getElementById('htrack'),
+      hbar = document.getElementById('hbar');
+  if(!reduce && wrap && track){
+    var cur = 0, tgt = 0, ticking = false;
+    function maxX(){ return Math.max(0, track.scrollWidth - window.innerWidth); }
+    function update(){
+      ticking = false;
+      var r = wrap.getBoundingClientRect();
+      var total = wrap.offsetHeight - window.innerHeight;
+      var p = Math.min(1, Math.max(0, -r.top / total));
+      tgt = p * maxX();
+      if(hbar) hbar.style.width = (p*100).toFixed(2)+'%';
+    }
+    function loop(){
+      cur += (tgt - cur) * .085;
+      if(Math.abs(tgt - cur) < .4) cur = tgt;
+      track.style.transform = 'translate3d('+(-cur).toFixed(1)+'px,0,0)';
+      if(Math.abs(tgt - cur) > .01 || tgt !== 0 || cur !== 0) requestAnimationFrame(loop);
+      else loop.raf = null;
+    }
+    loop.raf = null;
+    function kick(){
+      if(!ticking){ ticking = true; requestAnimationFrame(update); }
+      if(!loop.raf){ (function step(){
+        cur += (tgt - cur) * .085;
+        if(Math.abs(tgt - cur) < .4) cur = tgt;
+        track.style.transform = 'translate3d('+(-cur).toFixed(1)+'px,0,0)';
+        if(Math.abs(tgt-cur) > .05){ loop.raf = requestAnimationFrame(step); }
+        else { loop.raf = null; }
+      })(); }
+    }
+    window.addEventListener('scroll', kick, {passive:true});
+    window.addEventListener('resize', kick);
+    update();
+  }
+})();
+</script>
+</body>
+</html>

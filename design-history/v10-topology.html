@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christopher Lorenzo</title>
+<style>
+:root{
+  --bg:#1e1c19; --surface:#27241f; --text:#f0ebe0; --secondary:#cfc7b5;
+  --muted:#a39a88; --hairline:#3a352b; --accent:#f5f1e6;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;overflow:hidden}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.stage{position:fixed;inset:0;z-index:1}
+#map{width:100%;height:100%;display:block}
+#drift{animation:drift 48s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(16px,-12px)}}
+.link{fill:none;stroke:var(--muted);stroke-width:1.5;opacity:.35;stroke-dasharray:5 9;animation:dashflow 9s linear infinite}
+@keyframes dashflow{to{stroke-dashoffset:-280}}
+.node{cursor:pointer;outline:none}
+.node .disc{fill:var(--surface);stroke:var(--hairline);stroke-width:1.5;transition:stroke .25s}
+.node .core{fill:var(--muted);transition:fill .25s}
+.node text{fill:var(--secondary);font-size:15px;text-anchor:middle;pointer-events:none}
+.node .sub{fill:var(--muted);font-size:12px}
+.node:hover .disc,.node:focus-visible .disc{stroke:var(--accent)}
+.node:hover .core,.node:focus-visible .core{fill:var(--accent)}
+.node.active .disc{stroke:var(--accent);stroke-width:2}
+.node.active .core{fill:var(--accent)}
+.node:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+.ring{fill:none;stroke:var(--accent);stroke-width:1;opacity:.35;transform-box:fill-box;transform-origin:center;animation:pulse 3.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.22}50%{transform:scale(1.14);opacity:.55}}
+.center-label{fill:var(--text);font-size:27px;font-weight:600;text-anchor:middle}
+.appear{opacity:0;animation:appear .7s ease-out forwards}
+@keyframes appear{to{opacity:1}}
+.hint{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:2;color:var(--muted);font-size:13px;letter-spacing:.05em;pointer-events:none}
+#panel{position:fixed;top:0;right:0;height:100%;width:min(460px,94vw);background:#24211c;border-left:1px solid var(--hairline);z-index:5;transform:translateX(102%);transition:transform .3s ease-out;padding:76px 40px 48px;overflow-y:auto}
+#panel.open{transform:translateX(0)}
+#panel h2{font-size:14px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+#panel p{font-size:17px;line-height:1.65;color:var(--secondary);margin-bottom:16px}
+#panel strong{color:var(--text);font-weight:600}
+#panel .sec{display:none}
+#panel .sec.show{display:block;animation:appear .4s ease-out}
+#close{position:absolute;top:22px;right:26px;background:none;border:1px solid var(--hairline);color:var(--secondary);font-size:13px;letter-spacing:.06em;padding:9px 16px;border-radius:999px;cursor:pointer;transition:border-color .2s,color .2s}
+#close:hover{border-color:var(--accent);color:var(--accent)}
+#close:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.sys{border-top:1px solid var(--hairline);padding:22px 0}
+.sys:first-of-type{border-top:none;padding-top:0}
+.sys h3{font-size:19px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.sys .out{font-size:15px;color:var(--secondary);line-height:1.55;margin-bottom:12px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.pill{font-size:12.5px;color:#b5ac99;background:#2e2a23;border:1px solid var(--hairline);padding:4px 12px;border-radius:999px}
+.status{font-size:13px;color:var(--muted);margin-bottom:12px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px}
+.dot.run{background:var(--accent)}
+.dot.build{background:transparent;border:1.5px solid var(--muted);width:7px;height:7px}
+.links a{color:var(--accent);font-size:14px;margin-right:20px;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.links a:hover{border-bottom-color:var(--accent)}
+.biglink{color:var(--accent);font-size:22px;text-decoration:none;border-bottom:1px solid var(--hairline);transition:border-color .2s}
+.biglink:hover{border-bottom-color:var(--accent)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .appear{opacity:1}
+  #panel{transition:none}
+}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<main class="stage">
+<svg id="map" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Interactive network map of Christopher Lorenzo's portfolio. Activate a node to explore.">
+<g id="drift">
+  <path class="link" d="M680,408 Q540,330 438,276"/>
+  <path class="link" d="M760,408 Q900,330 1002,276"/>
+  <path class="link" d="M680,472 Q540,562 438,634"/>
+  <path class="link" d="M760,472 Q900,562 1002,634"/>
+  <path class="link" d="M1075,224 Q1148,182 1196,156"/>
+  <path class="link" d="M1075,276 Q1150,310 1210,336"/>
+  <path class="link" d="M1010,218 Q955,165 922,132"/>
+
+  <g class="node appear" data-node="about" tabindex="0" role="button" aria-label="About" style="animation-delay:.15s">
+    <circle class="ring" cx="400" cy="250" r="52"/>
+    <circle class="disc" cx="400" cy="250" r="42"/>
+    <circle class="core" cx="400" cy="250" r="6"/>
+    <text x="400" y="318">about</text>
+  </g>
+  <g class="node appear" data-node="systems" tabindex="0" role="button" aria-label="Systems" style="animation-delay:.25s">
+    <circle class="ring" cx="1040" cy="250" r="52"/>
+    <circle class="disc" cx="1040" cy="250" r="42"/>
+    <circle class="core" cx="1040" cy="250" r="6"/>
+    <text x="1040" y="318">systems</text>
+  </g>
+  <g class="node appear" data-node="experience" tabindex="0" role="button" aria-label="Experience" style="animation-delay:.35s">
+    <circle class="ring" cx="400" cy="660" r="52"/>
+    <circle class="disc" cx="400" cy="660" r="42"/>
+    <circle class="core" cx="400" cy="660" r="6"/>
+    <text x="400" y="728">experience</text>
+  </g>
+  <g class="node appear" data-node="contact" tabindex="0" role="button" aria-label="Contact" style="animation-delay:.45s">
+    <circle class="ring" cx="1040" cy="660" r="52"/>
+    <circle class="disc" cx="1040" cy="660" r="42"/>
+    <circle class="core" cx="1040" cy="660" r="6"/>
+    <text x="1040" y="728">contact</text>
+  </g>
+  <g class="node appear" data-node="home-net" tabindex="0" role="button" aria-label="Home network infrastructure lab" style="animation-delay:.6s">
+    <circle class="ring" cx="1215" cy="140" r="36"/>
+    <circle class="disc" cx="1215" cy="140" r="28"/>
+    <circle class="core" cx="1215" cy="140" r="4"/>
+    <text class="sub" x="1215" y="188">home-net lab</text>
+  </g>
+  <g class="node appear" data-node="managed-net" tabindex="0" role="button" aria-label="Managed network infrastructure lab" style="animation-delay:.7s">
+    <circle class="ring" cx="1235" cy="350" r="36"/>
+    <circle class="disc" cx="1235" cy="350" r="28"/>
+    <circle class="core" cx="1235" cy="350" r="4"/>
+    <text class="sub" x="1235" y="398">managed-net lab</text>
+  </g>
+  <g class="node appear" data-node="cmd" tabindex="0" role="button" aria-label="Homelab command center" style="animation-delay:.8s">
+    <circle class="ring" cx="900" cy="112" r="36"/>
+    <circle class="disc" cx="900" cy="112" r="28"/>
+    <circle class="core" cx="900" cy="112" r="4"/>
+    <text class="sub" x="900" y="160">command center</text>
+  </g>
+
+  <g class="appear" style="animation-delay:0s">
+    <circle class="ring" cx="720" cy="440" r="78"/>
+    <circle class="disc" cx="720" cy="440" r="64" style="stroke:var(--accent);stroke-width:2"/>
+    <circle class="core" cx="720" cy="440" r="8" style="fill:var(--accent)"/>
+    <text class="center-label" x="720" y="548">christopher lorenzo</text>
+  </g>
+</g>
+</svg>
+</main>
+<p class="hint">click a node to explore</p>
+
+<aside id="panel" aria-hidden="true" aria-label="Section details">
+  <button id="close">close &times;</button>
+
+  <section class="sec" id="sec-about" aria-label="About">
+    <h2>about</h2>
+    <p>I'm into tech, AI, and building things. I run a homelab where I teach myself how systems work, then I bring what I learn to my day job on the service desk.</p>
+    <p>I'm looking for <strong>platform and systems engineering roles</strong> where I can keep growing.</p>
+  </section>
+
+  <section class="sec" id="sec-systems" aria-label="Systems">
+    <h2>systems</h2>
+    <div class="sys">
+      <h3>Home network infrastructure lab</h3>
+      <p class="out">DNS, monitoring, and Tailscale across a 3-node Proxmox cluster.</p>
+      <div class="pills"><span class="pill">Proxmox</span><span class="pill">Tailscale</span><span class="pill">Prometheus</span></div>
+      <p class="status"><span class="dot run"></span>running</p>
+      <p class="links"><a href="#">write-up &rarr;</a><a href="#">github &rarr;</a></p>
+    </div>
+    <div class="sys">
+      <h3>Managed network infrastructure lab</h3>
+      <p class="out">VLAN design, firewall policy, and a controlled renumbering, in progress.</p>
+      <div class="pills"><span class="pill">UniFi</span><span class="pill">VLANs</span><span class="pill">Firewall</span></div>
+      <p class="status"><span class="dot build"></span>building</p>
+      <p class="links"><a href="#">write-up &rarr;</a><a href="#">github &rarr;</a></p>
+    </div>
+    <div class="sys">
+      <h3>Homelab command center</h3>
+      <p class="out">Inventory, monitoring, and status page in one console.</p>
+      <div class="pills"><span class="pill">React</span><span class="pill">Grafana</span><span class="pill">Uptime Kuma</span></div>
+      <p class="status"><span class="dot build"></span>building</p>
+      <p class="links"><a href="#">write-up &rarr;</a><a href="#">github &rarr;</a></p>
+    </div>
+  </section>
+
+  <section class="sec" id="sec-experience" aria-label="Experience">
+    <h2>experience</h2>
+    <div class="sys" style="border-top:none;padding-top:0">
+      <h3>IT Service Desk Analyst II</h3>
+      <p class="out">I build the automations and dashboards my team runs on. Promoted twice in about a year. Everything in Git, documented.</p>
+      <div class="pills"><span class="pill">Python</span><span class="pill">PowerShell</span><span class="pill">Bash</span><span class="pill">n8n</span><span class="pill">Docker</span></div>
+    </div>
+  </section>
+
+  <section class="sec" id="sec-contact" aria-label="Contact">
+    <h2>contact</h2>
+    <p>The fastest way to reach me is email.</p>
+    <p><a class="biglink" href="mailto:stayz3ro@gmail.com">stayz3ro@gmail.com</a></p>
+    <p class="links"><a href="https://github.com/stayZ3ro">github &rarr;</a><a href="https://www.linkedin.com/in/christopher-l-2118351ab">linkedin &rarr;</a></p>
+  </section>
+</aside>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* faint constellation canvas */
+  var cv = document.getElementById('stars');
+  var cx = cv.getContext('2d');
+  var W = 0, H = 0, dots = [];
+  function resize(){
+    var d = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W * d; cv.height = H * d;
+    cx.setTransform(d, 0, 0, d, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  for (var i = 0; i < 70; i++) {
+    dots.push({x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight,
+               vx: (Math.random()-.5)*.22, vy: (Math.random()-.5)*.22, r: Math.random()*1.5+.5});
+  }
+  function draw(){
+    cx.clearRect(0, 0, W, H);
+    var i, j;
+    for (i = 0; i < dots.length; i++) {
+      cx.beginPath();
+      cx.arc(dots[i].x, dots[i].y, dots[i].r, 0, 7);
+      cx.fillStyle = 'rgba(240,235,224,0.10)';
+      cx.fill();
+    }
+    cx.strokeStyle = 'rgba(240,235,224,0.045)';
+    cx.lineWidth = 1;
+    for (i = 0; i < dots.length; i++) {
+      for (j = i+1; j < dots.length; j++) {
+        var dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y;
+        if (dx*dx + dy*dy < 130*130) {
+          cx.beginPath(); cx.moveTo(dots[i].x, dots[i].y); cx.lineTo(dots[j].x, dots[j].y); cx.stroke();
+        }
+      }
+    }
+  }
+  function tick(){
+    for (var i = 0; i < dots.length; i++) {
+      var d = dots[i];
+      d.x += d.vx; d.y += d.vy;
+      if (d.x < 0) d.x = W; if (d.x > W) d.x = 0;
+      if (d.y < 0) d.y = H; if (d.y > H) d.y = 0;
+    }
+    draw();
+    requestAnimationFrame(tick);
+  }
+  if (reduced) { draw(); } else { tick(); }
+
+  /* panel navigation */
+  var panel = document.getElementById('panel');
+  var closeBtn = document.getElementById('close');
+  var lastFocus = null;
+  var secFor = {
+    'about': 'sec-about', 'systems': 'sec-systems',
+    'experience': 'sec-experience', 'contact': 'sec-contact',
+    'home-net': 'sec-systems', 'managed-net': 'sec-systems', 'cmd': 'sec-systems'
+  };
+  function openPanel(key){
+    lastFocus = document.activeElement;
+    var secs = panel.querySelectorAll('.sec');
+    for (var i = 0; i < secs.length; i++) secs[i].classList.remove('show');
+    document.getElementById(secFor[key]).classList.add('show');
+    var nodes = document.querySelectorAll('.node');
+    for (var k = 0; k < nodes.length; k++) {
+      nodes[k].classList.toggle('active', nodes[k].getAttribute('data-node') === key);
+    }
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden', 'false');
+    closeBtn.focus();
+  }
+  function closePanel(){
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden', 'true');
+    var nodes = document.querySelectorAll('.node');
+    for (var k = 0; k < nodes.length; k++) nodes[k].classList.remove('active');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  var nodes = document.querySelectorAll('.node');
+  for (var n = 0; n < nodes.length; n++) {
+    (function(node){
+      node.addEventListener('click', function(){ openPanel(node.getAttribute('data-node')); });
+      node.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPanel(node.getAttribute('data-node')); }
+      });
+    })(nodes[n]);
+  }
+  closeBtn.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
+  });
+})();
+</script>
+</body>
+</html>
