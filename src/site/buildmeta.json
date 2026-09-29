@@ -1,7 +1,19 @@
 {
-  "builtAt": "2026-09-29T20:31:32.906Z",
+  "builtAt": "2026-09-29T20:38:05.012Z",
   "buildDate": "sep 29, 2026",
   "commits": [
+    {
+      "hash": "7a82beb",
+      "subject": "feat(systems): rewrite decision-log rows and case study from verified sources"
+    },
+    {
+      "hash": "2226e28",
+      "subject": "feat(site): layer 2 live data - buildmeta ticker, status wiring, footer stamp"
+    },
+    {
+      "hash": "e22a825",
+      "subject": "feat: loading splash and print stylesheet (layer 6)"
+    },
     {
       "hash": "9741a54",
       "subject": "feat(site): add recruiter scan strip and field notes blog band"
@@ -49,18 +61,6 @@
     {
       "hash": "d6503ac",
       "subject": "feat: hero line-mask headline, staggered terminal, indexed now list"
-    },
-    {
-      "hash": "ec67a64",
-      "subject": "refactor: align design tokens to shared cross-site contract"
-    },
-    {
-      "hash": "04c3adf",
-      "subject": "Merge feature/design-tokens-themes: design token system with eight-theme switcher"
-    },
-    {
-      "hash": "f3b4e42",
-      "subject": "feat: design token system with eight-theme switcher"
     }
   ]
 }
