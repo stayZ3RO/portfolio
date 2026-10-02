@@ -72,7 +72,7 @@ export default function CfmPage() {
               <div className="cfm-term-line"><span className="cfm-prompt">❯</span> <span className="cfm-dim"># Bloodmoon theme, journal active, 3 entries</span></div>
             </div>
           </div>
-          <p className="cfm-cap">Single-pane with rich preview, Bloodmoon theme. The real UI, not a mockup.</p>
+          <p className="cfm-cap">Single-pane with rich preview, Bloodmoon theme. Terminal mockup of the layout.</p>
         </section>
 
         {/* Why */}
@@ -122,20 +122,11 @@ export default function CfmPage() {
         <section className="cfm-section" id="install">
           <h2>Install</h2>
           <div className="cfm-install">
-            <div className="cfm-code">
-              <div className="cfm-code-head">Quick install</div>
-              <pre><code>{`# One-line install (Linux/macOS)
-curl -fsSL https://chrisalorenzo.com/cfm/install.sh | bash
-
-# Or via Go
-go install github.com/stayZ3ro/cfm@latest
-
-# Or via pacman (Cheech OS [cheech] repo)
-sudo pacman -S cfm`}</code></pre>
-            </div>
             <p className="cfm-note">
-              Single static binary. No dependencies. Config lives in <code>~/.config/cfm/</code>,
-              state in <code>~/.local/share/cfm/</code>. The <code>fm</code> shell wrapper gives you cd-on-exit.
+              cFM is not released yet. When it ships, it will be a single static binary
+              with no dependencies. Config will live in <code>~/.config/cfm/</code>,
+              state in <code>~/.local/share/cfm/</code>. The <code>fm</code> shell wrapper
+              gives you cd-on-exit.
             </p>
           </div>
         </section>
