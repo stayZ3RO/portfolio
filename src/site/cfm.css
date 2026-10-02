@@ -1,0 +1,310 @@
+/* cFM landing page styles. Extends the portfolio's Zero theme with
+   Bloodmoon crimson as the project accent. */
+
+.cfm-page {
+  --cfm-accent: #c1272d;
+  --cfm-accent-dim: #7a1a1e;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.cfm-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(20,21,24,.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.cfm-main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* Hero */
+.cfm-hero {
+  padding: 96px 0 48px;
+  text-align: left;
+}
+
+.cfm-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .22em;
+  color: var(--cfm-accent);
+  border: 1px solid var(--cfm-accent-dim);
+  border-radius: 999px;
+  padding: 8px 18px;
+  margin-bottom: 24px;
+}
+
+.cfm-hero h1 {
+  font-size: clamp(56px, 10vw, 96px);
+  font-weight: 650;
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin: 0 0 20px;
+}
+
+.cfm-tagline {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--secondary);
+  max-width: 620px;
+  margin: 0 0 32px;
+}
+
+.cfm-btn-accent {
+  background: var(--cfm-accent) !important;
+  border-color: var(--cfm-accent) !important;
+  color: #fff !important;
+}
+.cfm-btn-accent:hover {
+  box-shadow: 0 8px 24px rgba(193,39,45,.35) !important;
+}
+
+.cfm-meta {
+  margin-top: 28px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.cfm-meta .dot { opacity: .5; }
+
+/* Terminal shot */
+.cfm-shot { margin: 24px 0 64px; }
+
+.cfm-term {
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: #0a0a0b;
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.cfm-term-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--surface);
+}
+
+.cfm-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--hairline);
+}
+.cfm-dot:first-child { background: var(--cfm-accent-dim); }
+
+.cfm-term-title {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.cfm-term-body { padding: 20px 24px; }
+
+.cfm-term-line { white-space: pre; color: var(--text); }
+.cfm-term-line .cfm-dim { color: var(--muted); }
+.cfm-term-line .cfm-prompt { color: var(--cfm-accent); margin-right: 8px; }
+.cfm-term-line .cfm-sel {
+  background: rgba(193,39,45,.28);
+  color: #fff;
+}
+
+.cfm-cap {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+/* Sections */
+.cfm-section { margin: 72px 0; }
+
+.cfm-section h2 {
+  font-size: 32px;
+  font-weight: 650;
+  letter-spacing: -.02em;
+  margin: 0 0 16px;
+}
+
+.cfm-lede {
+  color: var(--secondary);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 640px;
+  margin: 0 0 32px;
+}
+.cfm-lede kbd, .cfm-card kbd {
+  font-family: var(--mono);
+  font-size: .85em;
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.cfm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.cfm-card {
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: 28px;
+}
+.cfm-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: var(--cfm-accent);
+}
+.cfm-card p {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+.cfm-card code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Keybindings */
+.cfm-keys {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.cfm-key {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.cfm-key kbd {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cfm-accent);
+  white-space: nowrap;
+  min-width: 86px;
+}
+.cfm-key span { color: var(--muted); font-size: 14.5px; }
+
+/* Install */
+.cfm-install { max-width: 720px; }
+
+.cfm-code {
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: #0a0a0b;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.cfm-code-head {
+  padding: 12px 20px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: .08em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--surface);
+}
+.cfm-code pre {
+  margin: 0;
+  padding: 20px 24px;
+  overflow-x: auto;
+}
+.cfm-code code {
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.cfm-note {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.cfm-note code {
+  font-family: var(--mono);
+  font-size: .9em;
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--text);
+}
+
+/* Status */
+.cfm-status {
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+  max-width: 640px;
+}
+.cfm-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 15.5px;
+}
+.cfm-status-row:last-child { border-bottom: none; }
+.cfm-done {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: .06em;
+  color: #7dd87d;
+  text-transform: uppercase;
+}
+.cfm-todo {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: .06em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* Footer */
+.cfm-foot {
+  border-top: 1px solid var(--hairline);
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+.cfm-foot a { color: var(--text); }
+.cfm-foot p { margin: 8px 0; }
+
+@media (max-width: 640px) {
+  .cfm-hero { padding: 64px 0 32px; }
+  .cfm-keys { grid-template-columns: 1fr; }
+  .cfm-term { font-size: 11.5px; }
+}
