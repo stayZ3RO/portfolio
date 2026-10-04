@@ -1,35 +1,38 @@
 import './scanstrip.css';
 import Reveal from './Reveal';
 
+const FACTS = [
+  ['loc', 'Hialeah, FL'],
+  ['target', 'Platform / Systems Engineering'],
+  ['open to', 'Hybrid · Remote'],
+];
+
 const STACK = [
-  'Python',
-  'PowerShell',
-  'Bash',
-  'JavaScript',
-  'Docker',
-  'Proxmox',
-  'Tailscale',
-  'Prometheus/Grafana',
-  'Terraform/OpenTofu',
-  'n8n',
-  'Caddy',
+  ['languages', 'Python · PowerShell · Bash · JavaScript'],
+  ['platforms', 'Docker · Proxmox · Tailscale · n8n'],
+  ['infra', 'Caddy · Prometheus / Grafana · Terraform / OpenTofu'],
 ];
 
 export default function ScanStrip() {
   return (
     <Reveal className="scanstrip" aria-label="At a glance">
-      <div className="scanstrip-facts">
-        <span className="scan-fact"><span className="scan-key">loc</span>Hialeah, FL</span>
-        <span className="scan-sep" aria-hidden="true">/</span>
-        <span className="scan-fact"><span className="scan-key">target</span>Platform / Systems Engineering</span>
-        <span className="scan-sep" aria-hidden="true">/</span>
-        <span className="scan-fact"><span className="scan-key">open to</span>Hybrid · Remote</span>
+      <p className="scan-kicker">SPEC SHEET</p>
+      <div className="scan-cols">
+        <dl className="scan-rows">
+          {FACTS.map(([k, v]) => (
+            <div className="scan-row" key={k}>
+              <dt>{k}</dt><dd>{v}</dd>
+            </div>
+          ))}
+        </dl>
+        <dl className="scan-rows">
+          {STACK.map(([k, v]) => (
+            <div className="scan-row" key={k}>
+              <dt>{k}</dt><dd>{v}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
-      <ul className="scan-chips" aria-label="Core stack">
-        {STACK.map((s) => (
-          <li key={s} className="scan-chip">{s}</li>
-        ))}
-      </ul>
     </Reveal>
   );
 }

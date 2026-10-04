@@ -1,42 +1,45 @@
 /* scan strip: recruiter fast-scan band, sits between hero and systems.
-   Monochrome machine-room register: mono labels, hairline rules, no color. */
+   Spec-sheet register: mono keys, hairline rules, two-column on desktop.
+   Monochrome machine-room, no color. */
 
 .scanstrip{
   margin:0 0 8px;
   border-top:1px solid var(--hairline);
   border-bottom:1px solid var(--hairline);
-  padding:20px 0;
+  padding:22px 0 8px;
 }
 
-.scanstrip-facts{
-  display:flex;flex-wrap:wrap;align-items:baseline;
-  gap:8px 14px;
-  font-family:var(--mono);font-size:13px;letter-spacing:.04em;
-  color:var(--text);
+.scan-kicker{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  color:var(--muted);margin:0 0 6px;
 }
 
-.scan-fact{display:inline-flex;align-items:baseline;gap:8px}
-.scan-key{color:var(--muted);letter-spacing:.14em;font-size:11px;text-transform:uppercase}
-.scan-sep{color:var(--muted);opacity:.55;user-select:none}
-
-.scan-chips{
-  list-style:none;margin:14px 0 0;padding:0;
-  display:flex;flex-wrap:wrap;gap:8px;
+.scan-cols{
+  display:grid;grid-template-columns:1fr 1fr;gap:0 48px;
 }
 
-.scan-chip{
-  font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;
-  color:var(--secondary);
-  border:1px solid var(--hairline);border-radius:var(--radius-sm);
-  background:var(--surface);
-  padding:5px 11px;
-  line-height:1.5;
+.scan-rows{margin:0;padding:0}
+
+.scan-row{
+  display:flex;align-items:baseline;gap:18px;
+  padding:11px 0;border-bottom:1px solid var(--hairline);
+}
+.scan-row:last-child{border-bottom:none}
+
+.scan-row dt{
+  flex:0 0 108px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
 }
 
-@media (max-width:560px){
-  .scanstrip{padding:16px 0}
-  .scanstrip-facts{font-size:12.5px}
-  .scan-chip{font-size:12px;padding:4px 10px}
+.scan-row dd{
+  margin:0;font-size:15px;color:var(--text);
+}
+
+@media (max-width:640px){
+  .scan-cols{grid-template-columns:1fr}
+  .scan-row dt{flex-basis:96px}
+  .scan-row dd{font-size:14px}
 }
 
 @media (prefers-reduced-motion:reduce){
