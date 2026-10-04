@@ -11,9 +11,9 @@ I use this repository to build my public portfolio. It shows what I've built and
 ## Key Portfolio Sections
 
 - **Hero**, terminal-style intro (`whoami` / `ls ~/projects`) with clickable repo, blog, and dashboard links, plus a one-line positioning statement and status pill
-- **Now**, a timestamped list of current work with a relative "updated X ago" label
+- **Now**, a timestamped project-status snapshot with a relative "updated X ago" label
 - **Work**, a horizontal-scroll strip of project panels (architecture diagram or code snippet, tool stack, status) that moves as you scroll
-- **Detail**, a ruled Problem / Implementation / Validation / Outcome breakdown for each project, with the color-coded status kicker (mature / active / learning lab / in progress / private)
+- **Detail**, a ruled Problem / Implementation / Validation / Outcome breakdown for each project, with the color-coded status kicker (mature / active / learning lab / in progress)
 - **Links**, cards to the blog, the public status dashboard, and GitHub
 
 ## Featured Engineering Projects
@@ -21,11 +21,9 @@ I use this repository to build my public portfolio. It shows what I've built and
 | Project | Status | What it shows |
 |---|---|---|
 | [Home Network Infrastructure / HA DNS](https://github.com/stayZ3RO/dns) | Mature | Pi-hole + Unbound + Keepalived HA DNS, Prometheus/Grafana/Alertmanager monitoring, validated failover |
-| [Managed Network Infrastructure Lab](https://github.com/stayZ3RO/netlab) | Active | Omada/ER605 managed cutover complete, then a UniFi hardware refresh on 2026-09-27 (same flat network); segmentation, VLAN, and firewall redesign next |
+| [Managed Network Infrastructure Lab](https://github.com/stayZ3RO/netlab) | Active | UDM Pro and USW-24-PoE have been the core since 2026-09-27; the LAN remains flat, Deco nodes are APs, and VLAN/firewall segmentation is planned. Earlier Omada evidence is labeled historical. |
 | [AWS Network Automation Lab](https://github.com/stayZ3RO/cloud-netlab) | Learning lab, CI-validated | Reusable Terraform/OpenTofu VPC module + Python drift-detection CLI, tested and CI-gated, no cloud resources applied |
-| [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-lab) | In progress | Linux VPS hardening, DNS/public routing, and a Caddy HTTPS reverse proxy done; app deployment in progress; monitoring and backups planned |
-
-A private PowerShell diagnostics and reporting project is mentioned on the site at a high level only.
+| [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-lab) | In progress | Netcup VPS with Caddy HTTPS, seven Kuma monitors, and Discord plus self-hosted ntfy alerts live since 2026-09-28; Umami and backup/restore work remain planned |
 
 ## Technology Stack
 

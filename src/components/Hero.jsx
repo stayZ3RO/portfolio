@@ -23,8 +23,8 @@ function Hero() {
       <Reveal delay={180}>
         <div className="hero-about">
           <p>
-            Current focus: HA DNS and monitoring at home, a managed network cutover, and cloud
-            infrastructure as code. The work is validated and written up, not just screenshots.
+            Current focus: HA DNS and monitoring at home, UniFi network segmentation planning,
+            and a monitored VPS public edge. The work is validated and written up, not just screenshots.
           </p>
         </div>
       </Reveal>
@@ -68,7 +68,7 @@ function Hero() {
             >
               managed-network/
             </a>{' '}
-            <span className="cmt"># Omada cutover + VLAN</span>
+            <span className="cmt"># UniFi core + VLAN planning</span>
           </span>
           <span className="ln">
             <a
