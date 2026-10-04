@@ -1,7 +1,11 @@
 {
-  "builtAt": "2026-10-04T17:35:45.221Z",
+  "builtAt": "2026-10-04T17:40:53.523Z",
   "buildDate": "oct 4, 2026",
   "commits": [
+    {
+      "hash": "68474f1",
+      "subject": "chore: refresh buildmeta snapshot"
+    },
     {
       "hash": "632894c",
       "subject": "feat(motion): reveal variants with intent + hero mesh parallax depth"
@@ -57,10 +61,6 @@
     {
       "hash": "9bf79fc",
       "subject": "fix(honesty): status dots static until live feed wired; footnote contrast; hover-or-tap copy"
-    },
-    {
-      "hash": "9496659",
-      "subject": "fix(motion): honor reduced-motion toggles mid-session; hide scroll progress when reduced"
     }
   ]
 }
