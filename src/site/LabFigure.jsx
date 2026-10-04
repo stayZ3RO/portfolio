@@ -103,6 +103,9 @@ export default function LabFigure({ sectionRef, apiRef }) {
     let labRaf = null, labStarted = false, labIsMobile = labMQ.matches, labGen = 0;
     const timers = [];
     let labIO = null;
+    /* one-time hint: pulse pve01 shortly after first reveal so visitors see
+       the connection-focus interaction without having to discover it. */
+    let hintDone = false, interacted = false, hintOn = null, hintOff = null;
 
     function labLink(A, B, opts) {
       opts = opts || {};
@@ -289,8 +292,8 @@ export default function LabFigure({ sectionRef, apiRef }) {
           labLinkEls.forEach((L) => L.el.classList.toggle('lit', on && (L.aId === n.id || L.bId === n.id)));
           labPktDefs.forEach((P) => P.el.classList.toggle('dim', on && !(P.aId === n.id || P.bId === n.id)));
         };
-        const onEnter = () => { showTip(n, inner); setCard(true); setFocus(true); };
-        const onLeave = () => { hideTip(); setCard(false); setFocus(false); };
+        const onEnter = () => { interacted = true; showTip(n, inner); setCard(true); setFocus(true); };
+        const onLeave = () => { interacted = true; hideTip(); setCard(false); setFocus(false); };
         const onKey = (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -303,6 +306,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
         inner.addEventListener('focus', onEnter);
         inner.addEventListener('blur', onLeave);
         inner.addEventListener('keydown', onKey);
+        if (n.id === 'pve01') { hintOn = onEnter; hintOff = onLeave; }
         disposers.push(() => {
           inner.removeEventListener('mouseenter', onEnter);
           inner.removeEventListener('mouseleave', onLeave);
@@ -361,6 +365,14 @@ export default function LabFigure({ sectionRef, apiRef }) {
         if (g !== labGen || !labStarted) return;
         labFinalize();
         startLabLife();
+        /* hint pulse, once: show the connection-focus interaction, unless
+           the visitor already found it themselves. */
+        timers.push(setTimeout(() => {
+          if (hintDone || interacted || !hintOn || !hintOff) return;
+          hintDone = true;
+          hintOn();
+          timers.push(setTimeout(() => { hintOff(); }, 1700));
+        }, 800));
       }, DRAW_MS + labLinkEls.length * 140 + 150));
     }
 
