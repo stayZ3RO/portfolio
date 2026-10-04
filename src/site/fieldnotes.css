@@ -33,10 +33,10 @@
   display:flex;align-items:baseline;gap:16px;
   padding:12px 4px;
   text-decoration:none;color:var(--text);
-  transition:background .2s ease,padding-left .2s ease;
+  transition:background .2s var(--ease),transform .2s var(--ease);
 }
 
-.fn-a:hover{background:var(--surface);padding-left:12px}
+.fn-a:hover{background:var(--surface);transform:translateX(8px)}
 
 .fn-date{
   font-family:var(--mono);font-size:12px;letter-spacing:.06em;

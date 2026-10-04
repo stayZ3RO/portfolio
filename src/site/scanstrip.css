@@ -27,7 +27,7 @@
 .scan-chip{
   font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;
   color:var(--secondary);
-  border:1px solid var(--hairline);border-radius:6px;
+  border:1px solid var(--hairline);border-radius:var(--radius-sm);
   background:var(--surface);
   padding:5px 11px;
   line-height:1.5;
