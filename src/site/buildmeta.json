@@ -1,7 +1,27 @@
 {
-  "builtAt": "2026-10-04T06:48:35.744Z",
+  "builtAt": "2026-10-04T07:03:07.749Z",
   "buildDate": "oct 4, 2026",
   "commits": [
+    {
+      "hash": "3503040",
+      "subject": "fix(css): sr-only, dot, ticker pause, tap targets, nav nowrap for the a11y/honesty pass"
+    },
+    {
+      "hash": "a7f937b",
+      "subject": "fix(copy): trim duplicated role and stack mentions; studying cell replaces open-to"
+    },
+    {
+      "hash": "9bf79fc",
+      "subject": "fix(honesty): status dots static until live feed wired; footnote contrast; hover-or-tap copy"
+    },
+    {
+      "hash": "9496659",
+      "subject": "fix(motion): honor reduced-motion toggles mid-session; hide scroll progress when reduced"
+    },
+    {
+      "hash": "56dcdc2",
+      "subject": "fix(a11y): real h2 section headings; ticker pause control, no duplication under reduced motion"
+    },
     {
       "hash": "2914734",
       "subject": "Fix cFM landing page honesty issues"
@@ -41,26 +61,6 @@
     {
       "hash": "e22a825",
       "subject": "feat: loading splash and print stylesheet (layer 6)"
-    },
-    {
-      "hash": "9741a54",
-      "subject": "feat(site): add recruiter scan strip and field notes blog band"
-    },
-    {
-      "hash": "7c4d76c",
-      "subject": "fix: separate overlapping tailnet device labels in lab figure"
-    },
-    {
-      "hash": "eb2a9dd",
-      "subject": "feat: rebuild portfolio as approved v18 single-page design"
-    },
-    {
-      "hash": "d87869d",
-      "subject": "feat: Phase 4 work section - art-directed field-manual index with live lab"
-    },
-    {
-      "hash": "99f4e48",
-      "subject": "feat: Phase 4 art-direction pass - field-manual work section with live lab"
     }
   ]
 }
