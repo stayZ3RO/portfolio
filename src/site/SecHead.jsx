@@ -14,10 +14,11 @@ export default function SecHead({ num, name, extra }) {
   ));
   return (
     <Reveal className="sec-head">
-      <span className="sec-num">{num}</span>
-      <span className="sec-name" aria-label={name}>
-        {chars}
-      </span>
+      <span className="sec-num" aria-hidden="true">{num}</span>
+      <h2 className="sec-name">
+        <span className="sr-only">{name}</span>
+        <span className="sec-chars" aria-hidden="true">{chars}</span>
+      </h2>
       {extra}
       <span className="sec-rule">
         <span className="sweep"></span>
