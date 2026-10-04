@@ -1,7 +1,39 @@
 {
-  "builtAt": "2026-10-04T11:33:03.384Z",
+  "builtAt": "2026-10-04T17:35:45.221Z",
   "buildDate": "oct 4, 2026",
   "commits": [
+    {
+      "hash": "632894c",
+      "subject": "feat(motion): reveal variants with intent + hero mesh parallax depth"
+    },
+    {
+      "hash": "a3b73d7",
+      "subject": "feat(lab): hover a node to light its connections, dim the rest; anchor scroll-margin"
+    },
+    {
+      "hash": "9bd6090",
+      "subject": "feat(hero): kinetic letter-stagger thesis entrance + scroll-linked drift"
+    },
+    {
+      "hash": "e151e1b",
+      "subject": "feat(type): self-host Space Grotesk display + JetBrains Mono, wire into tokens"
+    },
+    {
+      "hash": "f69f2ae",
+      "subject": "chore: refresh buildmeta snapshot"
+    },
+    {
+      "hash": "5963cf9",
+      "subject": "feat(site): full-bleed recognition interlude between Systems and Lab"
+    },
+    {
+      "hash": "b869418",
+      "subject": "feat(scanstrip): spec-sheet register replaces the pill wall"
+    },
+    {
+      "hash": "6fe52f1",
+      "subject": "feat(hero): thesis as the headline, name as kicker"
+    },
     {
       "hash": "b156c09",
       "subject": "chore: refresh buildmeta snapshot"
@@ -29,38 +61,6 @@
     {
       "hash": "9496659",
       "subject": "fix(motion): honor reduced-motion toggles mid-session; hide scroll progress when reduced"
-    },
-    {
-      "hash": "56dcdc2",
-      "subject": "fix(a11y): real h2 section headings; ticker pause control, no duplication under reduced motion"
-    },
-    {
-      "hash": "2914734",
-      "subject": "Fix cFM landing page honesty issues"
-    },
-    {
-      "hash": "b97b360",
-      "subject": "Add cFM project landing page at /cfm"
-    },
-    {
-      "hash": "0fef3ee",
-      "subject": "docs: preserve design mockup revision history (v10-v18)"
-    },
-    {
-      "hash": "6c390cd",
-      "subject": "chore: refresh buildmeta snapshot"
-    },
-    {
-      "hash": "12a4e95",
-      "subject": "feat(systems): wire real repo links, add homelab command center row, honest lab copy"
-    },
-    {
-      "hash": "551dc6c",
-      "subject": "chore: refresh buildmeta snapshot (ticker fallback)"
-    },
-    {
-      "hash": "db903f0",
-      "subject": "chore: remove dead LAB_STATUS stub from data.js (superseded by status.js)"
     }
   ]
 }
