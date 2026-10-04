@@ -111,7 +111,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
       ln.setAttribute('x2', B.x); ln.setAttribute('y2', B.y);
       if (opts.thin) ln.setAttribute('stroke-width', '0.75');
       labGLinks.appendChild(ln);
-      const L = { el: ln, A, B, edge: !!opts.edge };
+      const L = { el: ln, A, B, edge: !!opts.edge, aId: A.id || null, bId: B.id || null };
       labLinkEls.push(L);
       const n = opts.pkts == null ? 4 : opts.pkts;
       for (let k = 0; k < n; k++) {
@@ -122,6 +122,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
         const dir = k % 2;
         labPktDefs.push({
           el: c, A: dir ? B : A, B: dir ? A : B,
+          aId: A.id || null, bId: B.id || null,
           phase: (labPktDefs.length * 0.23) % 1,
           speed: opts.speed || 0.00013,
         });
@@ -281,13 +282,20 @@ export default function LabFigure({ sectionRef, apiRef }) {
         labNodeEls.push({ id: n.id, g: inner, sub: n.sub });
         const card = section.querySelector(`.node-card[data-node="${n.id}"],.edge-card[data-node="${n.id}"]`);
         const setCard = (on) => { if (card) card.classList.toggle('hot-card', on); };
-        const onEnter = () => { showTip(n, inner); setCard(true); };
-        const onLeave = () => { hideTip(); setCard(false); };
+        /* connection focus: hovering a node lights its links and dims the rest */
+        const setFocus = (on) => {
+          const svg = labIsMobile ? labSVGm : labSVGd;
+          svg.querySelector('.lab-links').classList.toggle('dim', on);
+          labLinkEls.forEach((L) => L.el.classList.toggle('lit', on && (L.aId === n.id || L.bId === n.id)));
+          labPktDefs.forEach((P) => P.el.classList.toggle('dim', on && !(P.aId === n.id || P.bId === n.id)));
+        };
+        const onEnter = () => { showTip(n, inner); setCard(true); setFocus(true); };
+        const onLeave = () => { hideTip(); setCard(false); setFocus(false); };
         const onKey = (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            showTip(n, inner);
-            setTimeout(hideTip, 2200);
+            showTip(n, inner); setFocus(true);
+            setTimeout(() => { hideTip(); setFocus(false); }, 2200);
           }
         };
         inner.addEventListener('mouseenter', onEnter);
@@ -310,7 +318,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
     let nodeDisposers = [];
     function labFinalize() {
       labLinkEls.forEach((L) => {
-        L.el.style.transition = 'none';
+        L.el.style.transition = '';
         L.el.style.strokeDasharray = L.edge ? '8 7' : '6 7';
         L.el.style.strokeDashoffset = '0';
       });

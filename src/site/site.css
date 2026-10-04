@@ -135,7 +135,7 @@
   .tick-sep{color:var(--hairline);align-self:center}
 
   /* sections: one rhythm */
-  section{padding:96px 0;position:relative}
+  section{padding:96px 0;position:relative;scroll-margin-top:64px}
   .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:44px;position:relative;z-index:1}
   .sec-num{font-family:var(--mono);font-size:14px;color:var(--muted)}
   .sec-name{font-family:var(--display);font-size:32px;font-weight:700;letter-spacing:-.02em;margin:0}
@@ -210,6 +210,11 @@
   .lmnode .ring{transition:stroke .2s var(--ease),stroke-width .2s var(--ease)}
   .lmnode:hover .ring,.lmnode:focus-visible .ring,.lmnode.hot .ring{stroke:var(--accent);stroke-width:3}
   .lmnode:hover .core,.lmnode.hot .core{fill:var(--accent)}
+  .lab-links line{transition:opacity .25s var(--ease),stroke .25s var(--ease),stroke-width .25s var(--ease)}
+  .lab-links.dim line{opacity:.14}
+  .lab-links.dim line.lit{opacity:1;stroke:var(--text);stroke-width:1.6}
+  .lab-packets circle{transition:opacity .25s var(--ease)}
+  .lab-packets circle.dim{opacity:.1}
   /* heartbeat rings: bloom off each lab node, staggered */
   .lmnode .beat{fill:none;stroke:var(--text);stroke-width:1;opacity:0;transform-box:fill-box;transform-origin:center}
   #lab.live .lmnode .beat{animation:beat 2.8s var(--ease)-out infinite}
