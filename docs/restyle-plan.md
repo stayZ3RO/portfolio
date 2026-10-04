@@ -9,7 +9,7 @@ was replaced by a light, corporate-neutral palette (see the current
 `src/styles.css` and `docs/brand.md`'s note). This document is retained as the
 historical execution record for the restyle effort, not the active spec. The
 final direction was a light neutral base, petrol/slate accent, terminal hero,
-horizontal-scroll work strip, and ruled per-project detail, based on the selected professional direction. See the repo README for the current section map.
+horizontal-scroll work strip, and ruled per-project detail, following the neutral, professional, corporate direction expected by a director of IT infrastructure. See the repo README for the current section map.
 
 ## Direction
 

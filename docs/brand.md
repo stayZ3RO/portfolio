@@ -10,7 +10,7 @@ properties read as one person's work without looking identical.
 
 > **Status (superseded, 2026-08-31):** The portfolio moved off the Rosé Pine
 > dark theme below to a light, corporate-neutral palette (petrol/slate accent
-> `#2f6670`, cool gray base `#f6f7f8`). This reflects the selected professional direction. The blog (`stayz3ro.dev`) still uses the Rosé Pine dark
+> `#2f6670`, cool gray base `#f6f7f8`). The target was a neutral, professional, corporate palette, like a director of IT infrastructure would expect. The blog (`stayz3ro.dev`) still uses the Rosé Pine dark
 > theme for its dark mode and the light warm-stone for its light mode. The
 > active portfolio tokens live in `src/styles.css`; treat that file, not this
 > one, as the current source of truth for the portfolio palette. This file
