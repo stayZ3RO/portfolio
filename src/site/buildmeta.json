@@ -1,7 +1,19 @@
 {
-  "builtAt": "2026-10-04T07:03:07.749Z",
+  "builtAt": "2026-10-04T11:33:03.384Z",
   "buildDate": "oct 4, 2026",
   "commits": [
+    {
+      "hash": "b156c09",
+      "subject": "chore: refresh buildmeta snapshot"
+    },
+    {
+      "hash": "fed2795",
+      "subject": "refactor(figures): drive SVG and canvas colors from CSS tokens, no hardcoded hex"
+    },
+    {
+      "hash": "98cba49",
+      "subject": "refactor(css): lock colors, fonts, radii and easings into tokens; no transition:all; no layout animation"
+    },
     {
       "hash": "3503040",
       "subject": "fix(css): sr-only, dot, ticker pause, tap targets, nav nowrap for the a11y/honesty pass"
@@ -49,18 +61,6 @@
     {
       "hash": "db903f0",
       "subject": "chore: remove dead LAB_STATUS stub from data.js (superseded by status.js)"
-    },
-    {
-      "hash": "7a82beb",
-      "subject": "feat(systems): rewrite decision-log rows and case study from verified sources"
-    },
-    {
-      "hash": "2226e28",
-      "subject": "feat(site): layer 2 live data - buildmeta ticker, status wiring, footer stamp"
-    },
-    {
-      "hash": "e22a825",
-      "subject": "feat: loading splash and print stylesheet (layer 6)"
     }
   ]
 }
