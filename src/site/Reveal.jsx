@@ -23,7 +23,7 @@ function getIO() {
 /* One consistent reveal, driven by a shared IntersectionObserver.
    The revealed state lives in React state (not an imperative classList
    add) so parent re-renders never clobber the `in` class. */
-export default function Reveal({ as: Tag = 'div', className = '', delay, children, ...rest }) {
+export default function Reveal({ as: Tag = 'div', className = '', delay, variant, children, ...rest }) {
   const ref = useRef(null);
   const [inView, setInView] = useState(REDUCED);
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function Reveal({ as: Tag = 'div', className = '', delay, childre
   }, []);
   const style = delay != null ? { transitionDelay: `${delay}ms` } : undefined;
   return (
-    <Tag ref={ref} className={`reveal ${className}${inView ? ' in' : ''}`} style={style} {...rest}>
+    <Tag ref={ref} className={`reveal${variant ? ` reveal-${variant}` : ''} ${className}${inView ? ' in' : ''}`} style={style} {...rest}>
       {children}
     </Tag>
   );

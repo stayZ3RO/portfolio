@@ -28,10 +28,12 @@ export default function Hero() {
   const reduced = useReducedMotion();
   const h1Ref = useRef(null);
 
-  /* Scroll-linked drift: the thesis lifts and fades as you leave the hero.
+  /* Scroll-linked drift: the thesis lifts and fades as you leave the hero,
+     while the mesh figure lags behind for parallax depth.
      Skipped entirely under reduced motion. */
   useEffect(() => {
     if (reduced || !h1Ref.current) return;
+    const mesh = h1Ref.current.parentElement.querySelector('.mesh-fig');
     let raf = 0;
     const onScroll = () => {
       cancelAnimationFrame(raf);
@@ -40,6 +42,7 @@ export default function Hero() {
         if (y < window.innerHeight * 1.2) {
           h1Ref.current.style.transform = `translateY(${(-y * 0.22).toFixed(1)}px)`;
           h1Ref.current.style.opacity = Math.max(0, 1 - y / (window.innerHeight * 0.85)).toFixed(3);
+          if (mesh) mesh.style.translate = `0 ${(y * 0.12).toFixed(1)}px`;
         }
       });
     };

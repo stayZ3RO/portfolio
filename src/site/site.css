@@ -276,7 +276,10 @@
   .credit{font-size:13.5px;color:var(--muted)}
 
   /* one consistent reveal, more presence */
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity .5s var(--ease),transform .5s var(--ease-out)}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .5s var(--ease),transform .6s var(--ease-out)}
+  .reveal-rise-left{transform:translateX(-40px)}
+  .reveal-rise-right{transform:translateX(40px)}
+  .reveal-rise-scale{transform:translateY(22px) scale(.965)}
   .reveal.in{opacity:1;transform:none}
 
   a:focus-visible,button:focus-visible,.mnode:focus-visible,.lmnode:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--radius-xs)}

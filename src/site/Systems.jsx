@@ -7,7 +7,7 @@ import './case-study.css';
 
 function CaseStudy() {
   return (
-    <Reveal as="article" className="case-study" aria-labelledby="cs-title">
+    <Reveal as="article" className="case-study" aria-labelledby="cs-title" variant="rise-scale">
       <div className="cs-eyebrow">FEATURED CASE STUDY</div>
       <h3 id="cs-title">The service desk automation platform</h3>
       <p className="cs-status">

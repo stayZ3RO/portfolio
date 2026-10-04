@@ -15,7 +15,7 @@ const STACK = [
 
 export default function ScanStrip() {
   return (
-    <Reveal className="scanstrip" aria-label="At a glance">
+    <Reveal className="scanstrip" aria-label="At a glance" variant="rise-left">
       <p className="scan-kicker">SPEC SHEET</p>
       <div className="scan-cols">
         <dl className="scan-rows">
