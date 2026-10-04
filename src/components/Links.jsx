@@ -4,17 +4,17 @@ function Links() {
   return (
     <section className="links" id="links" aria-label="Links">
       <Reveal>
-        <a className="lcard" href="https://stayz3ro.dev" target="_blank" rel="noreferrer">
+        <a className="lcard" href="https://blog.chrisalorenzo.com" target="_blank" rel="noreferrer">
           <span className="tag">/ blog</span>
-          <h3>stayz3ro.dev</h3>
+          <h3>blog.chrisalorenzo.com</h3>
           <p>Long-form write-ups on the labs, the decisions, and the lessons.</p>
           <span className="go">read →</span>
         </a>
       </Reveal>
       <Reveal delay={80}>
-        <a className="lcard" href="https://status.stayz3ro.dev" target="_blank" rel="noreferrer">
+        <a className="lcard" href="https://status.chrisalorenzo.com" target="_blank" rel="noreferrer">
           <span className="tag">/ dashboard</span>
-          <h3>status.stayz3ro.dev</h3>
+          <h3>status.chrisalorenzo.com</h3>
           <p>A public status view of the live services, exposed safely, no admin access.</p>
           <span className="go">view →</span>
         </a>

@@ -179,7 +179,7 @@ export const projects = [
         {
           src: '/proof/vps-dns-records.webp',
           alt: 'Historical Phase 2 DNS records for stayz3ro.dev',
-          caption: 'Historical Phase 2 DNS evidence. The apex now serves the blog from Cloudflare Pages; service subdomains route to the VPS.',
+          caption: 'Historical Phase 2 DNS evidence. The blog now lives at blog.chrisalorenzo.com on Cloudflare Pages; stayz3ro.dev redirects there, and service subdomains route to the VPS.',
         },
       ],
     },

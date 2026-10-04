@@ -95,8 +95,8 @@ function Hero() {
           <span className="ln">&nbsp;</span>
           <span className="ln">
             <span className="p">❯</span> <span className="cmd">open</span>{' '}
-            <a className="dir" href="https://stayz3ro.dev" target="_blank" rel="noreferrer">
-              stayz3ro.dev
+            <a className="dir" href="https://blog.chrisalorenzo.com" target="_blank" rel="noreferrer">
+              blog.chrisalorenzo.com
             </a>{' '}
             <span className="cmt"># blog</span>
           </span>
@@ -104,11 +104,11 @@ function Hero() {
             <span className="p">❯</span> <span className="cmd">open</span>{' '}
             <a
               className="dir"
-              href="https://status.stayz3ro.dev"
+              href="https://status.chrisalorenzo.com"
               target="_blank"
               rel="noreferrer"
             >
-              status.stayz3ro.dev
+              status.chrisalorenzo.com
             </a>{' '}
             <span className="cmt"># dashboard</span>
           </span>
