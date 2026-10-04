@@ -1,9 +1,15 @@
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/SpaceGrotesk-500.woff2') format('woff2')}
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/SpaceGrotesk-700.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/JetBrainsMono-400.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/JetBrainsMono-500.woff2') format('woff2')}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/JetBrainsMono-700.woff2') format('woff2')}
   :root{
     --bg:#141518; --surface:#1c1e22; --surface-2:#23262b;
     --text:#f4f4f2; --secondary:#c9ccd1; --muted:#9a9da3;
     --hairline:#2e3138; --accent:#ffffff;
-    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    --display:'Space Grotesk',-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
     --on-accent:#141518;
     --nav-bg:rgba(20,21,24,.82);
     --glow:rgba(255,255,255,.045);
@@ -52,7 +58,7 @@
     background:var(--nav-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border-bottom:1px solid var(--hairline)}
   .nav-inner{max-width:880px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
-  .nav-name{font-weight:650;font-size:16px;color:var(--text);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+  .nav-name{font-family:var(--display);font-weight:700;font-size:16px;color:var(--text);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
   .nav-links{display:flex;gap:26px}
   .nav-links a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;transition:color .2s var(--ease)}
   .nav-links a:hover{color:var(--text)}
@@ -65,7 +71,7 @@
     background:radial-gradient(circle,var(--glow-soft),transparent 60%);pointer-events:none;z-index:-1;
     animation:glowdrift 22s var(--ease-io) infinite alternate}
   @keyframes glowdrift{from{transform:translate(-58%,-4%)}to{transform:translate(-42%,4%)}}
-  .hero h1{font-size:clamp(48px,8vw,76px);font-weight:650;letter-spacing:-.03em;line-height:1.04;color:var(--accent)}
+  .hero h1{font-family:var(--display);font-size:clamp(52px,8.5vw,84px);font-weight:700;letter-spacing:-.03em;line-height:1.04;color:var(--accent)}
   .mask{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
   .mask-inner{display:block;transform:translateY(112%);transition:transform .95s var(--ease-out)}
   body.loaded .mask-inner{transform:translateY(0)}
@@ -127,7 +133,7 @@
   section{padding:96px 0;position:relative}
   .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:44px;position:relative;z-index:1}
   .sec-num{font-family:var(--mono);font-size:14px;color:var(--muted)}
-  .sec-name{font-size:30px;font-weight:650;letter-spacing:-.02em;margin:0}
+  .sec-name{font-family:var(--display);font-size:32px;font-weight:700;letter-spacing:-.02em;margin:0}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   .sec-name .ch{display:inline-block;opacity:0;transform:translateY(.55em);transition:opacity .35s var(--ease),transform .5s var(--ease-out)}
   .sec-head.in .ch{opacity:1;transform:none}
@@ -136,7 +142,7 @@
     background:linear-gradient(90deg,transparent,var(--ghost-ink),transparent)}
   .sec-head.in .sweep{animation:sweep 1.2s var(--ease-out) .25s}
   @keyframes sweep{to{left:100%}}
-  .ghost{position:absolute;top:44px;right:-8px;font-size:168px;font-weight:650;letter-spacing:-.05em;line-height:1;
+  .ghost{position:absolute;top:44px;right:-8px;font-family:var(--display);font-size:168px;font-weight:700;letter-spacing:-.05em;line-height:1;
     color:rgba(244,244,242,.05);pointer-events:none;user-select:none;will-change:transform}
 
   /* live tag */
