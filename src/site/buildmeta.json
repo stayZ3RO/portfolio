@@ -1,7 +1,15 @@
 {
-  "builtAt": "2026-10-04T17:40:53.523Z",
+  "builtAt": "2026-10-04T21:35:08.072Z",
   "buildDate": "oct 4, 2026",
   "commits": [
+    {
+      "hash": "d5b27c4",
+      "subject": "chore: refresh buildmeta snapshot"
+    },
+    {
+      "hash": "1117cf8",
+      "subject": "feat(lab): fleet manifest, every service with host and purpose, hover-links to the map"
+    },
     {
       "hash": "68474f1",
       "subject": "chore: refresh buildmeta snapshot"
@@ -53,14 +61,6 @@
     {
       "hash": "3503040",
       "subject": "fix(css): sr-only, dot, ticker pause, tap targets, nav nowrap for the a11y/honesty pass"
-    },
-    {
-      "hash": "a7f937b",
-      "subject": "fix(copy): trim duplicated role and stack mentions; studying cell replaces open-to"
-    },
-    {
-      "hash": "9bf79fc",
-      "subject": "fix(honesty): status dots static until live feed wired; footnote contrast; hover-or-tap copy"
     }
   ]
 }
