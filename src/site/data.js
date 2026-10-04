@@ -181,3 +181,18 @@ export const NODE_CARDS = [
     svcs: ['backup-svr · PBS'],
   },
 ];
+
+export const FLEET = [
+  ['pihole01', 'pve01', 'DNS + network-wide filtering'],
+  ['omada-controller', 'pve01', 'network controller'],
+  ['ts-router01', 'pve01', 'Tailscale subnet router'],
+  ['pihole02', 'pve02', 'DNS secondary'],
+  ['ts-router02', 'pve02', 'Tailscale subnet router'],
+  ['portainer', 'pve02', 'container management'],
+  ['monitoring', 'pve02', 'Prometheus + Grafana'],
+  ['rustdesk', 'pve02', 'remote desktop'],
+  ['backup-svr', 'pve03', 'Proxmox Backup Server'],
+  ['caddy', 'vps-edge', 'reverse proxy + HTTPS'],
+  ['blog', 'vps-edge', 'engineering blog'],
+  ['uptime-kuma', 'vps-edge', 'status monitoring'],
+];

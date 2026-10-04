@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import LabFigure from './LabFigure';
 import Reveal from './Reveal';
 import SecHead from './SecHead';
-import { NODE_CARDS } from './data';
+import { NODE_CARDS, FLEET } from './data';
 import { REDUCED } from './env';
 import { LIVE } from './status';
 
@@ -86,6 +86,25 @@ export default function Lab() {
           <div className="ec-spec">ashpi-1 · ashpi-2 · cold standby, no production role</div>
         </Reveal>
       </div>
+      <Reveal className="manifest-wrap" aria-label="Fleet manifest">
+        <p className="manifest-kicker">FLEET MANIFEST · DOCUMENTED STATE</p>
+        <table className="manifest">
+          <thead>
+            <tr><th scope="col">service</th><th scope="col">host</th><th scope="col">purpose</th></tr>
+          </thead>
+          <tbody>
+            {FLEET.map(([svc, host, why]) => (
+              <tr key={svc}
+                onMouseEnter={() => cardHot(apiRef, host, true)}
+                onMouseLeave={() => cardHot(apiRef, host, false)}>
+                <td className="svc">{svc}</td>
+                <td className="host">{host}</td>
+                <td className="why">{why}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Reveal>
     </section>
   );
 }

@@ -242,6 +242,20 @@
   .edge-card .ec-spec{margin-top:10px;font-size:13.5px;color:var(--muted);line-height:1.6}
   .lab-foot{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);margin-top:10px}
 
+  /* fleet manifest: every service, its host, its purpose. documented state. */
+  .manifest-wrap{margin-top:44px}
+  .manifest-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--muted);margin:0 0 6px}
+  .manifest{width:100%;border-collapse:collapse}
+  .manifest th{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid var(--hairline)}
+  .manifest td{padding:11px 18px 11px 0;border-bottom:1px solid var(--hairline);vertical-align:baseline;font-size:14.5px}
+  .manifest td.svc{font-family:var(--mono);font-size:13.5px;color:var(--text);white-space:nowrap}
+  .manifest td.host{font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap}
+  .manifest td.why{color:var(--secondary)}
+  .manifest tbody tr{transition:background .2s var(--ease)}
+  .manifest tbody tr:hover{background:var(--hover-wash)}
+  .manifest tbody tr:last-child td{border-bottom:none}
+
   /* now: bento flavor, compact */
   .now-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .now-cell{border:1px solid var(--hairline);border-radius:var(--radius-xl);background:var(--surface);padding:24px;transition:transform .2s var(--ease),border-color .2s var(--ease)}
