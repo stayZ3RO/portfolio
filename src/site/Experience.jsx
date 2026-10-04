@@ -22,10 +22,6 @@ export default function Experience() {
             <li key={b}>{b}</li>
           ))}
         </ul>
-        <blockquote className="recognition">
-          <p>&ldquo;one of the best service desk specialists I&apos;ve ever worked with in my 20+ years of experience&rdquo;</p>
-          <cite>FROM A WORKDAY PEER REVIEW</cite>
-        </blockquote>
       </Reveal>
     </section>
   );

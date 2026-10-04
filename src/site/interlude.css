@@ -1,0 +1,30 @@
+/* recognition interlude: full-bleed quote, the page's one moment of air.
+   Big confident type, centered, nothing competing with it. */
+
+.interlude{
+  padding:150px 24px;
+  text-align:center;
+}
+
+.interlude blockquote{margin:0}
+
+.interlude p{
+  font-size:clamp(28px,4.4vw,48px);
+  font-weight:600;letter-spacing:-.02em;line-height:1.28;
+  color:var(--text);
+  max-width:22em;margin:0 auto;
+}
+
+.interlude cite{
+  display:block;margin-top:32px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);font-style:normal;
+}
+
+@media (max-width:640px){
+  .interlude{padding:110px 20px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .interlude *{animation:none!important;transition:none!important}
+}

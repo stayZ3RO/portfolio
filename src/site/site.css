@@ -71,7 +71,7 @@
   body.loaded .mask-inner{transform:translateY(0)}
   .hero-fade{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease-out)}
   body.loaded .hero-fade{opacity:1;transform:none}
-  .role{margin-top:12px;font-size:18px;font-weight:400;color:var(--muted)}
+  .hero-kicker{font-family:var(--mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:30px 0 18px}
   .avail-pill{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;letter-spacing:.05em;
     color:var(--text);border:1px solid var(--hairline);border-radius:var(--radius-pill);padding:9px 18px;background:var(--surface);margin-bottom:22px}
   .avail-pill .pulse,.avail-pill .dot{width:8px;height:8px}

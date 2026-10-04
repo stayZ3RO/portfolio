@@ -3,6 +3,7 @@ import Nav from './Nav';
 import Hero from './Hero';
 import ScanStrip from './ScanStrip';
 import Systems from './Systems';
+import Interlude from './Interlude';
 import Lab from './Lab';
 import FieldNotes from './FieldNotes';
 import Now from './Now';
@@ -21,6 +22,7 @@ export default function Site() {
           <Hero />
           <ScanStrip />
           <Systems />
+          <Interlude />
           <Lab />
           <FieldNotes />
           <Now />
