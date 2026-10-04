@@ -75,6 +75,11 @@
   .mask{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
   .mask-inner{display:block;transform:translateY(112%);transition:transform .95s var(--ease-out)}
   body.loaded .mask-inner{transform:translateY(0)}
+  .hero h1.kinetic .mask{display:block;overflow:hidden;padding-bottom:.09em;margin-bottom:-.09em}
+  .k-word{display:inline-block;white-space:nowrap}
+  .k-letter{display:inline-block;transform:translateY(112%);transition:transform .7s var(--ease-out);will-change:transform}
+  body.loaded .k-letter{transform:translateY(0)}
+  .hero h1.kinetic{will-change:transform,opacity}
   .hero-fade{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease-out)}
   body.loaded .hero-fade{opacity:1;transform:none}
   .hero-kicker{font-family:var(--mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:30px 0 18px}
@@ -320,7 +325,7 @@
 
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
-    .mask-inner{transform:none!important}
+    .mask-inner,.k-letter{transform:none!important;transition:none!important}
     .hero-fade{opacity:1!important;transform:none!important}
     .mnode,.lmnode{opacity:1!important;transform:none!important}
     .reveal{opacity:1!important;transform:none!important}

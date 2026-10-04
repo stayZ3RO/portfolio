@@ -1,7 +1,52 @@
+import { Fragment, useEffect, useRef } from 'react';
 import HeroMesh from './HeroMesh';
 import Ticker from './Ticker';
+import { useReducedMotion } from './env';
+
+/* Split a line into word spans, each holding letter spans, so the thesis
+   enters letter by letter while words still wrap as units. Spaces between
+   words are real text nodes. Screen readers get the plain string. */
+function kineticLine(line, baseDelay) {
+  const words = line.split(' ');
+  let i = 0;
+  return words.map((word, w) => (
+    <Fragment key={w}>
+      <span className="k-word" aria-hidden="true">
+        {[...word].map((ch, c) => {
+          const d = (baseDelay + (i++) * 0.028).toFixed(3);
+          return (
+            <span key={c} className="k-letter" style={{ transitionDelay: `${d}s` }}>{ch}</span>
+          );
+        })}
+      </span>
+      {w < words.length - 1 ? ' ' : null}
+    </Fragment>
+  ));
+}
 
 export default function Hero() {
+  const reduced = useReducedMotion();
+  const h1Ref = useRef(null);
+
+  /* Scroll-linked drift: the thesis lifts and fades as you leave the hero.
+     Skipped entirely under reduced motion. */
+  useEffect(() => {
+    if (reduced || !h1Ref.current) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y < window.innerHeight * 1.2) {
+          h1Ref.current.style.transform = `translateY(${(-y * 0.22).toFixed(1)}px)`;
+          h1Ref.current.style.opacity = Math.max(0, 1 - y / (window.innerHeight * 0.85)).toFixed(3);
+        }
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
+  }, [reduced]);
+
   return (
     <div className="hero">
       <div className="hero-glow" aria-hidden="true"></div>
@@ -9,12 +54,12 @@ export default function Hero() {
         <span className="dot"></span>Open to platform / systems engineering roles
       </div>
       <p className="hero-kicker hero-fade" style={{ transitionDelay: '.1s' }}>Christopher Lorenzo</p>
-      <h1>
-        <span className="mask" aria-hidden="true">
-          <span className="mask-inner" style={{ transitionDelay: '.15s' }}>I study systems</span>
+      <h1 ref={h1Ref} className="kinetic">
+        <span className="mask">
+          {kineticLine('I study systems', 0.15)}
         </span>
-        <span className="mask" aria-hidden="true">
-          <span className="mask-inner" style={{ transitionDelay: '.26s' }}>by building them.</span>
+        <span className="mask">
+          {kineticLine('by building them.', 0.45)}
         </span>
         <span className="sr-only">I study systems by building them.</span>
       </h1>
