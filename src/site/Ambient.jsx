@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { FINE_POINTER, REDUCED } from './env';
+import { FINE_POINTER, useReducedMotion } from './env';
 
 /* Ambient layer: scroll progress, cursor spotlight + magnetic CTAs,
    particle canvas, hero entrance class, ghost parallax. */
 export default function Ambient() {
+  const reduced = useReducedMotion();
   const canvasRef = useRef(null);
   const spotRef = useRef(null);
   const progressRef = useRef(null);
@@ -11,7 +12,7 @@ export default function Ambient() {
   useEffect(() => {
     /* hero entrance */
     let raf1 = 0, raf2 = 0;
-    if (!REDUCED) {
+    if (!reduced) {
       raf1 = requestAnimationFrame(() => {
         raf2 = requestAnimationFrame(() => document.body.classList.add('loaded'));
       });
@@ -26,7 +27,7 @@ export default function Ambient() {
       const h = document.documentElement;
       const max = h.scrollHeight - h.clientHeight;
       if (prog) prog.style.transform = `scaleX(${max > 0 ? h.scrollTop / max : 0})`;
-      if (!REDUCED) {
+      if (!reduced) {
         document.querySelectorAll('.ghost').forEach((g) => {
           const s = g.closest('section');
           if (!s) return;
@@ -50,7 +51,7 @@ export default function Ambient() {
     let raf = null;
     let onResize = null;
     let onVis = null;
-    if (cv && !REDUCED) {
+    if (cv && !reduced) {
       const ctx = cv.getContext('2d');
       let w, h;
       const pts = [];
@@ -114,7 +115,7 @@ export default function Ambient() {
     const spot = spotRef.current;
     let magRaf = null;
     let onMove = null;
-    if (spot && FINE_POINTER && !REDUCED) {
+    if (spot && FINE_POINTER && !reduced) {
       let sx = window.innerWidth / 2, sy = window.innerHeight / 2;
       let tx = sx, ty = sy, shown = false;
       onMove = (e) => {
@@ -154,7 +155,7 @@ export default function Ambient() {
       if (onMove) window.removeEventListener('mousemove', onMove);
       if (magRaf) cancelAnimationFrame(magRaf);
     };
-  }, []);
+  }, [reduced]);
 
   return (
     <>

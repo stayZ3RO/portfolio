@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { REDUCED, SVG_NS, stepMesh } from './env';
+import { SVG_NS, stepMesh, useReducedMotion } from './env';
 import { hideTip, showTip } from './tip';
 import { STATUS_URL, fetchLiveStatus } from './status';
 
@@ -65,6 +65,7 @@ function labMobileLayout() {
 export default function LabFigure({ sectionRef, apiRef }) {
   const deskRef = useRef(null);
   const mobRef = useRef(null);
+  const reduced = useReducedMotion();
 
   /* Live node state: null = documented (static) state. When STATUS_URL is
      set, fetchLiveStatus() attempts the public status page on mount; on any
@@ -325,7 +326,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
     function startLab(instant) {
       section.classList.add('live');
       labStarted = true;
-      if (REDUCED) {
+      if (reduced) {
         labFinalize();
         const now = performance.now();
         labPktDefs.forEach((p) => {
@@ -356,7 +357,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
     }
 
     nodeDisposers = buildLabFigure();
-    if (REDUCED) {
+    if (reduced) {
       startLab(true);
     } else {
       labIO = new IntersectionObserver((es) => es.forEach((e) => {
@@ -378,7 +379,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
 
     const onVis = () => {
       if (document.hidden && labRaf) { cancelAnimationFrame(labRaf); labRaf = null; }
-      else if (!document.hidden && !REDUCED && section.classList.contains('live')) startLabLife();
+      else if (!document.hidden && !reduced && section.classList.contains('live')) startLabLife();
     };
     document.addEventListener('visibilitychange', onVis);
 
@@ -399,7 +400,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
       section.classList.remove('live');
       if (apiRef) apiRef.current.setHot = null;
     };
-  }, [sectionRef, apiRef]);
+  }, [sectionRef, apiRef, reduced]);
 
   const mapAria = live
     ? 'Infrastructure map: three Proxmox nodes, public-edge VPS, tailnet devices, and sensors. Node dots show live status from the public status page'

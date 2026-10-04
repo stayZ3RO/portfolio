@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { REDUCED, SVG_NS, stepMesh } from './env';
+import { SVG_NS, stepMesh, useReducedMotion } from './env';
 import { hideTip, showTip } from './tip';
 
 const NODES = [
@@ -12,6 +12,7 @@ const LINKS = [[0, 1], [1, 2], [0, 2]];
 /* Hero mesh figure: draw-on links, popping nodes, traveling packets. */
 export default function HeroMesh() {
   const svgRef = useRef(null);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -93,11 +94,11 @@ export default function HeroMesh() {
     };
     const onVis = () => {
       if (document.hidden && meshRaf) { cancelAnimationFrame(meshRaf); meshRaf = null; }
-      else if (!document.hidden && !REDUCED && document.body.classList.contains('mesh-in')) startLife();
+      else if (!document.hidden && !reduced && document.body.classList.contains('mesh-in')) startLife();
     };
     document.addEventListener('visibilitychange', onVis);
 
-    if (!REDUCED) {
+    if (!reduced) {
       const DRAW_MS = 1200;
       linkEls.forEach((L) => {
         const len = L.el.getTotalLength();
@@ -135,7 +136,7 @@ export default function HeroMesh() {
       disposers.forEach((d) => d());
       gLinks.innerHTML = ''; gNodes.innerHTML = ''; gPkts.innerHTML = '';
     };
-  }, []);
+  }, [reduced]);
 
   return (
     <figure className="mesh-fig hero-fade" style={{ transitionDelay: '.9s' }} aria-label="Homelab network diagram">
@@ -145,7 +146,7 @@ export default function HeroMesh() {
         <g id="mesh-packets" fill="#ffffff"></g>
         <g id="mesh-nodes"></g>
       </svg>
-      <div className="legend">3-node Proxmox cluster, Tailscale mesh. Running in my rack. Hover a node.</div>
+      <div className="legend">3-node Proxmox cluster, Tailscale mesh. Running in my rack. Hover or tap a node.</div>
     </figure>
   );
 }

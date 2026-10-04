@@ -1,4 +1,5 @@
 /* Shared environment flags and small utilities. */
+import { useEffect, useState } from 'react';
 
 export const REDUCED =
   typeof window !== 'undefined' &&
@@ -9,6 +10,22 @@ export const FINE_POINTER =
   window.matchMedia('(pointer: fine)').matches;
 
 export const SVG_NS = 'http://www.w3.org/2000/svg';
+
+/* Live reduced-motion state. REDUCED is the value at load (for code that
+   only needs the initial answer); useReducedMotion() re-renders the
+   component when the user toggles the OS setting mid-session so JS
+   animation loops actually stop instead of only the CSS going static. */
+export function useReducedMotion() {
+  const [reduced, setReduced] = useState(REDUCED);
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onChange = (e) => setReduced(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+  return reduced;
+}
 
 /* One rAF-driven step for the mesh packet/link/core animation,
    shared by the hero mesh and the lab figure. */
