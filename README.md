@@ -1,12 +1,12 @@
 # Christopher Austin Lorenzo - Portfolio
 
-IT Service Desk Analyst II building toward cloud, network, and infrastructure engineering, documented through hands-on labs, not just tools listed on a resume.
+I'm an IT Service Desk Analyst II building toward cloud, network, and infrastructure engineering. This portfolio documents hands-on labs alongside the tools on my resume.
 
 **Live site:** https://chrisalorenzo.com
 
 ## Purpose
 
-This repository is the source for my public portfolio: a recruiter-facing site that shows what I've actually built and validated, distinguishes mature work from active buildouts and learning labs, and links out to the real repositories, resume, and contact channels behind each project.
+I use this repository to build my public portfolio. It shows what I've built and validated, separates mature work from active buildouts and learning labs, and links to the repositories, resume, and contact channels for each project.
 
 ## Key Portfolio Sections
 

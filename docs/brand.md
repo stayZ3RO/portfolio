@@ -1,18 +1,16 @@
 # Brand - Christopher Lorenzo
 
 Shared identity for **`chrisalorenzo.com`** (portfolio), **`stayz3ro.dev`**
-(blog), and the brand layer of **`homelab-command-center`**.
+(blog), and the brand layer of my dashboard.
 
-The command-center keeps its own `design_guidelines.json` for NOC-functional
+The dashboard keeps its own `design_guidelines.json` for NOC-functional
 decisions (semantic red/green/amber, dense tables, grid). This file governs
-the **brand layer**, palette, type, one accent, voice, so the three
+the **brand layer**, palette, type, one accent, and voice, so the three
 properties read as one person's work without looking identical.
 
 > **Status (superseded, 2026-08-31):** The portfolio moved off the Rosé Pine
 > dark theme below to a light, corporate-neutral palette (petrol/slate accent
-> `#2f6670`, cool gray base `#f6f7f8`). This was an operator decision
-> ("something neutral, professional, corporate, like a director of IT infra
-> would expect"). The blog (`stayz3ro.dev`) still uses the Rosé Pine dark
+> `#2f6670`, cool gray base `#f6f7f8`). The target was a neutral, professional, corporate palette, like a director of IT infrastructure would expect. The blog (`stayz3ro.dev`) still uses the Rosé Pine dark
 > theme for its dark mode and the light warm-stone for its light mode. The
 > active portfolio tokens live in `src/styles.css`; treat that file, not this
 > one, as the current source of truth for the portfolio palette. This file
@@ -32,7 +30,7 @@ not from brightness, **no gradients on brand surfaces, no glow.**
 
 ## Colour
 
-### Dark - default for portfolio + command-center; available on the blog
+### Dark - default for portfolio + dashboard; available on the blog
 
 | Token | Hex | Use |
 |---|---|---|
@@ -69,7 +67,7 @@ not from brightness, **no gradients on brand surfaces, no glow.**
 - **One accent does the work: `pine`.** `gold` is reserved for the handful
   of elements that genuinely need the eye. Everything else is
   `text` / `subtle` / `muted`.
-- Inside the command-center, functional semantics win: offline = `love`,
+- Inside the dashboard, functional semantics win: offline = `love`,
   online = `foam`, warning = `gold`, retired = `subtle`.
 - No gradient fills, no drop shadows, no glow on brand surfaces. Depth is
   the 1px `muted` hairline and the `base` → `surface` → `overlay` step.
@@ -82,7 +80,7 @@ not from brightness, **no gradients on brand surfaces, no glow.**
 | Body | **IBM Plex Sans** 400 / 500 | the command-center's body face; humanist, holds up at reading length |
 | Data / eyebrows / labels | **JetBrains Mono** 400 | IPs, metrics, dates; eyebrows lowercase with a leading `/` (e.g. `/ ha dns`), `0.04em` tracking |
 
-Carried over from the command-center: **no Inter, Roboto, Open Sans, Lato.**
+Carried over from the dashboard: **no Inter, Roboto, Open Sans, Lato.**
 
 Type scale, body `15 / 16 / 18`; display `22 / 30 / 44 / 64`, tightening
 tracking as size grows.
@@ -95,7 +93,7 @@ tracking as size grows.
   Pattern: eyebrow (mono, `/ prefix`) → heading (mono) → body (Plex Sans).
 - **Blog**, ~680px measure, light-first, mono eyebrows for date + tags,
   code blocks on `overlay`. Nothing between the reader and the words.
-- **Command-center**, its own grid stands; this file only swaps the
+- **Dashboard**, its own grid stands; this file only swaps the
   palette (`base` / `surface` / `overlay` / `text` / accent) and keeps the
   mono numerics.
 

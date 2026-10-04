@@ -9,9 +9,7 @@ was replaced by a light, corporate-neutral palette (see the current
 `src/styles.css` and `docs/brand.md`'s note). This document is retained as the
 historical execution record for the restyle effort, not the active spec. The
 final direction was a light neutral base, petrol/slate accent, terminal hero,
-horizontal-scroll work strip, and ruled per-project detail, driven by operator
-feedback ("something neutral, professional, corporate, like a director of IT
-infra would expect"). See the repo README for the current section map.
+horizontal-scroll work strip, and ruled per-project detail, following the neutral, professional, corporate direction expected by a director of IT infrastructure. See the repo README for the current section map.
 
 ## Direction
 
@@ -21,10 +19,10 @@ decorative UI chrome.
 
 ## Reference
 
-A mockup of the hero + work-list direction was built and reviewed
+I built and reviewed a mockup of the hero + work-list direction on
 2026-08-29: https://claude.ai/code/artifact/164c3592-98e1-42b8-9c12-b5df59e785ec
-(approved). That link is a Claude Artifact, not guaranteed to persist, this
-document is the durable spec; rebuild the mockup from here if the link dies.
+(approved). The Claude Artifact link may not persist. This document is the
+durable spec; rebuild the mockup from here if the link is unavailable.
 
 ## Hero
 
