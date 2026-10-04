@@ -1,7 +1,27 @@
 {
-  "builtAt": "2026-09-29T22:29:26.353Z",
-  "buildDate": "sep 29, 2026",
+  "builtAt": "2026-10-04T06:48:35.744Z",
+  "buildDate": "oct 4, 2026",
   "commits": [
+    {
+      "hash": "2914734",
+      "subject": "Fix cFM landing page honesty issues"
+    },
+    {
+      "hash": "b97b360",
+      "subject": "Add cFM project landing page at /cfm"
+    },
+    {
+      "hash": "0fef3ee",
+      "subject": "docs: preserve design mockup revision history (v10-v18)"
+    },
+    {
+      "hash": "6c390cd",
+      "subject": "chore: refresh buildmeta snapshot"
+    },
+    {
+      "hash": "12a4e95",
+      "subject": "feat(systems): wire real repo links, add homelab command center row, honest lab copy"
+    },
     {
       "hash": "551dc6c",
       "subject": "chore: refresh buildmeta snapshot (ticker fallback)"
@@ -41,26 +61,6 @@
     {
       "hash": "99f4e48",
       "subject": "feat: Phase 4 art-direction pass - field-manual work section with live lab"
-    },
-    {
-      "hash": "5daf909",
-      "subject": "fix: expanded work card as editorial two-column, kills figure void"
-    },
-    {
-      "hash": "c2277da",
-      "subject": "feat: Phase 4 rework - display headline, flagship spotlight, thumbnails, section controls"
-    },
-    {
-      "hash": "535b4ef",
-      "subject": "feat: work section as terminal project index with filter and chips"
-    },
-    {
-      "hash": "aecb69c",
-      "subject": "copy: recruiter-pass hero wording, AI positioning in headline"
-    },
-    {
-      "hash": "5818c71",
-      "subject": "Merge Phase 3: hero line-mask headline, staggered terminal, indexed now list"
     }
   ]
 }
