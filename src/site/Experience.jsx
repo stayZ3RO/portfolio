@@ -10,8 +10,6 @@ const BULLETS = [
   'Escalations routed to me by name; sole owner of the mobile-device support domain.',
 ];
 
-const PILLS = ['Python', 'PowerShell', 'Bash', 'JavaScript', 'Docker', 'Proxmox', 'Tailscale'];
-
 export default function Experience() {
   return (
     <section id="experience">
@@ -28,11 +26,6 @@ export default function Experience() {
           <p>&ldquo;one of the best service desk specialists I&apos;ve ever worked with in my 20+ years of experience&rdquo;</p>
           <cite>FROM A WORKDAY PEER REVIEW</cite>
         </blockquote>
-        <div className="pills">
-          {PILLS.map((p) => (
-            <span className="pill" key={p}>{p}</span>
-          ))}
-        </div>
       </Reveal>
     </section>
   );

@@ -3,8 +3,8 @@ import SecHead from './SecHead';
 
 const CELLS = [
   { k: 'NOW', html: <>The <strong>managed cutover</strong> is done and validated. VLAN segmentation is next on the bench.</> },
-  { k: 'HOMELAB', html: <><strong>3-node Proxmox cluster</strong> on a Tailscale mesh. Running in my rack, documented in the project repos.</> },
-  { k: 'OPEN TO', html: <><strong>Platform and systems engineering roles</strong> where I can keep growing.</> },
+  { k: 'HOMELAB', html: <><strong>3-node Proxmox cluster</strong> on a Tailscale mesh. Running in my rack, written up in the field notes.</> },
+  { k: 'STUDYING', html: <>Working through <strong>Network+ and Security+</strong>, labbing everything I study.</> },
 ];
 
 export default function Now() {
