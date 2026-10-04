@@ -56,9 +56,9 @@ export default function HeroMesh() {
       inner.style.transitionDelay = `${0.1 + i * 0.16}s`;
       inner.innerHTML =
         '<circle class="hit" r="38" fill="rgba(0,0,0,0)" pointer-events="all"/>' +
-        '<circle class="ring" r="26" fill="none" stroke="#f4f4f2" stroke-width="1.5"/>' +
-        '<circle class="core" r="5" fill="#f4f4f2"/>' +
-        `<text y="46" text-anchor="middle" fill="#9a9da3" font-size="13" font-family="ui-monospace,monospace">${n.label}</text>`;
+        '<circle class="ring" r="26" fill="none" stroke-width="1.5"/>' +
+        '<circle class="core" r="5" />' +
+        `<text y="46" text-anchor="middle" font-size="13" >${n.label}</text>`;
       outer.appendChild(inner);
       gNodes.appendChild(outer);
       const onEnter = () => showTip(n, inner);
@@ -142,8 +142,8 @@ export default function HeroMesh() {
     <figure className="mesh-fig hero-fade" style={{ transitionDelay: '.9s' }} aria-label="Homelab network diagram">
       <div className="cap">HOMELAB MESH</div>
       <svg id="meshsug" ref={svgRef} viewBox="0 0 800 230" role="img" aria-label="Three Proxmox nodes in a Tailscale mesh">
-        <g id="mesh-links" stroke="#c9ccd1" strokeWidth="1" fill="none" opacity="0.5"></g>
-        <g id="mesh-packets" fill="#ffffff"></g>
+        <g id="mesh-links" strokeWidth="1" fill="none" opacity="0.5"></g>
+        <g id="mesh-packets"></g>
         <g id="mesh-nodes"></g>
       </svg>
       <div className="legend">3-node Proxmox cluster, Tailscale mesh. Running in my rack. Hover or tap a node.</div>

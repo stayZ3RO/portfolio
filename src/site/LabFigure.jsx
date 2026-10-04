@@ -144,12 +144,12 @@ export default function LabFigure({ sectionRef, apiRef }) {
       const c = document.createElementNS(SVG_NS, 'circle');
       c.setAttribute('cx', d.x); c.setAttribute('cy', d.y);
       c.setAttribute('r', big ? '4' : '3.5');
-      c.setAttribute('fill', '#c9ccd1');
+      c.style.setProperty('fill', 'var(--secondary)');
       labGNodes.appendChild(c);
       const t = document.createElementNS(SVG_NS, 'text');
       t.setAttribute('x', d.x); t.setAttribute('y', d.y + 17);
       t.setAttribute('text-anchor', 'middle');
-      t.setAttribute('fill', '#9a9da3');
+      t.style.setProperty('fill', 'var(--muted)');
       t.setAttribute('font-size', '10.5');
       t.setAttribute('font-family', 'ui-monospace,monospace');
       t.textContent = d.label;
@@ -160,7 +160,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
       const t = document.createElementNS(SVG_NS, 'text');
       t.setAttribute('x', x); t.setAttribute('y', y);
       t.setAttribute('text-anchor', 'middle');
-      t.setAttribute('fill', '#9a9da3');
+      t.style.setProperty('fill', 'var(--muted)');
       t.setAttribute('font-size', '10.5');
       t.setAttribute('letter-spacing', '2');
       t.setAttribute('font-family', 'ui-monospace,monospace');
@@ -185,13 +185,13 @@ export default function LabFigure({ sectionRef, apiRef }) {
         core.removeAttribute('stroke');
         core.removeAttribute('stroke-width');
         if (s === 'running') {
-          core.setAttribute('fill', '#f4f4f2');
+          core.style.setProperty('fill', 'var(--text)');
         } else if (s === 'building') {
           core.setAttribute('fill', 'none');
-          core.setAttribute('stroke', '#9a9da3');
+          core.style.setProperty('stroke', 'var(--muted)');
           core.setAttribute('stroke-width', '1.5');
         } else { /* unknown */
-          core.setAttribute('fill', '#9a9da3');
+          core.style.setProperty('fill', 'var(--muted)');
           core.setAttribute('opacity', '0.35');
         }
         g.setAttribute('aria-label', `${id}: ${sub} · state: ${s}`);
@@ -217,7 +217,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
         const halo = document.createElementNS(SVG_NS, 'ellipse');
         halo.setAttribute('cx', h.cx); halo.setAttribute('cy', h.cy);
         halo.setAttribute('rx', h.rx); halo.setAttribute('ry', h.ry);
-        halo.setAttribute('fill', 'none'); halo.setAttribute('stroke', '#2e3138');
+        halo.setAttribute('fill', 'none'); halo.style.setProperty('stroke', 'var(--hairline)');
         halo.setAttribute('stroke-width', '1'); halo.setAttribute('stroke-dasharray', '4 6');
         labGLinks.appendChild(halo);
         labTag(h.tagX, h.tagY, h.tag);
@@ -238,7 +238,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
         const r = document.createElementNS(SVG_NS, 'rect');
         r.setAttribute('x', b.x); r.setAttribute('y', b.y);
         r.setAttribute('width', b.w); r.setAttribute('height', b.h); r.setAttribute('rx', '12');
-        r.setAttribute('fill', 'none'); r.setAttribute('stroke', '#2e3138');
+        r.setAttribute('fill', 'none'); r.style.setProperty('stroke', 'var(--hairline)');
         r.setAttribute('stroke-width', '1'); r.setAttribute('stroke-dasharray', '4 6');
         labGLinks.appendChild(r);
         labTag(b.x + b.w / 2, b.y - 8, b.tag);
@@ -422,11 +422,11 @@ export default function LabFigure({ sectionRef, apiRef }) {
         className="lab-status-note"
         role="note"
         style={{
-          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+          fontFamily: 'var(--mono)',
           fontSize: '11px',
           letterSpacing: '1px',
           textTransform: 'uppercase',
-          color: '#9a9da3',
+          color: 'var(--muted)',
           marginTop: '10px',
           textAlign: 'center',
         }}

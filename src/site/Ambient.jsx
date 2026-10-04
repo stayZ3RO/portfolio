@@ -53,6 +53,13 @@ export default function Ambient() {
     let onVis = null;
     if (cv && !reduced) {
       const ctx = cv.getContext('2d');
+      /* particle ink comes from the --text token so the canvas can never
+         drift from the palette */
+      const raw = getComputedStyle(document.documentElement).getPropertyValue('--text').trim();
+      const hm = raw.match(/#([0-9a-f]{6})/i);
+      const ink = hm
+        ? `${parseInt(hm[1].slice(0, 2), 16)},${parseInt(hm[1].slice(2, 4), 16)},${parseInt(hm[1].slice(4, 6), 16)}`
+        : '244,244,242';
       let w, h;
       const pts = [];
       const DPR = Math.min(window.devicePixelRatio || 1, 2);
@@ -85,7 +92,7 @@ export default function Ambient() {
           const a = 0.08 + 0.07 * Math.sin(p.p);
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, 7);
-          ctx.fillStyle = 'rgba(244,244,242,' + a.toFixed(3) + ')';
+          ctx.fillStyle = 'rgba(' + ink + ',' + a.toFixed(3) + ')';
           ctx.fill();
         }
         for (let i = 0; i < pts.length; i++)
@@ -96,7 +103,7 @@ export default function Ambient() {
               ctx.beginPath();
               ctx.moveTo(pts[i].x, pts[i].y);
               ctx.lineTo(pts[j].x, pts[j].y);
-              ctx.strokeStyle = 'rgba(244,244,242,' + (0.065 * (1 - d / 17000)).toFixed(3) + ')';
+              ctx.strokeStyle = 'rgba(' + ink + ',' + (0.065 * (1 - d / 17000)).toFixed(3) + ')';
               ctx.lineWidth = 1;
               ctx.stroke();
             }
