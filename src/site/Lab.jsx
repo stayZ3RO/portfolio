@@ -4,6 +4,7 @@ import Reveal from './Reveal';
 import SecHead from './SecHead';
 import { NODE_CARDS } from './data';
 import { REDUCED } from './env';
+import { LIVE } from './status';
 
 function cardHot(apiRef, id, on) {
   if (apiRef.current.setHot) apiRef.current.setHot(id, on);
@@ -19,20 +20,20 @@ export default function Lab() {
       <SecHead
         num="LAB"
         name="The Lab"
-        extra={<span className="live-tag"><span className="pulse"></span>RUNNING</span>}
+        extra={<span className="live-tag"><span className={LIVE ? 'pulse' : 'dot'}></span>RUNNING</span>}
       />
       <Reveal><p className="lab-sub">// MY INFRASTRUCTURE, RUNNING RIGHT NOW</p></Reveal>
       <Reveal>
         <p className="lab-copy">
           <strong>Three nodes, 80 gigs of RAM, one Tailscale mesh, and a VPS holding the public edge.</strong>{' '}
           This is where I learn how systems work before I touch them at work. Everything here is real
-          and running, and the builds are written up in the field notes. Hover a node card to find it on the map.
+          and running, and the builds are written up in the field notes. Hover or tap a node card to find it on the map.
         </p>
       </Reveal>
       <Reveal as="figure" className="lab-fig" aria-label="Homelab topology map">
         <div className="cap">
           <span>fig. 1 · the infrastructure, as it runs</span>
-          <span className="live-mini"><span className="pulse"></span>FULL MAP</span>
+          <span className="live-mini"><span className={LIVE ? 'pulse' : 'dot'}></span>FULL MAP</span>
         </div>
         <LabFigure sectionRef={sectionRef} apiRef={apiRef} />
         <div className="lab-legend">DNS · monitoring · Tailscale run across the cluster · tailnet and public edge at the rim</div>

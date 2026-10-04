@@ -11,6 +11,11 @@
 export const STATUS_URL = '';
 export const STATUS_SLUG = '';
 
+/* True only when a live status feed is configured. Status dots pulse only
+   when there is live telemetry behind them; otherwise they render static,
+   so the page never implies live polling it is not doing. */
+export const LIVE = Boolean(STATUS_URL && STATUS_SLUG);
+
 const NODE_IDS = ['pve01', 'pve02', 'pve03'];
 
 /* Uptime Kuma monitor status codes: 0 = down, 1 = up, 2 = pending, 3 = maintenance. */

@@ -6,7 +6,7 @@ export default function Hero() {
     <div className="hero">
       <div className="hero-glow" aria-hidden="true"></div>
       <div className="avail-pill hero-fade" style={{ transitionDelay: '.05s' }}>
-        <span className="pulse"></span>Open to platform / systems engineering roles
+        <span className="dot"></span>Open to platform / systems engineering roles
       </div>
       <h1 aria-label="Christopher Lorenzo">
         <span className="mask" aria-hidden="true">
