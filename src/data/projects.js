@@ -65,18 +65,17 @@ export const projects = [
   {
     title: 'Managed Network Infrastructure Lab',
     subtitle: 'Router, Switching & Segmentation',
-    status: 'Active / Phase 1 Complete',
+    status: 'Active / UniFi Core Live',
     statusTone: 'active',
     categories: ['Infrastructure', 'Networking'],
     focus:
-      'ER605/Omada cutover complete; subnetting, VLAN planning, firewall policy, pilot VLAN, controlled renumbering planned',
+      'UDM Pro and USW-24-PoE live since 2026-09-27; flat LAN and Deco APs; VLAN and firewall segmentation planned',
     summary:
-      'Migrated the network core from a flat consumer-style setup to managed infrastructure using a TP-Link ER605 router/firewall, Omada-managed switch, and Omada Controller.',
-    proof: ['Managed cutover', 'Topology documented', 'Segmentation planned'],
+      'Replaced the earlier Omada core with a UniFi UDM Pro and USW-24-PoE on 2026-09-27. The LAN remains flat, Deco nodes run as APs, and segmentation is planned.',
+    proof: ['UniFi cutover', 'Current state documented', 'Segmentation planned'],
     tools: [
-      'TP-Link ER605',
-      'Omada Controller',
-      'TL-SG2210P',
+      'UniFi UDM Pro',
+      'USW-24-PoE',
       'Deco AP mode',
       'Proxmox',
       'VLAN planning',
@@ -91,11 +90,11 @@ export const projects = [
       },
       {
         label: 'Implementation',
-        text: 'Performed a managed network cutover using an Omada-managed router and switch, updated the physical and logical topology, and documented validation steps after cutover.',
+        text: 'Documented the original Omada cutover, then replaced the router and switch with a UDM Pro and USW-24-PoE on 2026-09-27. Deco nodes remain in AP mode.',
       },
       {
         label: 'Validation',
-        text: 'Validated internet access, DNS behavior, client connectivity, AP mode behavior, router/switch management, DHCP behavior, and service reachability after the cutover.',
+        text: 'Validated internet access, DNS, client connectivity, AP mode, DHCP, and service reachability after the UniFi cutover.',
       },
       {
         label: 'Next Steps',
@@ -105,15 +104,15 @@ export const projects = [
     visuals: {
       figure: {
         src: '/proof/managed-topology.webp',
-        alt: 'Managed network current-topology diagram',
+        alt: 'Historical Omada topology before the September 2026 UniFi cutover',
         caption:
-          'Current managed topology: ER605 gateway, TL-SG2210P switch, Omada Controller, and the Proxmox service cluster. Single flat VLAN today, segmentation next.',
+          'Historical Omada topology before the 2026-09-27 UniFi cutover. The current core is UDM Pro plus USW-24-PoE; segmentation is still planned.',
       },
       images: [
         {
           src: '/proof/managed-omada-topology.webp',
-          alt: 'Omada Controller final topology and client list after cutover',
-          caption: 'Omada Controller topology and client list after the managed cutover.',
+          alt: 'Historical Omada Controller topology and client list',
+          caption: 'Historical Omada Controller evidence from the earlier managed cutover.',
         },
       ],
     },
@@ -130,22 +129,21 @@ export const projects = [
     status: 'In Progress',
     statusTone: 'in-progress',
     categories: ['Cloud', 'Infrastructure'],
-    focus: 'Linux VPS, Docker, reverse proxy, HTTPS, monitoring, backups',
+    focus: 'Netcup VPS, Docker, Caddy HTTPS, seven Kuma monitors, Discord and self-hosted ntfy alerts; Umami and backups planned',
     summary:
-      'VPS-based cloud infrastructure lab for Linux administration, Docker Compose, reverse proxying, HTTPS, secure remote access, monitoring, backups, and public-facing application hosting.',
-    proof: ['Linux VPS buildout', 'Public DNS path', 'HTTPS routing planned'],
+      'A live public edge on a Netcup VPS: Caddy serves HTTPS, Uptime Kuma watches seven targets, and Discord plus self-hosted ntfy carry alerts. Umami and backup/restore work remain planned.',
+    proof: ['Caddy HTTPS live', 'Seven Kuma monitors', 'Discord and ntfy alerts tested'],
     tools: [
-      'Linux VPS',
+      'Netcup VPS',
       'Docker',
       'Docker Compose',
-      'DNS records',
-      'Reverse proxy planning',
+      'Cloudflare DNS',
+      'Caddy',
       'HTTPS',
-      'Cloudflare planning',
-      'Netcup VPS',
-      'RackNerd VPS',
-      'Monitoring',
-      'Backups',
+      'Uptime Kuma',
+      'Discord',
+      'ntfy',
+      'Tailscale',
     ],
     details: [
       {
@@ -154,15 +152,15 @@ export const projects = [
       },
       {
         label: 'Implementation',
-        text: 'Building a VPS-based environment using Linux servers, Dockerized services, domain/DNS configuration, reverse proxy and HTTPS planning, monitoring, and backup workflows.',
+        text: 'Hardened the Netcup VPS, restricted SSH to Tailscale, deployed Docker and Caddy HTTPS, and wired Uptime Kuma to Discord and self-hosted ntfy alerts on 2026-09-28.',
       },
       {
         label: 'Validation',
-        text: 'Planned validation includes DNS records, service reachability, firewall rules, HTTPS routing, container health, remote access, uptime monitoring, and backup/restore workflows.',
+        text: 'Validated public DNS, HTTPS routing, private backend ports, remote access, six public-edge monitors plus ntfy health, Discord DOWN/UP notifications, and ntfy delivery to a phone. Backup/restore remains planned.',
       },
       {
         label: 'Outcome',
-        text: 'Creates a cloud infrastructure learning path that connects homelab operations with Linux server administration, public DNS, hosting, and future self-hosted applications.',
+        text: 'Runs a monitored HTTPS edge with two alert paths, while keeping administrative access private and leaving stateful app hosting and backup/restore for later phases.',
       },
     ],
     visuals: {
@@ -180,8 +178,8 @@ export const projects = [
         },
         {
           src: '/proof/vps-dns-records.webp',
-          alt: 'Public DNS records for stayz3ro.dev',
-          caption: 'Public DNS records routing stayz3ro.dev to the VPS.',
+          alt: 'Historical Phase 2 DNS records for stayz3ro.dev',
+          caption: 'Historical Phase 2 DNS evidence. The blog now lives at blog.chrisalorenzo.com on Cloudflare Pages; stayz3ro.dev redirects there, and service subdomains route to the VPS.',
         },
       ],
     },
@@ -235,39 +233,5 @@ export const projects = [
         href: 'https://github.com/stayZ3RO/cloud-netlab',
       },
     ],
-  },
-  {
-    title: 'Service Desk Toolkit',
-    subtitle: 'PowerShell Diagnostics & Reporting',
-    status: 'Private / In Development',
-    statusTone: 'private',
-    categories: ['Tools'],
-    focus: 'PowerShell diagnostics, reporting, future repair/remediation workflows',
-    summary:
-      'Private PowerShell toolkit for repeatable service desk diagnostics, report collection, and future repair/remediation workflows.',
-    proof: ['Private toolkit', 'Diagnostics focus', 'Repair workflows planned'],
-    tools: ['PowerShell', 'Windows diagnostics', 'Reporting', 'Endpoint support', 'Runbooks'],
-    codeMedia: [
-      { prompt: true, text: 'Get-Service | Where-Object Status -eq "Running"' },
-      { text: 'collecting diagnostics...' },
-      { prompt: true, text: 'Export-Report -Path ~/reports' },
-      { text: 'report written ✓' },
-      { prompt: true, text: 'exit 0' },
-    ],
-    details: [
-      {
-        label: 'Problem',
-        text: 'Common service desk checks can become repetitive and inconsistent without a small, documented toolkit for gathering useful diagnostic signals.',
-      },
-      {
-        label: 'Implementation',
-        text: 'Building private PowerShell scripts for diagnostics and reporting first, with repair and remediation workflows planned only after validation.',
-      },
-      {
-        label: 'Outcome',
-        text: 'Aims to improve support consistency, speed up information gathering, and reinforce practical scripting habits without exposing internal or sensitive workflows.',
-      },
-    ],
-    links: [],
   },
 ];

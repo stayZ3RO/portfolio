@@ -1,6 +1,6 @@
 import Reveal from './Reveal.jsx';
 
-const LAST_UPDATED = '2026-08-30';
+const LAST_UPDATED = '2026-10-04';
 
 function relativeLabel(iso) {
   const then = new Date(iso + 'T00:00:00');
@@ -18,28 +18,28 @@ function relativeLabel(iso) {
 
 function Now() {
   return (
-    <section className="now" aria-label="Currently working on">
+    <section className="now" aria-label="Current project status">
       <Reveal>
         <p className="label">/ now</p>
       </Reveal>
       <Reveal delay={40}>
         <div className="line">
           <span className="t">
-            migrating managed network <b>Omada → UniFi</b>
+            UniFi core live; <b>VLAN and firewall segmentation planned</b>
           </span>
         </div>
       </Reveal>
       <Reveal delay={80}>
         <div className="line">
           <span className="t">
-            hardening the VPS <b>reverse-proxy + HTTPS</b> edge
+            VPS HTTPS and seven monitors live; <b>backup/restore planned</b>
           </span>
         </div>
       </Reveal>
       <Reveal delay={120}>
         <div className="line">
           <span className="t">
-            CI-gating the AWS <b>Terraform</b> module
+            AWS lab <b>CI validated</b>; no cloud resources applied
           </span>
         </div>
       </Reveal>
