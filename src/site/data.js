@@ -61,11 +61,11 @@ export const SYSTEMS = [
       blocks: [
         {
           label: 'WHAT I BUILT',
-          text: 'A dual-node Pi-hole design behind a Keepalived shared VIP (192.168.68.20) with Unbound for local recursive resolution. The pair moved from physical Raspberry Pis to Proxmox VMs (pihole01 on pve01, pihole02 on pve02). Monitoring runs on a Proxmox-hosted Docker VM with Prometheus, Grafana, Alertmanager, and a Discord alert hook.',
+          text: 'A dual-node Pi-hole design behind a Keepalived shared VIP (192.168.68.20) with Unbound for local recursive resolution. The pair moved from physical Raspberry Pis to Proxmox VMs. Monitoring runs on a Proxmox-hosted Docker VM with Prometheus, Grafana, Alertmanager, and a Discord alert hook.',
         },
         {
           label: 'WHAT BROKE',
-          text: 'Gravity Sync replicated Pi-hole config between the Pis. After the VM migration its operational status was never revalidated, so it is not listed as a live service. The service map now records exactly what each evidence pass established, and nothing more.',
+          text: 'Gravity Sync replicated Pi-hole config between the Pis. After the VM migration its operational status went unrevalidated for a while, so it sat unlisted as a live service until a dedicated pass replaced it with Nebula Sync: hourly selective policy sync between the pair, gravity sets now byte-identical, TLS-verified API access, and alerting proven end to end with an induced-failure test.',
         },
         {
           label: "WHAT I'D DO DIFFERENTLY",
@@ -165,35 +165,37 @@ export const SYSTEMS = [
 export const NODE_CARDS = [
   {
     id: 'pve01',
+    label: 'Primary node',
     role: 'PRIMARY',
     spec: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM · 256GB NVMe',
-    svcs: ['pihole01', 'omada-controller', 'ts-router01'],
+    svcs: ['DNS', 'tailscale router'],
   },
   {
     id: 'pve02',
+    label: 'Second node',
     role: null,
     spec: 'OptiPlex 3070 Micro · 32GB RAM · 256GB NVMe',
-    svcs: ['pihole02', 'ts-router02', 'portainer', 'monitoring', 'rustdesk'],
+    svcs: ['DNS secondary', 'tailscale router', 'container host', 'monitoring', 'remote access'],
   },
   {
     id: 'pve03',
+    label: 'Third node',
     role: 'BACKUP',
     spec: 'EliteDesk 800 G3 DM · i5-6500T · 16GB RAM · 256GB NVMe',
-    svcs: ['backup-svr · PBS'],
+    svcs: ['Backup server · PBS'],
   },
 ];
 
 export const FLEET = [
-  ['pihole01', 'pve01', 'DNS + network-wide filtering'],
-  ['omada-controller', 'pve01', 'network controller'],
-  ['ts-router01', 'pve01', 'Tailscale subnet router'],
-  ['pihole02', 'pve02', 'DNS secondary'],
-  ['ts-router02', 'pve02', 'Tailscale subnet router'],
-  ['portainer', 'pve02', 'container management'],
-  ['monitoring', 'pve02', 'Prometheus + Grafana'],
-  ['rustdesk', 'pve02', 'remote desktop'],
-  ['backup-svr', 'pve03', 'Proxmox Backup Server'],
-  ['caddy', 'vps-edge', 'reverse proxy + HTTPS'],
-  ['blog', 'vps-edge', 'engineering blog'],
-  ['uptime-kuma', 'vps-edge', 'status monitoring'],
+  ['DNS', 'pve01', 'Primary node', 'DNS + network-wide filtering'],
+  ['Tailscale router', 'pve01', 'Primary node', 'Tailscale subnet router'],
+  ['DNS secondary', 'pve02', 'Second node', 'DNS secondary'],
+  ['Tailscale router (secondary)', 'pve02', 'Second node', 'Tailscale subnet router'],
+  ['Container host', 'pve02', 'Second node', 'container management'],
+  ['Monitoring', 'pve02', 'Second node', 'Prometheus + Grafana'],
+  ['Remote access', 'pve02', 'Second node', 'remote desktop'],
+  ['Backup server', 'pve03', 'Third node', 'Proxmox Backup Server'],
+  ['caddy', 'vps-edge', 'VPS edge', 'reverse proxy + HTTPS'],
+  ['blog', 'vps-edge', 'VPS edge', 'engineering blog'],
+  ['uptime-kuma', 'vps-edge', 'VPS edge', 'status monitoring'],
 ];
