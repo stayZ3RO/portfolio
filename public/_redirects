@@ -1,0 +1,2 @@
+# SPA fallback: serve index.html for project pages
+/cfm /index.html 200
