@@ -1,0 +1,172 @@
+/* Layer 6: print stylesheet. The portfolio prints (or saves to PDF) as a
+   clean black-on-white document: no ambient canvas, no nav, no ticker,
+   no interactive widgets, decision-log rows expanded, single-column flow. */
+
+@media print {
+  @page {
+    margin: 1.8cm;
+  }
+
+  /* Ink-friendly palette: light paper, dark text. */
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f4f4f5;
+    --text: #111111;
+    --secondary: #3a3d42;
+    --muted: #5b5f66;
+    --hairline: #c9ccd1;
+    --accent: #000000;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111111;
+    font-size: 11pt;
+  }
+
+  a {
+    color: #111111;
+  }
+
+  /* Reveal / fade systems hold opacity: 0 until JS scroll triggers run.
+     Print must never hide content, so force everything visible. */
+  .reveal,
+  .hero-fade,
+  .sec-name .ch,
+  .mnode,
+  .lmnode,
+  .mask-inner {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Hide interactive-only and decorative layers. */
+  #splash,
+  #progress,
+  #node-tip,
+  .skip,
+  nav[aria-label='Primary'],
+  .ticker,
+  .scroll-cue,
+  .hero-glow,
+  #canvas,
+  #spot,
+  .filters,
+  .sec-rule .sweep,
+  .chev,
+  .ghost,
+  .lab-packets,
+  .lmnode .beat,
+  .mnode .beat {
+    display: none !important;
+  }
+
+  /* Dead placeholder anchors (href="#") point nowhere on paper. */
+  a[href='#'] {
+    display: none !important;
+  }
+
+  /* Keep sections compact: no full-viewport hero or oversized rhythm. */
+  .hero {
+    min-height: 0;
+    padding: 40px 0 32px;
+  }
+
+  section {
+    padding: 36px 0;
+  }
+
+  .sec-head {
+    margin-bottom: 24px;
+  }
+
+  /* Single-column flow for card grids. */
+  .now-grid,
+  .node-cards,
+  .edge-cards {
+    display: block;
+  }
+
+  .now-cell,
+  .node-card,
+  .edge-card {
+    margin-bottom: 12pt;
+  }
+
+  /* Expand every decision-log row: the write-up structure prints inline. */
+  .row-body {
+    display: block !important;
+  }
+
+  .row-body-inner {
+    overflow: visible !important;
+  }
+
+  .logrow {
+    border-top-color: #c9ccd1;
+  }
+
+  .row-head {
+    cursor: default;
+  }
+
+  /* Surface real destinations in the contact block: a PDF keeps the URLs. */
+  .socials a::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    color: #5b5f66;
+  }
+
+  /* Keep the lab diagrams legible on white paper. */
+  .lab-fig svg,
+  .mesh-fig svg {
+    max-height: 260px;
+  }
+
+  /* Solid buttons keep a dark fill with light text so they stay legible. */
+  .btn-solid {
+    background: #111111 !important;
+    color: #ffffff !important;
+    border-color: #111111 !important;
+  }
+
+  .btn {
+    text-decoration: none;
+  }
+  section,
+  .job,
+  .logrow,
+  .dec-block,
+  .node-card,
+  .edge-card,
+  .now-cell,
+  .mesh-fig,
+  .lab-fig,
+  .contact-big,
+  .ctas {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  .sec-head {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "builtAt": "2026-10-05T05:00:10.964Z",
+  "buildDate": "oct 5, 2026",
+  "commits": [
+    {
+      "hash": "1ab0c48",
+      "subject": "chore(deps): fix audited dependencies (#36)"
+    },
+    {
+      "hash": "c6af2af",
+      "subject": "Add Pages security headers and a real 404 (#34)"
+    },
+    {
+      "hash": "7725c79",
+      "subject": "Update portfolio to current UniFi and VPS state (#33)"
+    },
+    {
+      "hash": "e4ffc4b",
+      "subject": "Add pinned read-only gitleaks scan (#35)"
+    },
+    {
+      "hash": "3dfa903",
+      "subject": "Rewrite docs in plain voice and remove em dashes (#32)"
+    },
+    {
+      "hash": "63ef436",
+      "subject": "README: accuracy and wording (#31)"
+    },
+    {
+      "hash": "db52ce1",
+      "subject": "Merge pull request #30 from stayZ3RO/ash/public-rename-links-2026-09-27"
+    },
+    {
+      "hash": "9087bba",
+      "subject": "Update links to renamed public repos"
+    },
+    {
+      "hash": "844de57",
+      "subject": "security: solid-blackout the DNS A-record IPs in vps-dns-records.webp (#28)"
+    },
+    {
+      "hash": "1aed8fe",
+      "subject": "feat: replace Z3 favicon with node-graph mark (#27)"
+    },
+    {
+      "hash": "b92c9e3",
+      "subject": "fix(a11y): stop hiding background canvas/texture and killing hover transitions under prefers-reduced-motion (#26)"
+    },
+    {
+      "hash": "a336daa",
+      "subject": "Merge pull request #25 from stayZ3RO/feat/dark-mode-toggle"
+    },
+    {
+      "hash": "ea52714",
+      "subject": "feat(portfolio): add light/dark theme toggle"
+    },
+    {
+      "hash": "b1c1fdc",
+      "subject": "Merge pull request #24 from stayZ3RO/feat/polish-animations"
+    },
+    {
+      "hash": "44cc496",
+      "subject": "docs(portfolio): document current design, structure, and superseded brand direction"
+    }
+  ]
+}

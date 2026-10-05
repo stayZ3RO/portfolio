@@ -3,44 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <meta
-      name="description"
-      content="Christopher Austin Lorenzo is an IT Service Desk Analyst II building toward cloud and network engineering through documented infrastructure labs covering DNS, monitoring, managed networking, Proxmox, Linux VPS hosting, remote access, and cloud/static deployments."
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1220'/%3E%3Ctext x='32' y='42' font-family='JetBrains Mono, monospace' font-size='26' font-weight='700' fill='%2360a5fa' text-anchor='middle'%3ECL%3C/text%3E%3C/svg%3E"
-    />
-    <title>Christopher Austin Lorenzo | IT Support, Cloud & Networking Portfolio</title>
-    <script>
-      try {
-        var t = localStorage.getItem('theme');
-        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
-      } catch (e) {}
-    </script>
+    <title>Christopher Lorenzo</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231c1e22'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' fill='%23f4f4f2' text-anchor='middle'%3ECL%3C/text%3E%3C/svg%3E" />
+    <!-- OG social preview: production serves v17-og.png at https://chrisalorenzo.com/og.png -->
+    <meta property="og:title" content="Christopher Lorenzo" />
+    <meta property="og:description" content="I study systems by building them. Homelab, automation, and the road to platform engineering." />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Christopher Austin Lorenzo | IT Support, Cloud & Networking Portfolio" />
-    <meta
-      property="og:description"
-      content="IT Service Desk Analyst II building toward cloud and network engineering through documented infrastructure labs: HA DNS, managed networking, AWS IaC, and Linux VPS hosting."
-    />
     <meta property="og:url" content="https://chrisalorenzo.com/" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Christopher Austin Lorenzo | IT Support, Cloud & Networking Portfolio" />
-    <meta
-      name="twitter:description"
-      content="IT Service Desk Analyst II building toward cloud and network engineering through documented infrastructure labs: HA DNS, managed networking, AWS IaC, and Linux VPS hosting."
-    />
+    <meta property="og:image" content="https://chrisalorenzo.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Christopher Lorenzo" />
+    <meta name="twitter:description" content="I study systems by building them. Homelab, automation, and the road to platform engineering." />
+    <meta name="twitter:image" content="https://chrisalorenzo.com/og.png" />
+  <style>
+    /* Layer 6 loading splash: visible before React hydrates, removed on mount. */
+    #splash{position:fixed;inset:0;z-index:1000;background:#141518;display:flex;align-items:center;justify-content:center;gap:14px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;letter-spacing:.14em;color:#9a9da3}
+    #splash .splash-mark{width:36px;height:36px;border:1px solid #2e3138;border-radius:8px;display:flex;align-items:center;justify-content:center;
+      color:#f4f4f2;font-size:14px;font-weight:700;letter-spacing:.02em}
+    #splash .splash-word{animation:splash-pulse 1.6s ease-in-out infinite}
+    @keyframes splash-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+    @media (prefers-reduced-motion:reduce){#splash .splash-word{animation:none}}
+  </style>
   </head>
   <body>
+    <div id="splash" role="status" aria-label="Loading portfolio">
+      <span class="splash-mark" aria-hidden="true">CL</span>
+      <span class="splash-word">INITIALIZING PORTFOLIO</span>
+    </div>
+    <noscript><style>#splash{display:none}</style></noscript>
     <div id="root"></div>
+    <script>
+      /* Layer 6 failsafe: never let the splash trap the page if the app bundle fails to load. */
+      setTimeout(function () {
+        var s = document.getElementById('splash');
+        if (s && !window.__portfolioBooted) s.parentNode.removeChild(s);
+      }, 8000);
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
