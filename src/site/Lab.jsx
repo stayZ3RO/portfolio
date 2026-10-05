@@ -53,7 +53,7 @@ export default function Lab() {
             onBlur={() => cardHot(apiRef, n.id, false)}
           >
             <div className="nc-id">
-              {n.id} {n.role && <span className="nc-role">{n.role}</span>}
+              {n.label || n.id} {n.role && <span className="nc-role">{n.role}</span>}
             </div>
             <div className="nc-spec">{n.spec}</div>
             <div className="nc-svcs">
@@ -83,7 +83,7 @@ export default function Lab() {
         </Reveal>
         <Reveal className="edge-card">
           <div className="ec-id">retired pis</div>
-          <div className="ec-spec">ashpi-1 · ashpi-2 · cold standby, no production role</div>
+          <div className="ec-spec">two Raspberry Pis · cold standby, no production role</div>
         </Reveal>
       </div>
       <Reveal className="manifest-wrap" aria-label="Fleet manifest">
@@ -93,12 +93,12 @@ export default function Lab() {
             <tr><th scope="col">service</th><th scope="col">host</th><th scope="col">purpose</th></tr>
           </thead>
           <tbody>
-            {FLEET.map(([svc, host, why]) => (
+            {FLEET.map(([svc, host, hostLabel, why]) => (
               <tr key={svc}
                 onMouseEnter={() => cardHot(apiRef, host, true)}
                 onMouseLeave={() => cardHot(apiRef, host, false)}>
                 <td className="svc">{svc}</td>
-                <td className="host">{host}</td>
+                <td className="host">{hostLabel}</td>
                 <td className="why">{why}</td>
               </tr>
             ))}

@@ -1,7 +1,11 @@
 {
-  "builtAt": "2026-10-05T05:00:10.964Z",
+  "builtAt": "2026-10-05T22:35:36.143Z",
   "buildDate": "oct 5, 2026",
   "commits": [
+    {
+      "hash": "dbb01ff",
+      "subject": "Adopt the Muse VM portfolio redesign, port forward GitHub's factual/security fixes (#37)"
+    },
     {
       "hash": "1ab0c48",
       "subject": "chore(deps): fix audited dependencies (#36)"
@@ -57,10 +61,6 @@
     {
       "hash": "b1c1fdc",
       "subject": "Merge pull request #24 from stayZ3RO/feat/polish-animations"
-    },
-    {
-      "hash": "44cc496",
-      "subject": "docs(portfolio): document current design, structure, and superseded brand direction"
     }
   ]
 }
