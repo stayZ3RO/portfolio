@@ -286,16 +286,6 @@
 }
 
 /* Footer */
-.cfm-foot {
-  border-top: 1px solid var(--hairline);
-  padding: 40px 24px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 14.5px;
-}
-.cfm-foot a { color: var(--text); }
-.cfm-foot p { margin: 8px 0; }
-
 @media (max-width: 640px) {
   .cfm-hero { padding: 64px 0 32px; }
   .cfm-keys { grid-template-columns: 1fr; }

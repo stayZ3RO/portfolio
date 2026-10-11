@@ -1,5 +1,6 @@
 import './cfm.css';
 import Nav from './Nav';
+import Footer from './Footer';
 
 /* cFM landing page: project page under chrisalorenzo.com/cfm */
 
@@ -150,10 +151,7 @@ export default function CfmPage() {
         </section>
       </main>
 
-      <footer className="cfm-foot">
-        <p>Built by Christopher Lorenzo. Part of the Cheech OS project family.</p>
-        <p><a href="/">← Back to portfolio</a></p>
-      </footer>
+      <Footer note="cFM is part of the Cheech OS project family" />
     </div>
   );
 }

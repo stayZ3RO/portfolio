@@ -1,34 +1,45 @@
 import { useEffect, useState } from 'react';
 import buildmeta from './buildmeta.json';
-import { LIVE } from './status';
+import MotionToggle from './MotionToggle';
 
 function utcNow() {
-  return new Date().toISOString().slice(11, 19) + ' UTC';
+  return new Date().toISOString().slice(11, 19) + ' utc';
 }
 
-/* Status footer: status line (pulses only when the live feed is wired) + live UTC clock + build stamp.
-   The stamp comes from the build-time snapshot (scripts/gen-meta.mjs)
-   so it always states when this build was generated. */
-export default function Footer() {
-  const [t, setT] = useState('--:--:-- UTC');
+/* Shared colophon, the blog's: type credits, the © line, a live UTC
+   clock, the build stamp (from scripts/gen-meta.mjs, so it always says
+   when this build was generated), a links row with the blog first, the
+   hire line, and the motion override. Double rule above. */
+export default function Footer({ note }) {
+  const [t, setT] = useState('--:--:-- utc');
   useEffect(() => {
     setT(utcNow());
     const id = setInterval(() => setT(utcNow()), 1000);
     return () => clearInterval(id);
   }, []);
 
-  const updated = buildmeta && buildmeta.buildDate ? `site updated ${buildmeta.buildDate}` : null;
+  const updated = buildmeta && buildmeta.buildDate ? buildmeta.buildDate : null;
 
   return (
-    <footer>
-      <div className="foot-inner">
-        <div className="statusline">
-          <span className={LIVE ? 'pulse' : 'dot'}></span>
-          <span>built and operated by Christopher Lorenzo</span>
-          {updated && <span>{updated}</span>}
-        </div>
-        <div className="clock" id="clock" aria-label="Current UTC time">{t}</div>
-      </div>
+    <footer className="site">
+      <p className="colophon">
+        Set in Zilla Slab &amp; Source Serif 4 · code in JetBrains Mono · © 2026 Christopher Lorenzo ·{' '}
+        <time className="utc" aria-label="Current UTC time">{t}</time>
+        {updated && <> · site updated {updated}</>}
+        {note && <> · {note}</>}
+      </p>
+      <p>
+        <a href="https://blog.chrisalorenzo.com">blog</a> ·{' '}
+        <a href="https://github.com/stayZ3RO">github</a> ·{' '}
+        <a href="https://www.linkedin.com/in/christopher-l-2118351ab">linkedin</a> ·{' '}
+        <a href="https://status.chrisalorenzo.com">status</a> ·{' '}
+        <a href="/resume.pdf">resume</a>
+      </p>
+      <p className="hire">
+        open to platform / systems engineering roles ·{' '}
+        <a href="/#contact">get in touch</a>
+      </p>
+      <MotionToggle />
     </footer>
   );
 }
