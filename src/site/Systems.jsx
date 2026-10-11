@@ -95,7 +95,7 @@ function RowBody({ row }) {
 
 function LogRow({ row, open, onToggle, delay }) {
   return (
-    <Reveal as="article" className={`logrow${open ? ' open' : ''}`} delay={delay} data-status={row.status}>
+    <Reveal as="article" id={row.id} className={`logrow${open ? ' open' : ''}`} delay={delay} data-status={row.status}>
       <button className="row-head" aria-expanded={open ? 'true' : 'false'} onClick={onToggle}>
         <span className={`tag ${row.status}`}>
           <span className="dot"></span>[{row.status}]
@@ -119,7 +119,7 @@ function LogRow({ row, open, onToggle, delay }) {
             </div>
             {row.links && (row.links.writeup || row.links.github) && (
               <div className="rowlinks">
-                {row.links.writeup && <a href={row.links.writeup}>write-up <span className="arr">↗</span></a>}
+                {row.links.writeup && <a href={row.links.writeup}>entries on the blog <span className="arr">↗</span></a>}
                 {row.links.github && <a href={row.links.github}>github <span className="arr">↗</span></a>}
               </div>
             )}

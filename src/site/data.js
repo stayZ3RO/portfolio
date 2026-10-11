@@ -28,6 +28,7 @@ export const TICKER_COMMITS = [
 
 export const SYSTEMS = [
   {
+    id: 'sys-service-desk-automation',
     status: 'building',
     title: 'Service desk automation platform',
     outcome: 'Ticketing workflows and dashboards the desk runs on, built in my off hours.',
@@ -51,11 +52,12 @@ export const SYSTEMS = [
     },
   },
   {
+    id: 'sys-ha-dns',
     status: 'running',
     title: 'HA DNS lab',
     outcome: 'High-availability DNS with recursive resolution, moved from Raspberry Pis to Proxmox VMs.',
     pills: ['Pi-hole', 'Unbound', 'Keepalived', 'Proxmox'],
-    links: { github: 'https://github.com/stayZ3RO/dns' },
+    links: { github: 'https://github.com/stayZ3RO/dns', writeup: 'https://blog.chrisalorenzo.com/projects/ha-dns/' },
     body: {
       type: 'declog',
       blocks: [
@@ -75,11 +77,12 @@ export const SYSTEMS = [
     },
   },
   {
+    id: 'sys-managed-network',
     status: 'running',
     title: 'Managed network infrastructure lab',
     outcome: 'UniFi UDM Pro and USW-24-PoE live since 2026-09-27; flat LAN today, VLAN segmentation planned.',
     pills: ['UniFi UDM Pro', 'USW-24-PoE', 'Deco AP mode', 'VLANs'],
-    links: { github: 'https://github.com/stayZ3RO/netlab' },
+    links: { github: 'https://github.com/stayZ3RO/netlab', writeup: 'https://blog.chrisalorenzo.com/projects/managed-network/' },
     body: {
       type: 'declog',
       blocks: [
@@ -99,11 +102,12 @@ export const SYSTEMS = [
     },
   },
   {
+    id: 'sys-vps',
     status: 'running',
     title: 'VPS cloud edge',
     outcome: 'Public edge on a Netcup VPS: Caddy, HTTPS, a monitored status page, and a hardened host.',
     pills: ['Netcup', 'Caddy', 'Uptime Kuma', 'Tailscale'],
-    links: { github: 'https://github.com/stayZ3RO/vps-lab' },
+    links: { github: 'https://github.com/stayZ3RO/vps-lab', writeup: 'https://blog.chrisalorenzo.com/projects/vps/' },
     body: {
       type: 'list',
       items: [
@@ -116,6 +120,7 @@ export const SYSTEMS = [
     },
   },
   {
+    id: 'sys-command-center',
     status: 'building',
     title: 'Homelab command center',
     outcome: 'A self-hosted ops console for the lab: inventory, monitoring, and subscriptions in one place.',
@@ -130,6 +135,7 @@ export const SYSTEMS = [
     },
   },
   {
+    id: 'sys-cloud-netlab',
     status: 'building',
     title: 'Cloud networking as code',
     outcome: 'The VLAN mental model from my rack, expressed as reviewable infrastructure as code. Nothing applied yet.',
@@ -146,6 +152,7 @@ export const SYSTEMS = [
     },
   },
   {
+    id: 'sys-desk-toolkit',
     status: 'running',
     title: 'Service desk diagnostic toolkit',
     outcome: 'A portable PowerShell diagnostics toolkit the desk uses for Windows triage.',

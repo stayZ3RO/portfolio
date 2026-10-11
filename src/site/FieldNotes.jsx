@@ -1,26 +1,28 @@
 import './fieldnotes.css';
 import Reveal from './Reveal';
 
-/* Real posts from the field manual (stayz3ro.dev), titles copied verbatim
-   from frontmatter on 2026-09-29. All draft:false. URL pattern verified as
-   https://<site>/blog/<slug> via src/pages/blog/[...slug].astro. */
-const BLOG = 'https://stayz3ro.dev';
+/* The three newest published entries from the blog, titles copied
+   verbatim from frontmatter on 2026-10-11 (all draft: false). URL
+   pattern /blog/<slug>/ per the blog's src/pages/blog/[...slug].astro.
+   Refresh this list when a new entry publishes; the blog's RSS is the
+   source of truth. */
+const BLOG = 'https://blog.chrisalorenzo.com';
 
 const POSTS = [
   {
-    date: '2026-05-11',
-    title: 'Hardening a public VPS before it hosts anything',
-    slug: 'hardening-a-public-vps',
+    date: '2026-10-04',
+    title: 'Patching four cloud servers took more than apt upgrade',
+    slug: 'patching-four-cloud-servers',
   },
   {
-    date: '2026-04-25',
-    title: 'Remote access without opening ports',
-    slug: 'remote-access-without-opening-ports',
+    date: '2026-09-29',
+    title: 'Moving my home network from Omada to UniFi, looking back',
+    slug: 'omada-to-unifi-looking-back',
   },
   {
-    date: '2026-04-19',
-    title: 'Monitoring the DNS stack',
-    slug: 'monitoring-the-dns-stack',
+    date: '2026-09-29',
+    title: 'Permission denied, and the server was fine',
+    slug: 'permission-denied-locked-key',
   },
 ];
 
@@ -31,12 +33,12 @@ export default function FieldNotes() {
       <h2 className="fn-head">Field notes</h2>
       <p className="fn-sub">
         What the lab taught me, written up in the{' '}
-        <a className="fn-link" href={BLOG} target="_blank" rel="noreferrer">field manual</a>.
+        <a className="fn-link" href={`${BLOG}/ledger/`} target="_blank" rel="noreferrer">field manual</a>.
       </p>
       <ul className="fn-list">
         {POSTS.map((p) => (
           <li key={p.slug} className="fn-row">
-            <a className="fn-a" href={`${BLOG}/blog/${p.slug}`} target="_blank" rel="noreferrer">
+            <a className="fn-a" href={`${BLOG}/blog/${p.slug}/`} target="_blank" rel="noreferrer">
               <span className="fn-date">{p.date}</span>
               <span className="fn-title">{p.title}</span>
               <span className="fn-arrow" aria-hidden="true">&rarr;</span>
