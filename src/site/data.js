@@ -203,6 +203,6 @@ export const FLEET = [
   ['Remote access', 'pve02', 'Second node', 'remote desktop'],
   ['Backup server', 'pve03', 'Third node', 'Proxmox Backup Server'],
   ['caddy', 'vps-edge', 'VPS edge', 'reverse proxy + HTTPS'],
-  ['blog', 'vps-edge', 'VPS edge', 'engineering blog'],
+  ['ntfy', 'vps-edge', 'VPS edge', 'self-hosted push alerts'],
   ['uptime-kuma', 'vps-edge', 'VPS edge', 'status monitoring'],
 ];

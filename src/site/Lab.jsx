@@ -75,7 +75,7 @@ export default function Lab() {
           onBlur={() => cardHot(apiRef, 'vps-edge', false)}
         >
           <div className="ec-id">vps-edge <span className="nc-role">PUBLIC EDGE</span></div>
-          <div className="ec-spec">Netcup VPS · Caddy + HTTPS · blog, Uptime Kuma</div>
+          <div className="ec-spec">Netcup VPS · Caddy + HTTPS · Uptime Kuma, ntfy</div>
         </Reveal>
         <Reveal className="edge-card">
           <div className="ec-id">tailnet</div>
