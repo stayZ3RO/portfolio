@@ -13,7 +13,7 @@
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(20,21,24,.9);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--hairline);
 }

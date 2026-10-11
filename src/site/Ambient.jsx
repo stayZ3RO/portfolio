@@ -53,13 +53,12 @@ export default function Ambient() {
     let onVis = null;
     if (cv && !reduced) {
       const ctx = cv.getContext('2d');
-      /* particle ink comes from the --text token so the canvas can never
-         drift from the palette */
-      const raw = getComputedStyle(document.documentElement).getPropertyValue('--text').trim();
-      const hm = raw.match(/#([0-9a-f]{6})/i);
-      const ink = hm
-        ? `${parseInt(hm[1].slice(0, 2), 16)},${parseInt(hm[1].slice(2, 4), 16)},${parseInt(hm[1].slice(4, 6), 16)}`
-        : '244,244,242';
+      /* particle ink comes from the theme's --node-rgb token so the canvas
+         follows whichever of the nine themes is active */
+      const ink = (() => {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue('--node-rgb').trim();
+        return /^\d+\s*,\s*\d+\s*,\s*\d+$/.test(raw) ? raw : '244,244,242';
+      })();
       let w, h;
       const pts = [];
       const DPR = Math.min(window.devicePixelRatio || 1, 2);

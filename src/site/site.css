@@ -3,25 +3,27 @@
   @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/JetBrainsMono-400.woff2') format('woff2')}
   @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url('/fonts/JetBrainsMono-500.woff2') format('woff2')}
   @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url('/fonts/JetBrainsMono-700.woff2') format('woff2')}
+  /* The color roles live in tokens.css (the contract shared with the
+     blog: same names, same nine themes). The names below are the
+     portfolio's older vocabulary, kept as aliases so every rule in this
+     file reads the live theme without a rewrite. */
   :root{
-    --bg:#141518; --surface:#1c1e22; --surface-2:#23262b;
-    --text:#f4f4f2; --secondary:#c9ccd1; --muted:#9a9da3;
-    --hairline:#2e3138; --accent:#ffffff;
-    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --text:var(--fg); --secondary:var(--fg-2);
+    --hairline:var(--line);
+    --surface-2:color-mix(in srgb,var(--surface) 70%,var(--line));
+    --mono:var(--font-mono);
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
     --display:'Space Grotesk',-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
-    --on-accent:#141518;
-    --nav-bg:rgba(20,21,24,.82);
-    --glow:rgba(255,255,255,.045);
-    --glow-soft:rgba(255,255,255,.032);
-    --shadow-glow:rgba(255,255,255,.12);
-    --ghost-ink:rgba(255,255,255,.55);
-    --hover-wash:rgba(255,255,255,.015);
+    --on-accent:var(--bg);
+    --nav-bg:color-mix(in srgb,var(--bg) 82%,transparent);
+    --glow:rgba(var(--node-rgb),.045);
+    --glow-soft:rgba(var(--node-rgb),.032);
+    --shadow-glow:rgba(var(--node-rgb),.12);
+    --ghost-ink:rgba(var(--node-rgb),.55);
+    --hover-wash:rgba(var(--node-rgb),.015);
     --ease:cubic-bezier(.4,0,.2,1);
-    --ease-out:cubic-bezier(.22,1,.36,1);
     --ease-io:cubic-bezier(.65,0,.35,1);
-    --radius-xs:4px; --radius-sm:6px; --radius-md:8px; --radius-lg:10px;
-    --radius-xl:12px; --radius-2xl:14px; --radius-pill:999px; --radius-round:50%;
+    --radius-xs:4px; --radius-xl:12px; --radius-2xl:14px; --radius-round:50%;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;overflow-x:clip}
@@ -119,7 +121,7 @@
 
   /* git-log ticker: real commits as signal (sits inside the hero, above the fold) */
   .ticker{border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);overflow:hidden;
-    padding:14px 0 18px;margin:36px calc(50% - 50vw) 0;background:rgba(28,30,34,.5)}
+    padding:14px 0 18px;margin:36px calc(50% - 50vw) 0;background:color-mix(in srgb,var(--surface) 50%,transparent)}
   .ticker-head{max-width:880px;margin:0 auto 10px;padding:0 24px;display:flex;align-items:baseline;gap:12px;
     font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
   .ticker-head .tk-cmd{color:var(--secondary)}
@@ -148,7 +150,7 @@
   .sec-head.in .sweep{animation:sweep 1.2s var(--ease-out) .25s}
   @keyframes sweep{to{left:100%}}
   .ghost{position:absolute;top:44px;right:-8px;font-family:var(--display);font-size:168px;font-weight:700;letter-spacing:-.05em;line-height:1;
-    color:rgba(244,244,242,.05);pointer-events:none;user-select:none;will-change:transform}
+    color:rgba(var(--node-rgb),.05);pointer-events:none;user-select:none;will-change:transform}
 
   /* live tag */
   .live-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;
@@ -223,13 +225,13 @@
   .node-card{text-align:left;border:1px solid var(--hairline);border-radius:var(--radius-xl);background:var(--surface);padding:22px;
     color:inherit;font:inherit;cursor:pointer;transition:transform .2s var(--ease),border-color .2s var(--ease),box-shadow .2s var(--ease)}
   .node-card:hover,.node-card:focus-visible{transform:translateY(-3px);border-color:var(--muted)}
-  .node-card.hot-card{border-color:var(--accent);box-shadow:0 6px 20px rgba(255,255,255,.06)}
+  .node-card.hot-card{border-color:var(--accent);box-shadow:0 6px 20px rgba(var(--node-rgb),.06)}
   .node-card .nc-id{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .node-card .nc-role{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--muted);border:1px solid var(--hairline);border-radius:var(--radius-pill);padding:3px 10px;font-weight:400}
   .node-card .nc-spec{margin-top:12px;font-size:14.5px;color:var(--secondary);line-height:1.65}
   .nc-svcs{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
   .nc-svc{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--secondary);
-    border:1px solid var(--hairline);border-radius:var(--radius-pill);padding:3px 10px;background:rgba(255,255,255,.02)}
+    border:1px solid var(--hairline);border-radius:var(--radius-pill);padding:3px 10px;background:var(--hover-wash)}
 
   /* edge systems: quieter second row under the node cards */
   .edge-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}

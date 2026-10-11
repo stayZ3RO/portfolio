@@ -8,15 +8,22 @@
   }
 
   /* Ink-friendly palette: light paper, dark text. */
-  :root {
+  :root,
+  :root[data-theme] {
     --bg: #ffffff;
+    --bg-2: #ffffff;
     --surface: #ffffff;
     --surface-2: #f4f4f5;
-    --text: #111111;
-    --secondary: #3a3d42;
+    --fg: #111111;
+    --fg-2: #3a3d42;
     --muted: #5b5f66;
-    --hairline: #c9ccd1;
+    --faint: #6e6e6e;
+    --line: #c9ccd1;
+    --line-2: #b5b5b5;
     --accent: #000000;
+    --accent-2: #000000;
+    --accent-soft: #f0f0f0;
+    --node-rgb: 17, 17, 17;
   }
 
   *,

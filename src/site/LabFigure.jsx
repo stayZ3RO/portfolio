@@ -275,11 +275,11 @@ export default function LabFigure({ sectionRef, apiRef }) {
         inner.style.transitionDelay = `${i * 0.2}s`;
         inner.innerHTML =
           `<circle class="hit" r="${n.R + 22}" fill="rgba(0,0,0,0)" pointer-events="all"/>` +
-          `<circle class="halo" r="${n.R + 10}" fill="none" stroke="#f4f4f2" stroke-width="1" opacity="0.18"/>` +
+          `<circle class="halo" r="${n.R + 10}" fill="none" stroke="var(--fg)" stroke-width="1" opacity="0.18"/>` +
           `<circle class="beat" r="${n.R}" style="animation-delay:${(i * 0.9).toFixed(1)}s"/>` +
-          `<circle class="ring" r="${n.R}" fill="none" stroke="#f4f4f2" stroke-width="1.5"/>` +
-          `<circle class="core" r="${n.R > 24 ? 6 : 5}" fill="#c9ccd1"/>` +
-          `<text y="${n.ldy}" text-anchor="middle" fill="#f4f4f2" font-size="${n.fs}" font-weight="600" font-family="ui-monospace,monospace">${n.label || n.id}</text>`;
+          `<circle class="ring" r="${n.R}" fill="none" stroke="var(--fg)" stroke-width="1.5"/>` +
+          `<circle class="core" r="${n.R > 24 ? 6 : 5}" fill="var(--fg-2)"/>` +
+          `<text y="${n.ldy}" text-anchor="middle" fill="var(--fg)" font-size="${n.fs}" font-weight="600" font-family="ui-monospace,monospace">${n.label || n.id}</text>`;
         outer.appendChild(inner);
         labGNodes.appendChild(outer);
         labNodeEls.push({ id: n.id, label: n.label, g: inner, sub: n.sub });
@@ -429,13 +429,13 @@ export default function LabFigure({ sectionRef, apiRef }) {
   return (
     <>
       <svg id="labsvg" ref={deskRef} viewBox="0 0 800 340" role="img" aria-label={mapAria}>
-        <g className="lab-links" stroke="#c9ccd1" strokeWidth="1" fill="none" opacity="0.55"></g>
-        <g className="lab-packets" fill="#ffffff"></g>
+        <g className="lab-links" stroke="var(--fg-2)" strokeWidth="1" fill="none" opacity="0.55"></g>
+        <g className="lab-packets" fill="var(--accent)"></g>
         <g className="lab-nodes"></g>
       </svg>
       <svg id="labsvg-m" ref={mobRef} viewBox="0 0 360 340" role="img" aria-label={mapAria}>
-        <g className="lab-links" stroke="#c9ccd1" strokeWidth="1" fill="none" opacity="0.55"></g>
-        <g className="lab-packets" fill="#ffffff"></g>
+        <g className="lab-links" stroke="var(--fg-2)" strokeWidth="1" fill="none" opacity="0.55"></g>
+        <g className="lab-packets" fill="var(--accent)"></g>
         <g className="lab-nodes"></g>
       </svg>
       <div

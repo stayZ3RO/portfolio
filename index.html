@@ -17,12 +17,45 @@
     <meta name="twitter:title" content="Christopher Lorenzo" />
     <meta name="twitter:description" content="I study systems by building them. Homelab, automation, and the road to platform engineering." />
     <meta name="twitter:image" content="https://chrisalorenzo.com/og.png" />
+    <meta name="theme-color" content="#eff1f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141518" media="(prefers-color-scheme: dark)" />
+    <script>
+      // Resolve the theme before first paint. One stored id under the
+      // `theme` key, shared with blog.chrisalorenzo.com; plain "light"/
+      // "dark" from older toggles migrate to the matching defaults.
+      try {
+        var ids = {
+          'zero-dark': 1,
+          'catppuccin-dark': 1, 'catppuccin-light': 1,
+          'tokyo-night-dark': 1, 'tokyo-night-light': 1,
+          'rose-pine-dark': 1, 'rose-pine-light': 1,
+          'dracula-dark': 1, 'dracula-light': 1,
+        };
+        var t = localStorage.getItem('theme');
+        if (t === 'light') t = 'catppuccin-light';
+        else if (t === 'dark') t = 'zero-dark';
+        if (!ids[t]) {
+          t = window.matchMedia('(prefers-color-scheme: light)').matches
+            ? 'catppuccin-light'
+            : 'zero-dark';
+        }
+        document.documentElement.dataset.theme = t;
+        // Motion override, shared with the blog under the `motion` key.
+        var m = localStorage.getItem('motion');
+        if (m !== 'full' && m !== 'reduced') {
+          m = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? 'reduced'
+            : 'full';
+        }
+        document.documentElement.dataset.motion = m;
+      } catch (e) {}
+    </script>
   <style>
     /* Layer 6 loading splash: visible before React hydrates, removed on mount. */
-    #splash{position:fixed;inset:0;z-index:1000;background:#141518;display:flex;align-items:center;justify-content:center;gap:14px;
-      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;letter-spacing:.14em;color:#9a9da3}
-    #splash .splash-mark{width:36px;height:36px;border:1px solid #2e3138;border-radius:8px;display:flex;align-items:center;justify-content:center;
-      color:#f4f4f2;font-size:14px;font-weight:700;letter-spacing:.02em}
+    #splash{position:fixed;inset:0;z-index:1000;background:var(--bg,#141518);display:flex;align-items:center;justify-content:center;gap:14px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;letter-spacing:.14em;color:var(--muted,#9a9da3)}
+    #splash .splash-mark{width:36px;height:36px;border:1px solid var(--line,#2e3138);border-radius:8px;display:flex;align-items:center;justify-content:center;
+      color:var(--fg,#f4f4f2);font-size:14px;font-weight:700;letter-spacing:.02em}
     #splash .splash-word{animation:splash-pulse 1.6s ease-in-out infinite}
     @keyframes splash-pulse{0%,100%{opacity:1}50%{opacity:.35}}
     @media (prefers-reduced-motion:reduce){#splash .splash-word{animation:none}}
