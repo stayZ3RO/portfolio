@@ -11,7 +11,7 @@ export function showTip(n, anchorEl) {
   if (!tip || !anchorEl) return;
   const r = anchorEl.getBoundingClientRect();
   tip.innerHTML =
-    '<div>' + n.id + '</div><div class="t-sub">' + (n.tip || n.sub) + '</div>';
+    '<div>' + (n.label || n.id) + '</div><div class="t-sub">' + (n.tip || n.sub) + '</div>';
   tip.style.left = r.left + r.width / 2 + 'px';
   tip.style.top = r.top - 6 + 'px';
   tip.classList.add('show');

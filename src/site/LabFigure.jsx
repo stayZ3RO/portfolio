@@ -6,12 +6,12 @@ import { STATUS_URL, fetchLiveStatus } from './status';
 function labDesktopLayout() {
   return {
     nodes: [
-      { id: 'pve01', x: 260, y: 195, R: 30, fs: 15, ldy: 56, sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
-        tip: 'pihole01 · omada-controller · ts-router01' },
-      { id: 'pve02', x: 440, y: 85, R: 30, fs: 15, ldy: 56, sub: 'OptiPlex 3070 Micro · 32GB RAM',
-        tip: 'pihole02 · ts-router02 · portainer · monitoring · rustdesk' },
-      { id: 'pve03', x: 620, y: 195, R: 30, fs: 15, ldy: 56, sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
-        tip: 'backup-svr · Proxmox Backup Server' },
+      { id: 'pve01', label: 'Primary node', x: 260, y: 195, R: 30, fs: 15, ldy: 56, sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
+        tip: 'DNS · tailscale router' },
+      { id: 'pve02', label: 'Second node', x: 440, y: 85, R: 30, fs: 15, ldy: 56, sub: 'OptiPlex 3070 Micro · 32GB RAM',
+        tip: 'DNS secondary · tailscale router · container host · monitoring · remote access' },
+      { id: 'pve03', label: 'Third node', x: 620, y: 195, R: 30, fs: 15, ldy: 56, sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
+        tip: 'Backup server · Proxmox Backup Server' },
       { id: 'vps-edge', x: 695, y: 52, R: 24, fs: 13, ldy: 50, kind: 'vps', sub: 'Netcup VPS · public edge',
         tip: 'Caddy + HTTPS · blog · Uptime Kuma' },
     ],
@@ -34,12 +34,12 @@ function labDesktopLayout() {
 function labMobileLayout() {
   return {
     nodes: [
-      { id: 'pve01', x: 66, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
-        tip: 'pihole01 · omada-controller · ts-router01' },
-      { id: 'pve02', x: 180, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'OptiPlex 3070 Micro · 32GB RAM',
-        tip: 'pihole02 · ts-router02 · portainer · monitoring · rustdesk' },
-      { id: 'pve03', x: 294, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
-        tip: 'backup-svr · Proxmox Backup Server' },
+      { id: 'pve01', label: 'Primary node', x: 66, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
+        tip: 'DNS · tailscale router' },
+      { id: 'pve02', label: 'Second node', x: 180, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'OptiPlex 3070 Micro · 32GB RAM',
+        tip: 'DNS secondary · tailscale router · container host · monitoring · remote access' },
+      { id: 'pve03', label: 'Third node', x: 294, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
+        tip: 'Backup server · Proxmox Backup Server' },
       { id: 'vps-edge', x: 66, y: 200, R: 22, fs: 12, ldy: 44, kind: 'vps', sub: 'Netcup VPS · public edge',
         tip: 'Caddy + HTTPS · blog · Uptime Kuma' },
     ],
@@ -177,11 +177,11 @@ export default function LabFigure({ sectionRef, apiRef }) {
        Nodes not covered by live data (e.g. vps-edge) keep the default. */
     function paintNodeStates() {
       const states = statesRef.current;
-      labNodeEls.forEach(({ id, g, sub }) => {
+      labNodeEls.forEach(({ id, label, g, sub }) => {
         const core = g.querySelector('.core');
         if (!core) return;
         if (!states || !(id in states)) {
-          g.setAttribute('aria-label', `${id}: ${sub}`);
+          g.setAttribute('aria-label', `${label || id}: ${sub}`);
           return;
         }
         const s = states[id] || 'unknown';
@@ -198,7 +198,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
           core.style.setProperty('fill', 'var(--muted)');
           core.setAttribute('opacity', '0.35');
         }
-        g.setAttribute('aria-label', `${id}: ${sub} · state: ${s}`);
+        g.setAttribute('aria-label', `${label || id}: ${sub} · state: ${s}`);
       });
     }
     paintRef.current = paintNodeStates;
@@ -271,7 +271,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
         inner.setAttribute('class', 'lmnode');
         inner.setAttribute('role', 'button');
         inner.setAttribute('tabindex', '0');
-        inner.setAttribute('aria-label', `${n.id}: ${n.sub}`);
+        inner.setAttribute('aria-label', `${n.label || n.id}: ${n.sub}`);
         inner.style.transitionDelay = `${i * 0.2}s`;
         inner.innerHTML =
           `<circle class="hit" r="${n.R + 22}" fill="rgba(0,0,0,0)" pointer-events="all"/>` +
@@ -279,10 +279,10 @@ export default function LabFigure({ sectionRef, apiRef }) {
           `<circle class="beat" r="${n.R}" style="animation-delay:${(i * 0.9).toFixed(1)}s"/>` +
           `<circle class="ring" r="${n.R}" fill="none" stroke="#f4f4f2" stroke-width="1.5"/>` +
           `<circle class="core" r="${n.R > 24 ? 6 : 5}" fill="#c9ccd1"/>` +
-          `<text y="${n.ldy}" text-anchor="middle" fill="#f4f4f2" font-size="${n.fs}" font-weight="600" font-family="ui-monospace,monospace">${n.id}</text>`;
+          `<text y="${n.ldy}" text-anchor="middle" fill="#f4f4f2" font-size="${n.fs}" font-weight="600" font-family="ui-monospace,monospace">${n.label || n.id}</text>`;
         outer.appendChild(inner);
         labGNodes.appendChild(outer);
-        labNodeEls.push({ id: n.id, g: inner, sub: n.sub });
+        labNodeEls.push({ id: n.id, label: n.label, g: inner, sub: n.sub });
         const card = section.querySelector(`.node-card[data-node="${n.id}"],.edge-card[data-node="${n.id}"]`);
         const setCard = (on) => { if (card) card.classList.toggle('hot-card', on); };
         /* connection focus: hovering a node lights its links and dims the rest */
