@@ -9,12 +9,12 @@
 }
 
 .fn-kicker{
-  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
   color:var(--muted);margin-bottom:10px;
 }
 
 .fn-head{
-  font-size:26px;font-weight:650;letter-spacing:-.02em;
+  font-family:var(--display);font-size:26px;font-weight:600;letter-spacing:-.02em;
   color:var(--text);line-height:1.2;
 }
 

@@ -34,7 +34,7 @@
   display: inline-block;
   font-family: var(--mono);
   font-size: 12px;
-  letter-spacing: .22em;
+  letter-spacing: .14em;
   color: var(--cfm-accent);
   border: 1px solid var(--cfm-accent-dim);
   border-radius: 999px;
@@ -44,7 +44,7 @@
 
 .cfm-hero h1 {
   font-size: clamp(56px, 10vw, 96px);
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -.03em;
   line-height: 1;
   margin: 0 0 20px;
@@ -135,8 +135,9 @@
 .cfm-section { margin: 72px 0; }
 
 .cfm-section h2 {
+  font-family: var(--display);
   font-size: 32px;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -.02em;
   margin: 0 0 16px;
 }
@@ -170,7 +171,8 @@
   padding: 28px;
 }
 .cfm-card h3 {
-  font-size: 18px;
+  font-family: var(--display);
+  font-size: 19px;
   font-weight: 600;
   margin: 0 0 12px;
   color: var(--cfm-accent);

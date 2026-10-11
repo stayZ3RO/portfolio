@@ -11,14 +11,14 @@
 .interlude p{
   font-family:var(--display);
   font-size:clamp(30px,4.6vw,52px);
-  font-weight:700;letter-spacing:-.02em;line-height:1.28;
+  font-weight:600;letter-spacing:-.02em;line-height:1.28;
   color:var(--text);
   max-width:22em;margin:0 auto;
 }
 
 .interlude cite{
   display:block;margin-top:32px;
-  font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);font-style:normal;
 }
 
