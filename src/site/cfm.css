@@ -9,15 +9,6 @@
   min-height: 100vh;
 }
 
-.cfm-nav {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--hairline);
-}
-
 .cfm-main {
   max-width: 880px;
   margin: 0 auto;

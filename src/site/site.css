@@ -60,20 +60,36 @@
   #spot{position:fixed;left:0;top:0;width:560px;height:560px;border-radius:var(--radius-round);pointer-events:none;z-index:2;
     background:radial-gradient(circle,var(--glow),transparent 62%);transform:translate(-50%,-50%);opacity:0;transition:opacity .6s var(--ease)}
 
-  /* nav */
-  nav{position:fixed;top:0;left:0;right:0;z-index:30;
-    background:var(--nav-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--hairline)}
-  .nav-inner{max-width:880px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
-  .nav-name{font-family:var(--display);font-weight:600;font-size:17px;color:var(--text);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
-  .nav-links{display:flex;gap:26px}
-  .nav-links a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;transition:color .2s var(--ease)}
-  .nav-links a:hover{color:var(--text)}
+  /* masthead: the blog's, sticky, double rule, never drops a link */
+  header.site{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:14px max(24px,calc((100vw - 880px) / 2));border-bottom:4px double var(--line-2);
+    background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  header.site .brand-block{display:flex;flex-direction:column}
+  header.site .brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:17px;
+    letter-spacing:-.01em;color:var(--text);text-decoration:none;white-space:nowrap;transition:color .16s var(--ease-out)}
+  header.site .brand:hover{color:var(--accent)}
+  header.site .doc-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted);border:1px solid var(--hairline);border-radius:4px;padding:4px 8px}
+  header.site .tagline{margin:0;font-size:13.5px;color:var(--muted);opacity:.85}
+  header.site nav{display:flex;align-items:center;gap:3px}
+  header.site nav a{padding:6px 12px;border-radius:999px;color:var(--muted);font-family:var(--mono);font-size:13.3px;text-decoration:none;
+    transition:color .16s var(--ease-out),background .16s var(--ease-out),transform .16s var(--ease-out)}
+  header.site nav a:hover{color:var(--accent);background:var(--accent-soft);transform:translateY(-1px)}
+  .theme-switcher{position:relative;display:inline-block;margin-left:5px}
+  #theme-btn{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border:1px solid var(--hairline);border-radius:999px;background:transparent;
+    color:var(--muted);font-family:var(--mono);font-size:12.2px;line-height:1;cursor:pointer;transition:color .14s ease,border-color .14s ease,transform .14s ease}
+  #theme-btn:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-1px)}
+  .theme-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+  #theme-menu{position:absolute;right:0;top:calc(100% + 8px);min-width:11.5rem;margin:0;padding:6px;list-style:none;background:var(--surface);
+    border:1px solid var(--hairline);border-radius:4px;box-shadow:0 8px 32px rgb(0 0 0 / .22);z-index:60}
+  #theme-menu[hidden]{display:none}
+  #theme-menu li{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:4px;font-family:var(--mono);font-size:12.7px;color:var(--muted);cursor:pointer;white-space:nowrap}
+  #theme-menu li:hover{background:var(--accent-soft);color:var(--text)}
+  #theme-menu li[aria-selected='true']{color:var(--accent)}
 
   main{max-width:880px;margin:0 auto;padding:0 24px}
 
   /* hero */
-  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:104px 0 56px;position:relative}
+  .hero{min-height:calc(100vh - 72px);display:flex;flex-direction:column;justify-content:center;padding:56px 0 56px;position:relative}
   .hero-glow{position:absolute;top:-10%;left:50%;width:900px;height:900px;transform:translateX(-50%);
     background:radial-gradient(circle,var(--glow-soft),transparent 60%);pointer-events:none;z-index:-1;
     animation:glowdrift 22s var(--ease-io) infinite alternate}
@@ -310,22 +326,14 @@
   .nf-code{font-family:var(--mono);font-size:15px;color:var(--muted);margin:18px 0}
   .nf a{color:var(--text)}
 
-  @media (max-width:720px){
-    .nav-links{gap:18px}
-  }
 
   @media (max-width:640px){
     .row-head{grid-template-columns:1fr 28px}
     .row-head .tag{grid-column:1/-1}
     .row-body-pad{padding-left:4px}
     .now-grid,.node-cards,.edge-cards{grid-template-columns:1fr}
-    /* mobile nav: name + resume only, section links hidden */
-    .nav-inner{padding:14px 20px}
-    .nav-links{gap:0}
-    .nav-links .nav-sec{display:none}
-    .nav-links a{font-size:14px;white-space:nowrap}
     /* hero type scale */
-    .hero{padding:96px 0 48px}
+    .hero{padding:48px 0 48px}
     .hero h1{font-size:clamp(40px,13vw,58px)}
     .avail-pill{font-size:11.5px;letter-spacing:.03em;padding:8px 14px;max-width:100%;white-space:normal;line-height:1.5}
     .bio{font-size:16px}
@@ -341,6 +349,17 @@
     .sec-rule{flex:1 1 100%}
     .lab-fig .cap{flex-wrap:wrap;gap:8px;font-size:11px}
     .filters{flex-wrap:wrap}
+  }
+
+  /* small screens: the masthead wraps, the nav gets its own row, every
+     link stays down to 320px; the theme button drops its label */
+  @media (max-width:600px){
+    header.site{flex-wrap:wrap;row-gap:9px;padding:12px 15px}
+    header.site nav{order:3;flex:1 1 100%;flex-wrap:wrap;gap:6px 2px}
+    header.site nav a{padding:6px 8px;font-size:12px}
+    header.site nav .theme-switcher{margin-left:auto}
+    #theme-name{display:none}
+    #theme-btn{padding:6px}
   }
 
   /* lab figure: genuinely responsive, simplified mobile layout (no pan, no clipping) */
