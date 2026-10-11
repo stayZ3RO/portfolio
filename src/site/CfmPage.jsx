@@ -89,7 +89,7 @@ export default function CfmPage() {
             </div>
             <div className="cfm-card">
               <h3>Agent-aware</h3>
-              <p>Mark files into a basket with <kbd>a</kbd>, hand the context to a Z3ROS agent session with <kbd>X</kbd>. The handoff sends paths only, never file contents.</p>
+              <p>Mark files into a basket with <kbd>a</kbd>, hand the context to a coding agent session with <kbd>X</kbd>. The handoff sends paths only, never file contents.</p>
             </div>
             <div className="cfm-card">
               <h3>Zero network</h3>
