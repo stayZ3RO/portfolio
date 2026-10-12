@@ -61,7 +61,7 @@ export const SYSTEMS = [
       blocks: [
         {
           label: 'WHAT I BUILT',
-          text: 'A dual-node Pi-hole design behind a Keepalived shared VIP (192.168.68.20) with Unbound for local recursive resolution. The pair moved from physical Raspberry Pis to Proxmox VMs. Monitoring runs on a Proxmox-hosted Docker VM with Prometheus, Grafana, Alertmanager, and a Discord alert hook.',
+          text: 'A dual-node Pi-hole design behind a Keepalived shared VIP with Unbound for local recursive resolution. The pair moved from physical Raspberry Pis to Proxmox VMs. Monitoring runs on a Proxmox-hosted Docker VM with Prometheus, Grafana, Alertmanager, and a Discord alert hook.',
         },
         {
           label: 'WHAT BROKE',
