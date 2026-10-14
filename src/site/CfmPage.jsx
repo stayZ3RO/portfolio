@@ -1,4 +1,5 @@
 import './cfm.css';
+import Nav from './Nav';
 
 /* cFM landing page: project page under chrisalorenzo.com/cfm */
 
@@ -18,16 +19,14 @@ export default function CfmPage() {
     <div className="cfm-page">
       <a className="skip" href="#main">Skip to content</a>
 
-      <nav className="cfm-nav">
-        <div className="nav-inner">
-          <a className="nav-name" href="/">Christopher Lorenzo</a>
-          <div className="nav-links">
-            <a href="/">Portfolio</a>
-            <a href="/#lab">Lab</a>
-            <a href="/#contact">Contact</a>
-          </div>
-        </div>
-      </nav>
+      <Nav
+        links={[
+          ['portfolio', '/'],
+          ['lab', '/#lab'],
+          ['contact', '/#contact'],
+          ['blog', 'https://blog.chrisalorenzo.com'],
+        ]}
+      />
 
       <main id="main" className="cfm-main">
         {/* Hero */}
