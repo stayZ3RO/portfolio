@@ -1,9 +1,8 @@
 /* Site data. SYSTEMS rows were rewritten 2026-09-29 with real content
-   from verified sources (homelab-ops-private service map/inventory, project
-   repo READMEs, memory notes). Status words are honest: running / building
-   reflect verified state, and rows say what is pending instead of implying
-   completion. Live lab status now lives in status.js; the old LAB_STATUS
-   stub was removed 2026-09-29 as dead code. */
+   from project repo READMEs and memory notes. Status words are honest:
+   running / building reflect verified state, and rows say what is pending
+   instead of implying completion. Live lab status now lives in status.js;
+   the old LAB_STATUS stub was removed 2026-09-29 as dead code. */
 
 /* ---------- ticker: git log as signal ----------
    TICKER_COMMITS is a snapshot of REAL commits, captured read-only with

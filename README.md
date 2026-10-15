@@ -23,7 +23,7 @@ I use this repository to build my public portfolio. It shows what I've built and
 | [Home Network Infrastructure / HA DNS](https://github.com/stayZ3RO/dns) | Mature | Pi-hole + Unbound + Keepalived HA DNS, Prometheus/Grafana/Alertmanager monitoring, validated failover |
 | [Managed Network Infrastructure Lab](https://github.com/stayZ3RO/netlab) | Active | UDM Pro and USW-24-PoE have been the core since 2026-09-27; the LAN remains flat, Deco nodes are APs, and VLAN/firewall segmentation is planned. Earlier Omada evidence is labeled historical. |
 | [AWS Network Automation Lab](https://github.com/stayZ3RO/cloud-netlab) | Learning lab, CI-validated | Reusable Terraform/OpenTofu VPC module + Python drift-detection CLI, tested and CI-gated, no cloud resources applied |
-| [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-lab) | In progress | Netcup VPS with Caddy HTTPS, seven Kuma monitors, and Discord plus self-hosted ntfy alerts live since 2026-09-28; Umami and backup/restore work remain planned |
+| [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-lab) | In progress | Netcup VPS with Caddy HTTPS. Kuma monitors: see the status page. Discord and self-hosted ntfy alerts have been live since 2026-09-28. Umami is on the public sites. |
 
 ## Technology Stack
 
@@ -58,31 +58,16 @@ portfolio/
 |-- package.json
 |-- vite.config.js
 |-- public/
-|   |-- resume.pdf
-|   `-- proof/
-|       |-- ha-dns-foundation.webp
-|       |-- ha-dns-failover-dashboard.webp
-|       |-- managed-topology.webp
-|       |-- managed-omada-topology.webp
-|       |-- vps-architecture.webp
-|       |-- vps-ufw-firewall.webp
-|       `-- vps-dns-records.webp
-|-- src/
-|   |-- App.jsx
-|   |-- main.jsx
-|   |-- styles.css
-|   |-- components/
-|   |   |-- Header.jsx
-|   |   |-- Hero.jsx
-|   |   |-- Now.jsx
-|   |   |-- WorkSection.jsx
-|   |   |-- ProjectDetails.jsx
-|   |   |-- Links.jsx
-|   |   |-- NetworkBackground.jsx
-|   |   `-- Reveal.jsx
-|   `-- data/
-|       `-- projects.js
-`-- docs/
+|-- design-history/
+|-- docs/
+|-- scripts/gen-meta.mjs
+`-- src/
+    |-- App.jsx
+    |-- main.jsx
+    `-- site/
+        |-- Site.jsx
+        |-- data.js
+        `-- status.js
 ```
 
 ## Deployment

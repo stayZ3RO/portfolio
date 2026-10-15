@@ -10,17 +10,17 @@ No backend server, database, Docker, or VM.
 ## Deployment Flow
 
 ```text
-Local repo
-  ↓
+Local checkout
+  |
 git push origin main
-  ↓
-GitHub repository (source only)
-  ↓
-Cloudflare Pages build  (npm run build → dist/)
-  ↓
-Cloudflare edge (global CDN, automatic HTTPS)
-  ↓
-chrisalorenzo.com  /  www.chrisalorenzo.com
+  |
+Forgejo (primary): https://git.chrisalorenzo.com/ash/portfolio
+  |
+GitHub (push mirror): https://github.com/stayZ3RO/portfolio
+  |
+Cloudflare Pages build (npm run build, output dist/)
+  |
+chrisalorenzo.com / www.chrisalorenzo.com
 ```
 
 ## DNS / Domain
