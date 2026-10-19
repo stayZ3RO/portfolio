@@ -3,9 +3,9 @@ import { SVG_NS, stepMesh, useReducedMotion } from './env';
 import { hideTip, showTip } from './tip';
 
 const NODES = [
-  { id: 'pve01', x: 200, y: 120, label: 'pve01', sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB' },
-  { id: 'pve02', x: 400, y: 60, label: 'pve02', sub: 'OptiPlex 3070 Micro · 32GB' },
-  { id: 'pve03', x: 600, y: 120, label: 'pve03', sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB' },
+  { id: 'node1', x: 200, y: 120, label: 'Primary node', sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB' },
+  { id: 'node2', x: 400, y: 60, label: 'Second node', sub: 'OptiPlex 3070 Micro · 32GB' },
+  { id: 'node3', x: 600, y: 120, label: 'Third node', sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB' },
 ];
 const LINKS = [[0, 1], [1, 2], [0, 2]];
 

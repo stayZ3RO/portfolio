@@ -379,11 +379,11 @@
           <div class="dec-log">
             <div class="dec-block">
               <div class="dec-label">WHAT I BUILT</div>
-              <p>A 3-node Proxmox cluster joined by a Tailscale mesh, with DNS and monitoring running across every node. Backups land on Proxmox Backup Server, hosted on pve03.</p>
+              <p>A 3-node Proxmox cluster joined by a Tailscale mesh, with DNS and monitoring running across every node. Backups land on Proxmox Backup Server, hosted on node3.</p>
             </div>
             <div class="dec-block">
               <div class="dec-label">WHAT BROKE</div>
-              <p>pve02 went through a full chassis transplant mid-project. The cluster kept serving on two nodes while I moved everything over and brought the third back up.</p>
+              <p>node2 went through a full chassis transplant mid-project. The cluster kept serving on two nodes while I moved everything over and brought the third back up.</p>
             </div>
             <div class="dec-block">
               <div class="dec-label">WHAT I'D DO DIFFERENTLY</div>
@@ -466,18 +466,18 @@
       <div class="lab-foot">placement per homelab-ops service map</div>
     </figure>
     <div class="node-cards">
-      <button class="node-card reveal" data-node="pve01">
-        <div class="nc-id">pve01 <span class="nc-role">PRIMARY</span></div>
+      <button class="node-card reveal" data-node="node1">
+        <div class="nc-id">node1 <span class="nc-role">PRIMARY</span></div>
         <div class="nc-spec">OptiPlex 7060 Micro · i5-8500T · 32GB RAM · 256GB NVMe</div>
-        <div class="nc-svcs"><span class="nc-svc">pihole01</span><span class="nc-svc">omada-controller</span><span class="nc-svc">ts-router01</span></div>
+        <div class="nc-svcs"><span class="nc-svc">DNS</span><span class="nc-svc">old controller</span><span class="nc-svc">subnet router</span></div>
       </button>
-      <button class="node-card reveal" data-node="pve02">
-        <div class="nc-id">pve02</div>
+      <button class="node-card reveal" data-node="node2">
+        <div class="nc-id">node2</div>
         <div class="nc-spec">OptiPlex 3070 Micro · 32GB RAM · 256GB NVMe</div>
-        <div class="nc-svcs"><span class="nc-svc">pihole02</span><span class="nc-svc">ts-router02</span><span class="nc-svc">portainer</span><span class="nc-svc">monitoring</span><span class="nc-svc">rustdesk</span></div>
+        <div class="nc-svcs"><span class="nc-svc">DNS</span><span class="nc-svc">subnet router</span><span class="nc-svc">portainer</span><span class="nc-svc">monitoring</span><span class="nc-svc">rustdesk</span></div>
       </button>
-      <button class="node-card reveal" data-node="pve03">
-        <div class="nc-id">pve03 <span class="nc-role">BACKUP</span></div>
+      <button class="node-card reveal" data-node="node3">
+        <div class="nc-id">node3 <span class="nc-role">BACKUP</span></div>
         <div class="nc-spec">EliteDesk 800 G3 DM · i5-6500T · 16GB RAM · 256GB NVMe</div>
         <div class="nc-svcs"><span class="nc-svc">backup-svr · PBS</span></div>
       </button>
@@ -563,14 +563,14 @@
   const LAB_STATUS = {
     source: 'static', // 'static' | 'uptime-kuma'
     uptimeKumaStatusSlug: '', // e.g. 'homelab' -> GET /api/status-page/homelab
-    nodes: { pve01: 'running', pve02: 'running', pve03: 'running' }
+    nodes: { node1: 'running', node2: 'running', node3: 'running' }
   };
   async function fetchLabStatus(){
     if(LAB_STATUS.source !== 'uptime-kuma' || !LAB_STATUS.uptimeKumaStatusSlug) return LAB_STATUS.nodes;
     try{
       const r = await fetch('/api/status-page/' + encodeURIComponent(LAB_STATUS.uptimeKumaStatusSlug));
       if(!r.ok) throw new Error('status ' + r.status);
-      return await r.json(); // expected shape: { pve01: 'running'|'building', ... }
+      return await r.json(); // expected shape: { node1: 'running'|'building', ... }
     }catch(e){ return LAB_STATUS.nodes; } // graceful fallback to static
   }
 
@@ -618,9 +618,9 @@
 
   /* ---------- hero mesh: draw-on, nodes pop, packets, tooltips ---------- */
   const NODES=[
-    {id:'pve01',x:200,y:120,label:'pve01',sub:'OptiPlex 7060 Micro · i5-8500T · 32GB'},
-    {id:'pve02',x:400,y:60, label:'pve02',sub:'OptiPlex 3070 Micro · 32GB'},
-    {id:'pve03',x:600,y:120,label:'pve03',sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB'}
+    {id:'node1',x:200,y:120,label:'node1',sub:'OptiPlex 7060 Micro · i5-8500T · 32GB'},
+    {id:'node2',x:400,y:60, label:'node2',sub:'OptiPlex 3070 Micro · 32GB'},
+    {id:'node3',x:600,y:120,label:'node3',sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB'}
   ];
   const LINKS=[[0,1],[1,2],[0,2]];
   const gLinks=document.getElementById('mesh-links');
@@ -734,11 +734,11 @@
 
   function labDesktopLayout(){return{
     nodes:[
-      {id:'pve01',x:260,y:195,R:30,fs:15,ldy:56,sub:'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
-       tip:'pihole01 · omada-controller · ts-router01'},
-      {id:'pve02',x:440,y:85,R:30,fs:15,ldy:56,sub:'OptiPlex 3070 Micro · 32GB RAM',
-       tip:'pihole02 · ts-router02 · portainer · monitoring · rustdesk'},
-      {id:'pve03',x:620,y:195,R:30,fs:15,ldy:56,sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
+      {id:'node1',x:260,y:195,R:30,fs:15,ldy:56,sub:'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
+       tip:'DNS · old controller · subnet router'},
+      {id:'node2',x:440,y:85,R:30,fs:15,ldy:56,sub:'OptiPlex 3070 Micro · 32GB RAM',
+       tip:'DNS · subnet router · portainer · monitoring · rustdesk'},
+      {id:'node3',x:620,y:195,R:30,fs:15,ldy:56,sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
        tip:'backup-svr · Proxmox Backup Server'},
       {id:'vps-edge',x:695,y:52,R:24,fs:13,ldy:50,kind:'vps',sub:'Netcup VPS · public edge',
        tip:'Caddy + HTTPS · blog · Uptime Kuma'}
@@ -759,11 +759,11 @@
 
   function labMobileLayout(){return{
     nodes:[
-      {id:'pve01',x:66,y:84,R:26,fs:12.5,ldy:-44,sub:'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
-       tip:'pihole01 · omada-controller · ts-router01'},
-      {id:'pve02',x:180,y:84,R:26,fs:12.5,ldy:-44,sub:'OptiPlex 3070 Micro · 32GB RAM',
-       tip:'pihole02 · ts-router02 · portainer · monitoring · rustdesk'},
-      {id:'pve03',x:294,y:84,R:26,fs:12.5,ldy:-44,sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
+      {id:'node1',x:66,y:84,R:26,fs:12.5,ldy:-44,sub:'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
+       tip:'DNS · old controller · subnet router'},
+      {id:'node2',x:180,y:84,R:26,fs:12.5,ldy:-44,sub:'OptiPlex 3070 Micro · 32GB RAM',
+       tip:'DNS · subnet router · portainer · monitoring · rustdesk'},
+      {id:'node3',x:294,y:84,R:26,fs:12.5,ldy:-44,sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
        tip:'backup-svr · Proxmox Backup Server'},
       {id:'vps-edge',x:66,y:200,R:22,fs:12,ldy:44,kind:'vps',sub:'Netcup VPS · public edge',
        tip:'Caddy + HTTPS · blog · Uptime Kuma'}

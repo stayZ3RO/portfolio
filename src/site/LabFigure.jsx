@@ -6,11 +6,11 @@ import { STATUS_URL, fetchLiveStatus } from './status';
 function labDesktopLayout() {
   return {
     nodes: [
-      { id: 'pve01', label: 'Primary node', x: 260, y: 195, R: 30, fs: 15, ldy: 56, sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
+      { id: 'node1', label: 'Primary node', x: 260, y: 195, R: 30, fs: 15, ldy: 56, sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
         tip: 'DNS · tailscale router' },
-      { id: 'pve02', label: 'Second node', x: 440, y: 85, R: 30, fs: 15, ldy: 56, sub: 'OptiPlex 3070 Micro · 32GB RAM',
+      { id: 'node2', label: 'Second node', x: 440, y: 85, R: 30, fs: 15, ldy: 56, sub: 'OptiPlex 3070 Micro · 32GB RAM',
         tip: 'DNS secondary · tailscale router · container host · monitoring · remote access' },
-      { id: 'pve03', label: 'Third node', x: 620, y: 195, R: 30, fs: 15, ldy: 56, sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
+      { id: 'node3', label: 'Third node', x: 620, y: 195, R: 30, fs: 15, ldy: 56, sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
         tip: 'Backup server · Proxmox Backup Server' },
       { id: 'vps-edge', x: 695, y: 52, R: 24, fs: 13, ldy: 50, kind: 'vps', sub: 'Netcup VPS · public edge',
         tip: 'Caddy + HTTPS · blog · Uptime Kuma' },
@@ -34,11 +34,11 @@ function labDesktopLayout() {
 function labMobileLayout() {
   return {
     nodes: [
-      { id: 'pve01', label: 'Primary node', x: 66, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
+      { id: 'node1', label: 'Primary node', x: 66, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM',
         tip: 'DNS · tailscale router' },
-      { id: 'pve02', label: 'Second node', x: 180, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'OptiPlex 3070 Micro · 32GB RAM',
+      { id: 'node2', label: 'Second node', x: 180, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'OptiPlex 3070 Micro · 32GB RAM',
         tip: 'DNS secondary · tailscale router · container host · monitoring · remote access' },
-      { id: 'pve03', label: 'Third node', x: 294, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
+      { id: 'node3', label: 'Third node', x: 294, y: 84, R: 26, fs: 12.5, ldy: -44, sub: 'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host',
         tip: 'Backup server · Proxmox Backup Server' },
       { id: 'vps-edge', x: 66, y: 200, R: 22, fs: 12, ldy: 44, kind: 'vps', sub: 'Netcup VPS · public edge',
         tip: 'Caddy + HTTPS · blog · Uptime Kuma' },
@@ -103,7 +103,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
     let labRaf = null, labStarted = false, labIsMobile = labMQ.matches, labGen = 0;
     const timers = [];
     let labIO = null;
-    /* one-time hint: pulse pve01 shortly after first reveal so visitors see
+    /* one-time hint: pulse node1 shortly after first reveal so visitors see
        the connection-focus interaction without having to discover it. */
     let hintDone = false, interacted = false, hintOn = null, hintOff = null;
 
@@ -306,7 +306,7 @@ export default function LabFigure({ sectionRef, apiRef }) {
         inner.addEventListener('focus', onEnter);
         inner.addEventListener('blur', onLeave);
         inner.addEventListener('keydown', onKey);
-        if (n.id === 'pve01') { hintOn = onEnter; hintOff = onLeave; }
+        if (n.id === 'node1') { hintOn = onEnter; hintOff = onLeave; }
         disposers.push(() => {
           inner.removeEventListener('mouseenter', onEnter);
           inner.removeEventListener('mouseleave', onLeave);

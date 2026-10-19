@@ -88,7 +88,7 @@ export const SYSTEMS = [
         },
         {
           label: 'WHAT BROKE',
-          text: 'pve02 went through a full chassis transplant mid-project and came back as an OptiPlex 3070 Micro with 32GB RAM. The inventory needed a correction afterward, which is why reconciliation is now a documented step instead of an afterthought.',
+          text: 'The second Proxmox node went through a full chassis transplant mid-project and came back as an OptiPlex 3070 Micro with 32GB RAM. The inventory needed a correction afterward, which is why reconciliation is now a documented step instead of an afterthought.',
         },
         {
           label: 'WHAT IS NEXT',
@@ -163,21 +163,21 @@ export const SYSTEMS = [
 
 export const NODE_CARDS = [
   {
-    id: 'pve01',
+    id: 'node1',
     label: 'Primary node',
     role: 'PRIMARY',
     spec: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM · 256GB NVMe',
     svcs: ['DNS', 'tailscale router'],
   },
   {
-    id: 'pve02',
+    id: 'node2',
     label: 'Second node',
     role: null,
     spec: 'OptiPlex 3070 Micro · 32GB RAM · 256GB NVMe',
     svcs: ['DNS secondary', 'tailscale router', 'container host', 'monitoring', 'remote access'],
   },
   {
-    id: 'pve03',
+    id: 'node3',
     label: 'Third node',
     role: 'BACKUP',
     spec: 'EliteDesk 800 G3 DM · i5-6500T · 16GB RAM · 256GB NVMe',
@@ -186,14 +186,14 @@ export const NODE_CARDS = [
 ];
 
 export const FLEET = [
-  ['DNS', 'pve01', 'Primary node', 'DNS + network-wide filtering'],
-  ['Tailscale router', 'pve01', 'Primary node', 'Tailscale subnet router'],
-  ['DNS secondary', 'pve02', 'Second node', 'DNS secondary'],
-  ['Tailscale router (secondary)', 'pve02', 'Second node', 'Tailscale subnet router'],
-  ['Container host', 'pve02', 'Second node', 'container management'],
-  ['Monitoring', 'pve02', 'Second node', 'Prometheus + Grafana'],
-  ['Remote access', 'pve02', 'Second node', 'remote desktop'],
-  ['Backup server', 'pve03', 'Third node', 'Proxmox Backup Server'],
+  ['DNS', 'node1', 'Primary node', 'DNS + network-wide filtering'],
+  ['Tailscale router', 'node1', 'Primary node', 'Tailscale subnet router'],
+  ['DNS secondary', 'node2', 'Second node', 'DNS secondary'],
+  ['Tailscale router (secondary)', 'node2', 'Second node', 'Tailscale subnet router'],
+  ['Container host', 'node2', 'Second node', 'container management'],
+  ['Monitoring', 'node2', 'Second node', 'Prometheus + Grafana'],
+  ['Remote access', 'node2', 'Second node', 'remote desktop'],
+  ['Backup server', 'node3', 'Third node', 'Proxmox Backup Server'],
   ['caddy', 'vps-edge', 'VPS edge', 'reverse proxy + HTTPS'],
   ['blog', 'vps-edge', 'VPS edge', 'engineering blog'],
   ['uptime-kuma', 'vps-edge', 'VPS edge', 'status monitoring'],
