@@ -16,7 +16,7 @@ export const STATUS_SLUG = '';
    so the page never implies live polling it is not doing. */
 export const LIVE = Boolean(STATUS_URL && STATUS_SLUG);
 
-const NODE_IDS = ['pve01', 'pve02', 'pve03'];
+const NODE_IDS = ['node1', 'node2', 'node3'];
 
 /* Uptime Kuma monitor status codes: 0 = down, 1 = up, 2 = pending, 3 = maintenance. */
 function mapMonitorStatus(code) {
@@ -31,7 +31,7 @@ function normalizeName(name) {
 
 /* GET the status page API with a 6s timeout. Returns null on ANY failure:
    unconfigured, network error, timeout, non-200, or a shape we cannot read.
-   Otherwise returns a per-node map: { pve01: 'running'|'building'|'unknown', ... }. */
+   Otherwise returns a per-node map: { node1: 'running'|'building'|'unknown', ... }. */
 export async function fetchLiveStatus() {
   if (!STATUS_URL || !STATUS_SLUG) return null;
   const ctrl = new AbortController();
@@ -42,7 +42,7 @@ export async function fetchLiveStatus() {
     if (!res.ok) return null;
     const data = await res.json();
 
-    // Shape A: plain per-node map, e.g. { pve01: 'running', pve02: 'building' }.
+    // Shape A: plain per-node map, e.g. { node1: 'running', node2: 'building' }.
     if (data && typeof data === 'object' && !Array.isArray(data) && !data.publicGroupList) {
       const out = {};
       let ok = false;
@@ -59,7 +59,7 @@ export async function fetchLiveStatus() {
     // Shape B: Uptime Kuma public status page payload
     // { publicGroupList: [{ monitorList: [{ name, status }] }] }.
     // Monitors are matched to nodes by name containing the node id
-    // (case-insensitive, punctuation ignored), e.g. "pve01 · ping".
+    // (case-insensitive, punctuation ignored), e.g. "node1 · ping".
     const groups = data && data.publicGroupList;
     if (!Array.isArray(groups)) return null;
     const monitors = [];

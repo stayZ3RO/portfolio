@@ -369,16 +369,16 @@
       <div class="lab-legend">DNS · monitoring · Tailscale run across the cluster</div>
     </figure>
     <div class="node-cards">
-      <button class="node-card reveal" data-node="pve01">
-        <div class="nc-id">pve01 <span class="nc-role">PRIMARY</span></div>
+      <button class="node-card reveal" data-node="node1">
+        <div class="nc-id">node1 <span class="nc-role">PRIMARY</span></div>
         <div class="nc-spec">OptiPlex 7060 Micro · i5-8500T · 32GB RAM · 256GB NVMe</div>
       </button>
-      <button class="node-card reveal" data-node="pve02">
-        <div class="nc-id">pve02</div>
+      <button class="node-card reveal" data-node="node2">
+        <div class="nc-id">node2</div>
         <div class="nc-spec">OptiPlex 3070 Micro · 32GB RAM · 256GB NVMe</div>
       </button>
-      <button class="node-card reveal" data-node="pve03">
-        <div class="nc-id">pve03 <span class="nc-role">BACKUP</span></div>
+      <button class="node-card reveal" data-node="node3">
+        <div class="nc-id">node3 <span class="nc-role">BACKUP</span></div>
         <div class="nc-spec">EliteDesk 800 G3 DM · i5-6500T · 16GB RAM · 256GB NVMe · hosts Proxmox Backup Server</div>
       </button>
     </div>
@@ -482,9 +482,9 @@
 
   /* ---------- hero mesh: draw-on, nodes pop, packets, tooltips ---------- */
   const NODES=[
-    {id:'pve01',x:200,y:120,label:'pve01',sub:'OptiPlex 7060 Micro · i5-8500T · 32GB'},
-    {id:'pve02',x:400,y:60, label:'pve02',sub:'OptiPlex 3070 Micro · 32GB'},
-    {id:'pve03',x:600,y:120,label:'pve03',sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB'}
+    {id:'node1',x:200,y:120,label:'node1',sub:'OptiPlex 7060 Micro · i5-8500T · 32GB'},
+    {id:'node2',x:400,y:60, label:'node2',sub:'OptiPlex 3070 Micro · 32GB'},
+    {id:'node3',x:600,y:120,label:'node3',sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB'}
   ];
   const LINKS=[[0,1],[1,2],[0,2]];
   const gLinks=document.getElementById('mesh-links');
@@ -583,9 +583,9 @@
 
   /* ---------- LAB mesh: scroll-triggered draw-in, node pop, packets ---------- */
   const LABN=[
-    {id:'pve01',x:170,y:190,label:'pve01',sub:'OptiPlex 7060 Micro · i5-8500T · 32GB RAM'},
-    {id:'pve02',x:400,y:85, label:'pve02',sub:'OptiPlex 3070 Micro · 32GB RAM'},
-    {id:'pve03',x:630,y:190,label:'pve03',sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host'}
+    {id:'node1',x:170,y:190,label:'node1',sub:'OptiPlex 7060 Micro · i5-8500T · 32GB RAM'},
+    {id:'node2',x:400,y:85, label:'node2',sub:'OptiPlex 3070 Micro · 32GB RAM'},
+    {id:'node3',x:630,y:190,label:'node3',sub:'EliteDesk 800 G3 DM · i5-6500T · 16GB · PBS host'}
   ];
   const labGLinks=document.getElementById('lab-links');
   const labGNodes=document.getElementById('lab-nodes');

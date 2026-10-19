@@ -1,7 +1,5 @@
 import Site from './site/Site.jsx';
-import CfmPage from './site/CfmPage.jsx';
 
-/* Portfolio routes. /cfm is the cFM project page. */
 function NotFound() {
   return (
     <>
@@ -17,7 +15,6 @@ function NotFound() {
 
 function App() {
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  if (path === '/cfm') return <CfmPage />;
   if (path !== '/') return <NotFound />;
   return <Site />;
 }
