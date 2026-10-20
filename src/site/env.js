@@ -1,9 +1,17 @@
 /* Shared environment flags and small utilities. */
 import { useEffect, useState } from 'react';
 
-export const REDUCED =
-  typeof window !== 'undefined' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* data-motion is set before first paint by index.html from the `motion`
+   localStorage key (shared with the blog), falling back to the OS
+   preference. The footer toggle changes it and fires `motionchange`. */
+function reducedNow() {
+  if (typeof document === 'undefined') return false;
+  const m = document.documentElement.dataset.motion;
+  if (m === 'reduced' || m === 'full') return m === 'reduced';
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+export const REDUCED = reducedNow();
 
 export const FINE_POINTER =
   typeof window !== 'undefined' &&
@@ -20,9 +28,13 @@ export function useReducedMotion() {
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return;
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const onChange = (e) => setReduced(e.matches);
+    const onChange = () => setReduced(reducedNow());
     mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
+    window.addEventListener('motionchange', onChange);
+    return () => {
+      mq.removeEventListener('change', onChange);
+      window.removeEventListener('motionchange', onChange);
+    };
   }, []);
   return reduced;
 }
