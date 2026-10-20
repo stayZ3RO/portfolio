@@ -60,5 +60,6 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  .fieldnotes *{animation:none!important;transition:none!important}
+  html:not([data-motion='full']) .fieldnotes *{animation:none!important;transition:none!important}
 }
+html[data-motion='reduced'] .fieldnotes *{animation:none!important;transition:none!important}
