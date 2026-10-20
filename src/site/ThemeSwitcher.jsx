@@ -1,24 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 
-/* Theme switcher, shared with the blog: the same nine ids, stored under
-   the `theme` localStorage key, applied as data-theme on <html>.
-   index.html resolves the stored id before first paint; this component
-   only changes it. Dot colors are each theme's accent, as on the blog. */
+/* Theme switcher. light and dark are the palettes this site defines,
+   stored under the `theme` localStorage key and applied as data-theme
+   on <html>. index.html resolves the stored id before first paint;
+   this component only changes it. */
 export const THEMES = [
-  ['zero-dark', 'Zero', 'house', '#f4f4f2'],
-  ['catppuccin-dark', 'Catppuccin', 'dark', '#cba6f7'],
-  ['catppuccin-light', 'Catppuccin', 'light', '#8839ef'],
-  ['tokyo-night-dark', 'Tokyo Night', 'dark', '#7aa2f7'],
-  ['tokyo-night-light', 'Tokyo Night', 'light', '#2e7de9'],
-  ['rose-pine-dark', 'Rosé Pine', 'dark', '#eb6f92'],
-  ['rose-pine-light', 'Rosé Pine', 'light', '#b4637a'],
-  ['dracula-dark', 'Dracula', 'dark', '#bd93f9'],
-  ['dracula-light', 'Dracula', 'light', '#7d5fc4'],
+  ['dark', 'Dark', '', '#f4f4f2'],
+  ['light', 'Light', '', '#141518'],
 ];
 
 function current() {
   const t = typeof document !== 'undefined' ? document.documentElement.dataset.theme : '';
-  return THEMES.some(([id]) => id === t) ? t : 'zero-dark';
+  return THEMES.some(([id]) => id === t) ? t : 'dark';
 }
 
 export default function ThemeSwitcher() {
@@ -76,7 +69,7 @@ export default function ThemeSwitcher() {
             onClick={() => apply(id)}
           >
             <span className="theme-dot" style={{ background: dot }} aria-hidden="true"></span>
-            {fam} {mode}
+            {mode ? `${fam} ${mode}` : fam}
           </li>
         ))}
       </ul>

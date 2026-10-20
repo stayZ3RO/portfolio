@@ -1,3 +1,4 @@
+import MotionToggle from './MotionToggle';
 import ThemeSwitcher from './ThemeSwitcher';
 
 /* Shared masthead, the blog's: wordmark, mono doc tag, one tagline, mono
@@ -29,6 +30,7 @@ export default function Nav({ links = HOME_LINKS }) {
           <a key={label} href={href}>{label}</a>
         ))}
         <ThemeSwitcher />
+        <MotionToggle />
       </nav>
     </header>
   );

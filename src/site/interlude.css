@@ -27,5 +27,6 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  .interlude *{animation:none!important;transition:none!important}
+  html:not([data-motion='full']) .interlude *{animation:none!important;transition:none!important}
 }
+html[data-motion='reduced'] .interlude *{animation:none!important;transition:none!important}

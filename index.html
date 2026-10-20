@@ -21,6 +21,24 @@
     <meta name="twitter:title" content="Christopher Lorenzo" />
     <meta name="twitter:description" content="I study systems by building them. Homelab, automation, and the road to platform engineering." />
     <meta name="twitter:image" content="https://chrisalorenzo.com/og.png" />
+    <script>
+      /* Apply the stored theme and motion before first paint.
+         Theme is light or dark. A blog id ending in -light or -dark
+         maps onto that pair and is not written back. Motion is full
+         or reduced. The OS preference is the fallback for either. */
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || (t && t.slice(-6) === '-light')) t = 'light';
+        else if (t === 'dark' || (t && t.slice(-5) === '-dark')) t = 'dark';
+        else t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+        var m = localStorage.getItem('motion');
+        if (m !== 'full' && m !== 'reduced') {
+          m = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduced' : 'full';
+        }
+        document.documentElement.setAttribute('data-motion', m);
+      } catch (e) {}
+    </script>
   <style>
     /* Layer 6 loading splash: visible before React hydrates, removed on mount. */
     #splash{position:fixed;inset:0;z-index:1000;background:#141518;display:flex;align-items:center;justify-content:center;gap:14px;

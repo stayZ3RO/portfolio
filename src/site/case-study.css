@@ -162,10 +162,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .case-study,
-  .cs-cell,
-  .recognition {
+  html:not([data-motion='full']) .case-study,
+  html:not([data-motion='full']) .cs-cell,
+  html:not([data-motion='full']) .recognition {
     animation: none;
     transition: none;
   }
+}
+html[data-motion='reduced'] .case-study,
+html[data-motion='reduced'] .cs-cell,
+html[data-motion='reduced'] .recognition {
+  animation: none;
+  transition: none;
 }
