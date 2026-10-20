@@ -4,7 +4,7 @@ import Reveal from './Reveal';
 /* Real posts from the field manual (stayz3ro.dev), titles copied verbatim
    from frontmatter on 2026-09-29. All draft:false. URL pattern verified as
    https://<site>/blog/<slug> via src/pages/blog/[...slug].astro. */
-const BLOG = 'https://stayz3ro.dev';
+const BLOG = 'https://blog.chrisalorenzo.com';
 
 const POSTS = [
   {
