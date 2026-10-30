@@ -4,31 +4,11 @@
    instead of implying completion. Live lab status now lives in status.js;
    the old LAB_STATUS stub was removed 2026-09-29 as dead code. */
 
-/* ---------- ticker: git log as signal ----------
-   TICKER_COMMITS is a snapshot of REAL commits, captured read-only with
-   `git log --oneline -12` in the portfolio repo when the mockup was built.
-   Production swap: replace the array with an async fetch (git hosting API
-   or a build-time generated commits.json), then call renderTicker(data).
-   Expected shape: [{hash:'f39ccf4', subject:'fix: ...'}, ...] */
-export const TICKER_COMMITS = [
-  { hash: 'f39ccf4', subject: 'fix: hallmark slop sweep passes, stamp recorded, 320-768 viewports verified' },
-  { hash: 'fbcda6a', subject: 'fix: craft morph bar starts empty at idle' },
-  { hash: '7b79b15', subject: 'wip: craft-lab v5 styles, header, theme picker, page shells' },
-  { hash: '4cb2179', subject: 'fix: deepen mobile deep-field bottom fade so palette key fully clears text' },
-  { hash: 'e552d08', subject: 'fix: remove em dashes from user-facing project copy' },
-  { hash: '4569283', subject: 'fix: deep field never hard-clips on mobile, palette key clears text' },
-  { hash: '47e783a', subject: 'chore: finalize hallmark stamp with v4 knob deltas and honest-copy note' },
-  { hash: '6c1a734', subject: 'fix: audit ambient copy, no invented heartbeats/metrics/hashes or unifi claims' },
-  { hash: '6e71ac1', subject: 'fix: ledger omits zero counts, deep stream never clips mid-word on mobile' },
-  { hash: '8493a0e', subject: 'feat: cinematic full-bleed field composition, deep stream layer, hand-set indents' },
-  { hash: 'adf0676', subject: 'fix: session-row text wraps inside rows, palette focus cue, hallmark stamp' },
-  { hash: 'c63bc15', subject: 'feat: session-log composition, header bar and hero removed' },
-];
-
 export const SYSTEMS = [
   {
     status: 'building',
     title: 'Service desk automation platform',
+    diagram: 'desk',
     outcome: 'Ticketing workflows and dashboards the desk runs on, built in my off hours.',
     pills: ['n8n', 'Grafana', 'ticketing API'],
     body: {
@@ -52,6 +32,7 @@ export const SYSTEMS = [
   {
     status: 'running',
     title: 'HA DNS lab',
+    diagram: 'dns',
     outcome: 'High-availability DNS with recursive resolution, moved from Raspberry Pis to Proxmox VMs.',
     pills: ['Pi-hole', 'Unbound', 'Keepalived', 'Proxmox'],
     links: { github: 'https://github.com/stayZ3RO/dns' },
@@ -76,6 +57,7 @@ export const SYSTEMS = [
   {
     status: 'running',
     title: 'Managed network infrastructure lab',
+    diagram: 'net',
     outcome: 'UniFi UDM Pro and USW-24-PoE live since 2026-09-27; flat LAN today, VLAN segmentation planned.',
     pills: ['UniFi UDM Pro', 'USW-24-PoE', 'Deco AP mode', 'VLANs'],
     links: { github: 'https://github.com/stayZ3RO/netlab' },

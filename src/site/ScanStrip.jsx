@@ -1,5 +1,4 @@
 import './scanstrip.css';
-import Reveal from './Reveal';
 
 const FACTS = [
   ['loc', 'Hialeah, FL'],
@@ -13,26 +12,18 @@ const STACK = [
   ['infra', 'Caddy · Prometheus / Grafana · Terraform / OpenTofu'],
 ];
 
+/* Spec sheet: the fast-scan facts in a ruled grid, beside the hero copy. */
 export default function ScanStrip() {
   return (
-    <Reveal className="scanstrip" aria-label="At a glance" variant="rise-left">
-      <p className="scan-kicker">SPEC SHEET</p>
-      <div className="scan-cols">
-        <dl className="scan-rows">
-          {FACTS.map(([k, v]) => (
-            <div className="scan-row" key={k}>
-              <dt>{k}</dt><dd>{v}</dd>
-            </div>
-          ))}
-        </dl>
-        <dl className="scan-rows">
-          {STACK.map(([k, v]) => (
-            <div className="scan-row" key={k}>
-              <dt>{k}</dt><dd>{v}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </Reveal>
+    <aside className="scanstrip hero-fade" style={{ transitionDelay: '.4s' }} aria-label="At a glance">
+      <p className="scan-kicker">spec sheet</p>
+      <dl className="scan-rows">
+        {[...FACTS, ...STACK].map(([k, v]) => (
+          <div className="scan-row" key={k}>
+            <dt>{k}</dt><dd>{v}</dd>
+          </div>
+        ))}
+      </dl>
+    </aside>
   );
 }

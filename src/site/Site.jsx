@@ -1,14 +1,14 @@
 import Ambient from './Ambient';
 import Nav from './Nav';
 import Hero from './Hero';
-import ScanStrip from './ScanStrip';
 import Systems from './Systems';
-import Interlude from './Interlude';
 import Lab from './Lab';
-import FieldNotes from './FieldNotes';
-import Now from './Now';
 import Experience from './Experience';
+import Now from './Now';
+import Interlude from './Interlude';
+import FieldNotes from './FieldNotes';
 import Contact from './Contact';
+import SecHead from './SecHead';
 import Footer from './Footer';
 
 export default function Site() {
@@ -20,13 +20,17 @@ export default function Site() {
         <Nav />
         <main id="main">
           <Hero />
-          <ScanStrip />
           <Systems />
-          <Interlude />
           <Lab />
+          <section id="about">
+            <SecHead name="About" />
+            <div className="about-grid">
+              <Experience />
+              <Now />
+            </div>
+            <Interlude />
+          </section>
           <FieldNotes />
-          <Now />
-          <Experience />
           <Contact />
         </main>
         <Footer />
