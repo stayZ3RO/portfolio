@@ -1,5 +1,4 @@
 import Reveal from './Reveal';
-import SecHead from './SecHead';
 
 const CELLS = [
   { k: 'NOW', html: <>The <strong>managed cutover</strong> is done and validated. VLAN segmentation is next on the bench.</> },
@@ -9,17 +8,16 @@ const CELLS = [
 
 export default function Now() {
   return (
-    <section id="now">
-      <div className="ghost" aria-hidden="true">02</div>
-      <SecHead num="02" name="Now" />
-      <div className="now-grid">
-        {CELLS.map((c, i) => (
-          <Reveal className="now-cell" key={c.k} delay={i * 80}>
-            <div className="k">{c.k}</div>
-            <p>{c.html}</p>
-          </Reveal>
+    <Reveal className="about-col" id="now">
+      <p className="about-k">status</p>
+      <dl className="now-rows">
+        {CELLS.map((c) => (
+          <div className="now-row" key={c.k}>
+            <dt>{c.k}</dt>
+            <dd>{c.html}</dd>
+          </div>
         ))}
-      </div>
-    </section>
+      </dl>
+    </Reveal>
   );
 }

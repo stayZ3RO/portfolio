@@ -16,9 +16,7 @@ export default function Lab() {
 
   return (
     <section id="lab" ref={sectionRef}>
-      <div className="ghost" aria-hidden="true">LAB</div>
       <SecHead
-        num="LAB"
         name="The Lab"
         extra={<span className="live-tag"><span className={LIVE ? 'pulse' : 'dot'}></span>RUNNING</span>}
       />
@@ -37,7 +35,6 @@ export default function Lab() {
         </div>
         <LabFigure sectionRef={sectionRef} apiRef={apiRef} />
         <div className="lab-legend">DNS · monitoring · Tailscale run across the cluster · tailnet and public edge at the rim</div>
-        <div className="lab-foot">placement per homelab-ops service map</div>
       </Reveal>
       <div className="node-cards">
         {NODE_CARDS.map((n, i) => (

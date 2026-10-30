@@ -1,28 +1,13 @@
 import Reveal from './Reveal';
 
-/* Section header: number, char-staggered name, rule sweep. */
-export default function SecHead({ num, name, extra }) {
-  const chars = [...name].map((c, i) => (
-    <span
-      key={i}
-      className="ch"
-      aria-hidden="true"
-      style={{ transitionDelay: `${i * 22}ms` }}
-    >
-      {c === ' ' ? ' ' : c}
-    </span>
-  ));
+/* Section kicker: § and the section word in mono caps, an optional link
+   or tag, and a hairline that draws out to the edge once. */
+export default function SecHead({ name, extra }) {
   return (
-    <Reveal className="sec-head">
-      <span className="sec-num" aria-hidden="true">{num}</span>
-      <h2 className="sec-name">
-        <span className="sr-only">{name}</span>
-        <span className="sec-chars" aria-hidden="true">{chars}</span>
-      </h2>
+    <Reveal className="kick">
+      <h2 className="kick-name"><span className="kick-sec" aria-hidden="true">§</span>{name}</h2>
       {extra}
-      <span className="sec-rule">
-        <span className="sweep"></span>
-      </span>
+      <span className="kick-rule" aria-hidden="true"></span>
     </Reveal>
   );
 }

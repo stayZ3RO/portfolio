@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
+import Diagram from './Diagram';
 import Reveal from './Reveal';
 import SecHead from './SecHead';
 import { SYSTEMS } from './data';
@@ -7,7 +8,7 @@ import './case-study.css';
 
 function CaseStudy() {
   return (
-    <Reveal as="article" className="case-study" aria-labelledby="cs-title" variant="rise-scale">
+    <article className="case-study" aria-labelledby="cs-title">
       <div className="cs-eyebrow">FEATURED CASE STUDY</div>
       <h3 id="cs-title">The service desk automation platform</h3>
       <p className="cs-status">
@@ -67,7 +68,7 @@ function CaseStudy() {
           </p>
         </div>
       </div>
-    </Reveal>
+    </article>
   );
 }
 
@@ -93,90 +94,72 @@ function RowBody({ row }) {
   );
 }
 
-function LogRow({ row, open, onToggle, delay }) {
+function Panel({ row, i, open }) {
   return (
-    <Reveal as="article" className={`logrow${open ? ' open' : ''}`} delay={delay} data-status={row.status}>
-      <button className="row-head" aria-expanded={open ? 'true' : 'false'} onClick={onToggle}>
-        <span className={`tag ${row.status}`}>
-          <span className="dot"></span>[{row.status}]
-        </span>
-        <span>
-          <h3>{row.title}</h3>
-          <span className="outcome">{row.outcome}</span>
-        </span>
-        <svg className="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M9 6l6 6-6 6" />
-        </svg>
-      </button>
-      <div className="row-body">
-        <div className="row-body-inner">
-          <div className="row-body-pad">
-            <RowBody row={row} />
-            <div className="pills">
-              {row.pills.map((p) => (
-                <span className="pill" key={p}>{p}</span>
-              ))}
-            </div>
-            {row.links && (row.links.writeup || row.links.github) && (
-              <div className="rowlinks">
-                {row.links.writeup && <a href={row.links.writeup}>write-up <span className="arr">↗</span></a>}
-                {row.links.github && <a href={row.links.github}>github <span className="arr">↗</span></a>}
-              </div>
-            )}
-          </div>
-        </div>
+    <div className="wpanel" id={`work-${i}`} hidden={!open}>
+      <RowBody row={row} />
+      <div className="pills">
+        {row.pills.map((p) => (
+          <span className="pill" key={p}>{p}</span>
+        ))}
       </div>
+      {row.links && (row.links.writeup || row.links.github) && (
+        <div className="rowlinks">
+          {row.links.writeup && <a href={row.links.writeup}>write-up <span className="arr">↗</span></a>}
+          {row.links.github && <a href={row.links.github}>github <span className="arr">↗</span></a>}
+        </div>
+      )}
+      {i === 0 && <CaseStudy />}
+    </div>
+  );
+}
+
+function Card({ row, i, open, onToggle, delay }) {
+  return (
+    <Reveal as="article" className={`wcard${row.diagram ? ' has-fig' : ''}${open ? ' open' : ''}`} delay={delay} data-status={row.status}>
+      {row.diagram && (
+        <div className="wcard-fig"><Diagram kind={row.diagram} /></div>
+      )}
+      <p className={`tag ${row.status}`}><span className="dot"></span>{row.status}</p>
+      <h3>{row.title}</h3>
+      <p className="outcome">{row.outcome}</p>
+      <button className="wcard-more" aria-expanded={open ? 'true' : 'false'} aria-controls={`work-${i}`} onClick={onToggle}>
+        {open ? 'close' : 'details'} <span aria-hidden="true">{open ? '−' : '+'}</span>
+      </button>
     </Reveal>
   );
 }
 
-const FILTERS = [
-  { id: 'all', label: 'all' },
-  { id: 'running', label: 'running' },
-  { id: 'building', label: 'building' },
-];
-
+/* Work: the three featured projects as cards with a diagram, the rest as
+   smaller cards. Details open in a full-width panel under the card's row;
+   the grid packs densely, so the panel sits after its card in reading
+   order and the row above stays intact on wide screens. */
 export default function Systems() {
-  const [filter, setFilter] = useState('all');
   const [openIdx, setOpenIdx] = useState(null);
 
-  const visible = SYSTEMS.map((row, i) => ({ row, i })).filter(
-    ({ row }) => filter === 'all' || row.status === filter,
-  );
-
-  const pickFilter = (id) => {
-    setFilter(id);
-    setOpenIdx(null);
-  };
-
-  return (
-    <section id="systems">
-      <div className="ghost" aria-hidden="true">01</div>
-      <SecHead num="01" name="Systems" />
-      <Reveal className="filters" role="group" aria-label="Filter systems by status">
-        {FILTERS.map((f) => (
-          <button
-            key={f.id}
-            className={`filter${filter === f.id ? ' active' : ''}`}
-            data-f={f.id}
-            onClick={() => pickFilter(f.id)}
-          >
-            {f.label}
-          </button>
-        ))}
-      </Reveal>
-      <div id="logrows">
-        {visible.map(({ row, i }) => (
-          <LogRow
-            key={row.title}
+  const group = (rows, cls) => (
+    <div className={`wgrid ${cls}`}>
+      {rows.map(({ row, i }) => (
+        <Fragment key={row.title}>
+          <Card
             row={row}
+            i={i}
             delay={REDUCED ? undefined : (i % 3) * 90}
             open={openIdx === i}
             onToggle={() => setOpenIdx(openIdx === i ? null : i)}
           />
-        ))}
-      </div>
-      {filter === 'all' && <CaseStudy />}
+          <Panel row={row} i={i} open={openIdx === i} />
+        </Fragment>
+      ))}
+    </div>
+  );
+
+  const all = SYSTEMS.map((row, i) => ({ row, i }));
+  return (
+    <section id="work">
+      <SecHead name="Work" />
+      {group(all.filter(({ row }) => row.diagram), 'feat')}
+      {group(all.filter(({ row }) => !row.diagram), 'rest')}
     </section>
   );
 }

@@ -1,32 +1,22 @@
-/* recognition interlude: full-bleed quote, the page's one moment of air.
-   Big confident type, centered, nothing competing with it. */
+/* recognition callout: 3 px accent rule, the quote in the display face,
+   a mono source line. */
 
-.interlude{
-  padding:150px 24px;
-  text-align:center;
+.interlude{margin-top:32px}
+
+.interlude blockquote{
+  margin:0;border-left:3px solid var(--accent);
+  padding:14px 0 14px 20px;
 }
-
-.interlude blockquote{margin:0}
 
 .interlude p{
   font-family:var(--display);
-  font-size:clamp(30px,4.6vw,52px);
-  font-weight:700;letter-spacing:-.02em;line-height:1.28;
-  color:var(--text);
-  max-width:22em;margin:0 auto;
+  font-size:clamp(20px,2.2vw,26px);
+  font-weight:500;letter-spacing:-.01em;line-height:1.35;
+  color:var(--text);max-width:40em;
 }
 
 .interlude cite{
-  display:block;margin-top:32px;
-  font-family:var(--mono);font-size:12px;letter-spacing:.2em;
+  display:block;margin-top:10px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--muted);font-style:normal;
 }
-
-@media (max-width:640px){
-  .interlude{padding:110px 20px}
-}
-
-@media (prefers-reduced-motion:reduce){
-  html:not([data-motion='full']) .interlude *{animation:none!important;transition:none!important}
-}
-html[data-motion='reduced'] .interlude *{animation:none!important;transition:none!important}

@@ -1,4 +1,4 @@
-/* Tooltip helper shared by the hero mesh and the lab figure. */
+/* Tooltip helper for the lab figure. */
 
 let tipEl = null;
 function el() {

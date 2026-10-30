@@ -1,5 +1,6 @@
 import './fieldnotes.css';
 import Reveal from './Reveal';
+import SecHead from './SecHead';
 
 /* Real posts from the field manual (stayz3ro.dev), titles copied verbatim
    from frontmatter on 2026-09-29. All draft:false. URL pattern verified as
@@ -26,14 +27,13 @@ const POSTS = [
 
 export default function FieldNotes() {
   return (
-    <Reveal className="fieldnotes" aria-label="Field notes from the blog">
-      <p className="fn-kicker">LOGBOOK EXCERPT</p>
-      <h2 className="fn-head">Field notes</h2>
-      <p className="fn-sub">
+    <section id="notes" className="fieldnotes">
+      <SecHead name="Field notes" />
+      <Reveal as="p" className="fn-sub">
         What the lab taught me, written up in the{' '}
         <a className="fn-link" href={BLOG} target="_blank" rel="noreferrer">field manual</a>.
-      </p>
-      <ul className="fn-list">
+      </Reveal>
+      <Reveal as="ul" className="fn-list">
         {POSTS.map((p) => (
           <li key={p.slug} className="fn-row">
             <a className="fn-a" href={`${BLOG}/blog/${p.slug}`} target="_blank" rel="noreferrer">
@@ -43,7 +43,7 @@ export default function FieldNotes() {
             </a>
           </li>
         ))}
-      </ul>
-    </Reveal>
+      </Reveal>
+    </section>
   );
 }

@@ -1,6 +1,6 @@
 /* Layer 6: print stylesheet. The portfolio prints (or saves to PDF) as a
-   clean black-on-white document: no ambient canvas, no nav, no ticker,
-   no interactive widgets, decision-log rows expanded, single-column flow. */
+   clean black-on-white document: no ambient canvas, no nav, no
+   interactive widgets, project panels open, single-column flow. */
 
 @media print {
   @page {
@@ -46,10 +46,9 @@
      Print must never hide content, so force everything visible. */
   .reveal,
   .hero-fade,
-  .sec-name .ch,
-  .mnode,
+  .kick-rule,
   .lmnode,
-  .mask-inner {
+  .k-letter {
     opacity: 1 !important;
     transform: none !important;
   }
@@ -60,18 +59,11 @@
   #node-tip,
   .skip,
   nav[aria-label='Primary'],
-  .ticker,
-  .scroll-cue,
-  .hero-glow,
-  #canvas,
-  #spot,
-  .filters,
-  .sec-rule .sweep,
-  .chev,
-  .ghost,
+  .hero-canvas,
+  .motion-ctl,
+  .wcard-more,
   .lab-packets,
-  .lmnode .beat,
-  .mnode .beat {
+  .lmnode .beat {
     display: none !important;
   }
 
@@ -90,38 +82,29 @@
     padding: 36px 0;
   }
 
-  .sec-head {
-    margin-bottom: 24px;
+  .kick {
+    margin-bottom: 16px;
   }
 
   /* Single-column flow for card grids. */
-  .now-grid,
+  .hero,
+  .wgrid,
+  .about-grid,
   .node-cards,
   .edge-cards {
     display: block;
   }
 
-  .now-cell,
+  .wcard,
   .node-card,
   .edge-card {
     margin-bottom: 12pt;
   }
 
-  /* Expand every decision-log row: the write-up structure prints inline. */
-  .row-body {
+  /* Open every project panel: the write-up structure prints inline. */
+  .wpanel[hidden] {
     display: block !important;
-  }
-
-  .row-body-inner {
-    overflow: visible !important;
-  }
-
-  .logrow {
-    border-top-color: #c9ccd1;
-  }
-
-  .row-head {
-    cursor: default;
+    margin-bottom: 12pt;
   }
 
   /* Surface real destinations in the contact block: a PDF keeps the URLs. */
@@ -132,8 +115,7 @@
   }
 
   /* Keep the lab diagrams legible on white paper. */
-  .lab-fig svg,
-  .mesh-fig svg {
+  .lab-fig svg {
     max-height: 260px;
   }
 
@@ -149,12 +131,11 @@
   }
   section,
   .job,
-  .logrow,
+  .wcard,
   .dec-block,
   .node-card,
   .edge-card,
-  .now-cell,
-  .mesh-fig,
+  .now-row,
   .lab-fig,
   .contact-big,
   .ctas {
@@ -165,7 +146,7 @@
   h1,
   h2,
   h3,
-  .sec-head {
+  .kick {
     break-after: avoid;
     page-break-after: avoid;
   }

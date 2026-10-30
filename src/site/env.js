@@ -13,10 +13,6 @@ function reducedNow() {
 
 export const REDUCED = reducedNow();
 
-export const FINE_POINTER =
-  typeof window !== 'undefined' &&
-  window.matchMedia('(pointer: fine)').matches;
-
 export const SVG_NS = 'http://www.w3.org/2000/svg';
 
 /* Live reduced-motion state. REDUCED is the value at load (for code that
@@ -39,8 +35,7 @@ export function useReducedMotion() {
   return reduced;
 }
 
-/* One rAF-driven step for the mesh packet/link/core animation,
-   shared by the hero mesh and the lab figure. */
+/* One rAF-driven step for the lab figure's packet/link/core animation. */
 let flowOff = 0;
 export function stepMesh(linkEls, pktDefs, cores) {
   flowOff -= 0.3;

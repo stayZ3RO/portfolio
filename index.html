@@ -24,13 +24,14 @@
     <script>
       /* Apply the stored theme and motion before first paint.
          Theme is light or dark. A blog id ending in -light or -dark
-         maps onto that pair and is not written back. Motion is full
-         or reduced. The OS preference is the fallback for either. */
+         maps onto that pair and is not written back. With nothing
+         stored the portfolio starts light. Motion is full or reduced,
+         with the OS preference as the fallback. */
       try {
         var t = localStorage.getItem('theme');
         if (t === 'light' || (t && t.slice(-6) === '-light')) t = 'light';
         else if (t === 'dark' || (t && t.slice(-5) === '-dark')) t = 'dark';
-        else t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        else t = 'light';
         document.documentElement.setAttribute('data-theme', t);
         var m = localStorage.getItem('motion');
         if (m !== 'full' && m !== 'reduced') {
@@ -48,6 +49,8 @@
     #splash .splash-word{animation:splash-pulse 1.6s ease-in-out infinite}
     @keyframes splash-pulse{0%,100%{opacity:1}50%{opacity:.35}}
     @media (prefers-reduced-motion:reduce){#splash .splash-word{animation:none}}
+    html[data-theme='light'] #splash{background:#f4f4f2;color:#5b5f66}
+    html[data-theme='light'] #splash .splash-mark{border-color:#d9dad6;color:#141518}
   </style>
   </head>
   <body>
