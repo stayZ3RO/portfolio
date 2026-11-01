@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">Lab as built, 2026-11-01</title>
+  <desc id="dsc">Reference card of my home lab: edge chain, flat LAN, three Proxmox nodes with their VMs, tailnet and cloud hosts, Caddy names behind the Authelia gate, Tailscale paths and the monitoring scrape flow. Addresses are shown as network segments and hosts by role.</desc>
+  <defs>
+    <style>
+      .bg { fill: #0d1117; }
+      .card { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+      .phys { fill: #161b22; stroke: #8b949e; stroke-width: 1.2; }
+      .node { fill: #0f1620; stroke: #58a6ff; stroke-width: 1.5; }
+      .vm { fill: #161b22; stroke: #3d4b5c; stroke-width: 1; }
+      .vm-dns { fill: #161b22; stroke: #39c5cf; stroke-width: 1.2; }
+      .vm-ts { fill: #161b22; stroke: #a371f7; stroke-width: 1.2; }
+      .vm-auth { fill: #1c1708; stroke: #d29922; stroke-width: 1.4; }
+      .vm-mon { fill: #0c1a10; stroke: #3fb950; stroke-width: 1.4; }
+      .vm-dim { fill: #161b22; stroke: #6e7681; stroke-width: 1; stroke-dasharray: 4 3; }
+      .ext { fill: #1a1210; stroke: #f78166; stroke-width: 1.2; }
+      .tailnet { fill: #120f1c; stroke: #a371f7; stroke-width: 1.5; stroke-dasharray: 7 4; }
+      .panel { fill: #11161d; stroke: #30363d; stroke-width: 1; }
+      .lan { stroke: #58a6ff; stroke-width: 3; fill: none; }
+      .link { stroke: #8b949e; stroke-width: 1.6; fill: none; }
+      .ts { stroke: #a371f7; stroke-width: 1.8; fill: none; stroke-dasharray: 6 4; }
+      .flow { stroke: #3fb950; stroke-width: 1.4; fill: none; }
+      .rowline { stroke: #21262d; stroke-width: 1; }
+      text { font-family: "DejaVu Sans Mono", Menlo, Consolas, monospace; fill: #c9d1d9; }
+      .title { font-size: 22px; font-weight: bold; fill: #e6edf3; }
+      .h { font-size: 13px; font-weight: bold; fill: #e6edf3; }
+      .h12 { font-size: 12px; font-weight: bold; fill: #e6edf3; }
+      .t { font-size: 11px; }
+      .s { font-size: 10px; }
+      .m { fill: #8b949e; }
+      .ip { fill: #79c0ff; }
+      .tsip { fill: #d2a8ff; }
+      .id { font-size: 10px; fill: #8b949e; }
+      .amber { fill: #e3b341; }
+      .green { fill: #56d364; }
+      .cyan { fill: #56d4dd; }
+      .purple { fill: #d2a8ff; }
+      .orange { fill: #ffa198; }
+      .lbl { font-size: 10px; fill: #8b949e; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3fb950"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1800" height="1200"/>
+
+  <text class="title" x="30" y="42">My lab as built · 2026-11-01</text>
+  <text class="t m" x="30" y="62">Documented state from my lab inventory, proxy config and monitoring config as code. Addresses are shown as segments and hosts by role. Not a live check.</text>
+
+  <rect class="phys" x="30" y="100" width="150" height="78" rx="4"/>
+  <text class="h" x="42" y="122">Internet</text>
+  <text class="t m" x="42" y="140">ISP fiber</text>
+  <text class="t m" x="42" y="156">1 Gbps</text>
+
+  <rect class="phys" x="210" y="100" width="170" height="78" rx="4"/>
+  <text class="h" x="222" y="122">ISP gateway</text>
+  <text class="t m" x="222" y="140">IP passthrough</text>
+  <text class="t m" x="222" y="156">to the UDM Pro WAN</text>
+
+  <rect class="phys" x="410" y="100" width="240" height="78" rx="4"/>
+  <text class="h" x="422" y="122">UDM Pro</text>
+  <text class="t m" x="422" y="138">gateway, only DHCP server</text>
+  <text class="t ip" x="422" y="153">LAN gateway</text>
+  <text class="t m" x="422" y="168">DHCP, DNS to the VIP</text>
+
+  <rect class="phys" x="680" y="100" width="210" height="78" rx="4"/>
+  <text class="h" x="692" y="122">USW-24-PoE</text>
+  <text class="t m" x="692" y="138">production switch</text>
+  <text class="t ip" x="692" y="153">LAN management</text>
+  <text class="t m" x="692" y="168">adopted by the UDM Pro</text>
+
+  <rect class="phys" x="920" y="100" width="250" height="78" rx="4"/>
+  <text class="h" x="932" y="122">TP-Link Deco nodes</text>
+  <text class="t m" x="932" y="138">Wi-Fi access points</text>
+  <text class="t m" x="932" y="153">AP mode</text>
+
+  <line class="link" x1="180" y1="139" x2="210" y2="139"/>
+  <line class="link" x1="380" y1="139" x2="410" y2="139"/>
+  <text class="lbl" x="384" y="132">WAN</text>
+  <line class="link" x1="650" y1="139" x2="680" y2="139"/>
+  <text class="lbl" x="654" y="132">LAN</text>
+  <line class="link" x1="890" y1="139" x2="920" y2="139"/>
+  <text class="lbl" x="893" y="132">LAN</text>
+
+  <line class="lan" x1="30" y1="230" x2="1170" y2="230"/>
+  <line class="lan" x1="785" y1="178" x2="785" y2="230"/>
+  <text class="t" x="30" y="218"><tspan class="ip">LAN segment</tspan><tspan class="m"> · flat, VLAN 1 untagged · no VLANs · no firewall, NAT or QoS rules</tspan></text>
+
+  <line class="lan" x1="210" y1="230" x2="210" y2="270"/>
+  <line class="lan" x1="590" y1="230" x2="590" y2="270"/>
+  <line class="lan" x1="885" y1="230" x2="885" y2="270"/>
+  <line class="lan" x1="1085" y1="230" x2="1085" y2="270"/>
+  <text class="lbl" x="600" y="258">Proxmox cluster · 3 nodes</text>
+
+  <rect class="node" x="30" y="270" width="360" height="490" rx="6"/>
+  <text class="h" x="45" y="292">Primary node <tspan class="ip">· LAN</tspan></text>
+  <text class="t m" x="45" y="309">Proxmox · primary infrastructure node</text>
+
+  <rect class="vm-dns" x="45" y="330" width="330" height="58" rx="3"/>
+  <text class="h12" x="55" y="347">DNS primary</text><text class="id" x="365" y="347" text-anchor="end">VM</text>
+  <text class="t m" x="55" y="362">Pi-hole primary · Unbound · Keepalived</text>
+  <text class="t ip" x="55" y="377">LAN · DNS :53 · web UI</text>
+
+  <rect class="vm-ts" x="45" y="398" width="330" height="58" rx="3"/>
+  <text class="h12" x="55" y="415">Tailscale router 1</text><text class="id" x="365" y="415" text-anchor="end">VM</text>
+  <text class="t m" x="55" y="430">Tailscale subnet router</text>
+  <text class="t ip" x="55" y="445">LAN</text>
+
+  <rect class="vm" x="45" y="466" width="330" height="58" rx="3"/>
+  <text class="h12" x="55" y="483">Automation</text><text class="id" x="365" y="483" text-anchor="end">VM</text>
+  <text class="t m" x="55" y="498">n8n workflows · Alloy (journal)</text>
+  <text class="t ip" x="55" y="513">LAN · behind the proxy</text>
+
+  <rect class="vm" x="45" y="534" width="330" height="58" rx="3"/>
+  <text class="h12" x="55" y="551">Git forge</text><text class="id" x="365" y="551" text-anchor="end">VM</text>
+  <text class="t m" x="55" y="566">Forgejo · Alloy (journal + containers)</text>
+  <text class="t ip" x="55" y="581">LAN · web via proxy, Git over SSH</text>
+
+  <rect class="vm" x="45" y="602" width="330" height="58" rx="3"/>
+  <text class="h12" x="55" y="619">CI runner</text><text class="id" x="365" y="619" text-anchor="end">VM</text>
+  <text class="t m" x="55" y="634">Forgejo Actions · rootless Podman</text>
+  <text class="t ip" x="55" y="649">LAN · 8 vCPU, 12 GiB</text>
+
+  <text class="s m" x="45" y="745">node_exporter on the node and every VM</text>
+
+  <rect class="node" x="410" y="270" width="360" height="490" rx="6"/>
+  <text class="h" x="425" y="292">Second node <tspan class="ip">· LAN</tspan></text>
+  <text class="t m" x="425" y="309">Proxmox · secondary infra and services</text>
+  <text class="s m" x="425" y="322">Dell OptiPlex 3070 Micro</text>
+
+  <rect class="vm-dns" x="425" y="330" width="330" height="58" rx="3"/>
+  <text class="h12" x="435" y="347">DNS secondary</text><text class="id" x="745" y="347" text-anchor="end">VM</text>
+  <text class="t m" x="435" y="362">Pi-hole secondary · Unbound · Keepalived</text>
+  <text class="t ip" x="435" y="377">LAN · DNS :53 · web UI</text>
+
+  <rect class="vm-ts" x="425" y="398" width="330" height="58" rx="3"/>
+  <text class="h12" x="435" y="415">Tailscale router 2</text><text class="id" x="745" y="415" text-anchor="end">VM</text>
+  <text class="t m" x="435" y="430">Tailscale subnet router</text>
+  <text class="t ip" x="435" y="445">LAN</text>
+
+  <rect class="vm-auth" x="425" y="466" width="330" height="58" rx="3"/>
+  <text class="h12" x="435" y="483">Internal proxy</text><text class="id" x="745" y="483" text-anchor="end">VM</text>
+  <text class="t amber" x="435" y="498">Caddy reverse proxy · Authelia SSO</text>
+  <text class="t ip" x="435" y="513">LAN :443 · Authelia on loopback</text>
+
+  <rect class="vm-mon" x="425" y="534" width="330" height="92" rx="3"/>
+  <text class="h12" x="435" y="551">Monitoring</text><text class="id" x="745" y="551" text-anchor="end">VM</text>
+  <text class="t green" x="435" y="566">Prometheus · Alertmanager · Grafana</text>
+  <text class="t green" x="435" y="580">Blackbox Exporter · Loki · Alloy</text>
+  <text class="t m" x="435" y="594">Arcane · Homepage · Nebula Sync</text>
+  <text class="t ip" x="435" y="610">LAN <tspan class="m">· container host</tspan></text>
+
+  <rect class="vm-dim" x="425" y="636" width="330" height="58" rx="3"/>
+  <text class="h12" x="435" y="653">Remote desktop</text><text class="id" x="745" y="653" text-anchor="end">VM</text>
+  <text class="t m" x="435" y="668">RustDesk server · not revalidated</text>
+  <text class="t ip" x="435" y="683">LAN</text>
+
+  <text class="s m" x="425" y="745">Nebula Sync: hourly, DNS primary to secondary</text>
+
+  <rect class="node" x="790" y="270" width="190" height="490" rx="6"/>
+  <text class="h12" x="803" y="292">Third node</text>
+  <text class="t ip" x="803" y="307">LAN</text>
+  <text class="s m" x="803" y="321">utility and PBS node</text>
+
+  <rect class="vm" x="803" y="330" width="164" height="74" rx="3"/>
+  <text class="h12" x="811" y="347">Backup server</text><text class="id" x="959" y="347" text-anchor="end">VM</text>
+  <text class="s m" x="811" y="362">Proxmox Backup Server</text>
+  <text class="s ip" x="811" y="376">LAN</text>
+  <text class="s m" x="811" y="390">one datastore</text>
+
+  <rect class="vm-dns" x="1000" y="270" width="170" height="70" rx="3"/>
+  <text class="h12" x="1010" y="287">Pi-hole VIP</text>
+  <text class="t ip" x="1010" y="302">LAN VIP</text>
+  <text class="s m" x="1010" y="316">Keepalived on the</text>
+  <text class="s m" x="1010" y="329">DNS pair · client DNS</text>
+
+  <rect class="phys" x="1000" y="350" width="170" height="70" rx="3"/>
+  <text class="h12" x="1010" y="367">Linux workstation</text>
+  <text class="s m" x="1010" y="381">Arch, Hyprland</text>
+  <text class="s m" x="1010" y="395">LAN, DHCP</text>
+  <text class="s m" x="1010" y="409">not on the tailnet</text>
+
+  <rect class="vm-dim" x="1000" y="430" width="170" height="112" rx="3"/>
+  <text class="h12" x="1010" y="447">retired / free</text>
+  <text class="s m" x="1010" y="463">2 Raspberry Pis, cold</text>
+  <text class="s m" x="1010" y="477">standby, no role</text>
+  <text class="s m" x="1010" y="491">old controller VM gone</text>
+  <text class="s m" x="1010" y="505">Portainer VM gone</text>
+  <text class="s m" x="1010" y="519">old router and switch</text>
+  <text class="s m" x="1010" y="532">unplugged 2026-09-28</text>
+
+  <polyline class="ts" points="375,427 400,427 400,790"/>
+  <polyline class="ts" points="755,427 780,427 780,790"/>
+  <text class="lbl purple" x="0" y="0" transform="translate(396,640) rotate(-90)">subnet route</text>
+  <text class="lbl purple" x="0" y="0" transform="translate(776,720) rotate(-90)">subnet route</text>
+
+  <rect class="tailnet" x="30" y="790" width="870" height="200" rx="8"/>
+  <text class="h purple" x="45" y="812">Tailscale tailnet</text>
+  <text class="s m" x="185" y="812">off-LAN admin, split DNS for the internal names, tailnet scrapes</text>
+
+  <rect class="ext" x="45" y="826" width="330" height="92" rx="3"/>
+  <text class="h12" x="55" y="843">VPS edge <tspan class="m">· Netcup</tspan></text>
+  <text class="t m" x="55" y="858">Caddy · Uptime Kuma · ntfy · Umami</text>
+  <text class="t m" x="55" y="872">Kopia offsite backups, daily</text>
+  <text class="t tsip" x="55" y="887">tailnet member</text>
+  <text class="t m" x="55" y="902">Tailscale Serve for the admin UIs</text>
+
+  <rect class="ext" x="390" y="826" width="235" height="92" rx="3"/>
+  <text class="h12" x="400" y="843">Cloud VM</text>
+  <text class="s m" x="400" y="858">Oracle Cloud VM</text>
+  <text class="s m" x="400" y="872">node_exporter</text>
+  <text class="s m" x="400" y="886">scraped over the tailnet</text>
+  <text class="s tsip" x="400" y="900">tailnet member</text>
+
+  <rect class="ext" x="640" y="826" width="245" height="92" rx="3"/>
+  <text class="h12" x="650" y="843">relays</text>
+  <text class="s m" x="650" y="858">relay VM · Oracle Cloud</text>
+  <text class="s m" x="650" y="872">relay VM · GCP e2-micro</text>
+  <text class="s m" x="650" y="886">GCP: ephemeral IP, use Tailscale</text>
+  <text class="s m" x="650" y="900">OCI relay tailnet: not recorded</text>
+
+  <text class="s m" x="45" y="940">Public IPs are not recorded in the inventory and are not drawn.</text>
+  <text class="s m" x="45" y="955">Analytics dashboard: loopback on the VPS, admin over the tailnet.</text>
+  <text class="s m" x="45" y="970">Kuma, Umami and ntfy keep their own logins: the VPS cannot reach Authelia.</text>
+
+  <rect class="ext" x="920" y="790" width="250" height="110" rx="3"/>
+  <text class="h12" x="930" y="808">Cloudflare</text>
+  <text class="s m" x="930" y="824">Pages: chrisalorenzo.com</text>
+  <text class="s m" x="930" y="838">Pages: blog.chrisalorenzo.com</text>
+  <text class="s m" x="930" y="852">stayz3ro.dev 301 to the blog</text>
+  <text class="s m" x="930" y="866">DNS zone; DNS-01 for the</text>
+  <text class="s m" x="930" y="880">internal proxy cert</text>
+
+  <rect class="panel" x="30" y="1010" width="1140" height="170" rx="6"/>
+  <text class="h" x="45" y="1032">Legend</text>
+  <line class="lan" x1="45" y1="1055" x2="95" y2="1055"/><text class="s" x="105" y="1059">LAN link, flat VLAN 1</text>
+  <line class="link" x1="45" y1="1077" x2="95" y2="1077"/><text class="s" x="105" y="1081">WAN or uplink</text>
+  <line class="ts" x1="45" y1="1099" x2="95" y2="1099"/><text class="s" x="105" y="1103">Tailscale path</text>
+  <line class="flow" x1="45" y1="1121" x2="95" y2="1121" marker-end="url(#arr)"/><text class="s" x="105" y="1125">scrape, alert or log flow</text>
+
+  <rect class="node" x="320" y="1046" width="40" height="18" rx="3"/><text class="s" x="370" y="1059">Proxmox node frame</text>
+  <rect class="phys" x="320" y="1070" width="40" height="18" rx="3"/><text class="s" x="370" y="1083">physical device</text>
+  <rect class="vm" x="320" y="1094" width="40" height="18" rx="3"/><text class="s" x="370" y="1107">VM</text>
+  <rect class="vm-dim" x="320" y="1118" width="40" height="18" rx="3"/><text class="s" x="370" y="1131">retired, free or not revalidated</text>
+
+  <rect class="vm-dns" x="620" y="1046" width="40" height="18" rx="3"/><text class="s" x="670" y="1059">DNS (Pi-hole pair, VIP)</text>
+  <rect class="vm-ts" x="620" y="1070" width="40" height="18" rx="3"/><text class="s" x="670" y="1083">Tailscale subnet router</text>
+  <rect class="vm-auth" x="620" y="1094" width="40" height="18" rx="3"/><text class="s" x="670" y="1107">proxy and Authelia gate</text>
+  <rect class="vm-mon" x="620" y="1118" width="40" height="18" rx="3"/><text class="s" x="670" y="1131">monitoring stack</text>
+
+  <rect class="ext" x="900" y="1046" width="40" height="18" rx="3"/><text class="s" x="950" y="1059">cloud or VPS host</text>
+  <rect class="tailnet" x="900" y="1070" width="40" height="18" rx="3"/><text class="s" x="950" y="1083">tailnet boundary</text>
+  <text class="s ip" x="900" y="1107">LAN</text><text class="s" x="985" y="1107">LAN segment</text>
+  <text class="s tsip" x="900" y="1131">tailnet</text><text class="s" x="985" y="1131">tailnet segment</text>
+  <text class="s m" x="45" y="1162">Public-safe version: real addresses, hostnames and VM ids are kept in my private records.</text>
+
+  <rect class="panel" x="1200" y="90" width="580" height="500" rx="6"/>
+  <text class="h amber" x="1215" y="112">Caddy internal proxy · one wildcard name per service</text>
+  <text class="s m" x="1215" y="128">wildcard cert by Cloudflare DNS-01 · names resolve only inside:</text>
+  <text class="s m" x="1215" y="141">Pi-hole answers them on the LAN, Tailscale split DNS off-LAN, no public record</text>
+
+  <text class="s m" x="1215" y="162">service</text>
+  <text class="s m" x="1330" y="162">upstream</text>
+  <text class="s m" x="1445" y="162">gate</text>
+  <text class="s m" x="1540" y="162">target login, SSO stage 2 plan</text>
+  <line class="rowline" x1="1215" y1="167" x2="1765" y2="167"/>
+
+  <text class="s" x="1215" y="183">Git forge</text><text class="s ip" x="1330" y="183">LAN</text><text class="s m" x="1445" y="183">none</text><text class="s" x="1540" y="183">Forgejo OIDC; SSH keys</text>
+  <text class="s" x="1215" y="200">Automation</text><text class="s ip" x="1330" y="200">LAN</text><text class="s amber" x="1445" y="200">forward_auth</text><text class="s" x="1540" y="200">gate, then n8n login</text>
+  <text class="s" x="1215" y="217">Grafana</text><text class="s ip" x="1330" y="217">LAN</text><text class="s amber" x="1445" y="217">forward_auth</text><text class="s" x="1540" y="217">Grafana OIDC behind gate</text>
+  <text class="s" x="1215" y="234">Prometheus</text><text class="s ip" x="1330" y="234">LAN</text><text class="s amber" x="1445" y="234">forward_auth</text><text class="s" x="1540" y="234">gate only</text>
+  <text class="s" x="1215" y="251">Alertmanager</text><text class="s ip" x="1330" y="251">LAN</text><text class="s amber" x="1445" y="251">forward_auth</text><text class="s" x="1540" y="251">gate only</text>
+  <text class="s" x="1215" y="268">Arcane</text><text class="s ip" x="1330" y="268">LAN</text><text class="s amber" x="1445" y="268">forward_auth</text><text class="s" x="1540" y="268">Arcane OIDC behind gate</text>
+  <text class="s" x="1215" y="285">Homepage</text><text class="s ip" x="1330" y="285">LAN</text><text class="s amber" x="1445" y="285">forward_auth</text><text class="s" x="1540" y="285">gate only</text>
+  <text class="s" x="1215" y="302">PBS</text><text class="s ip" x="1330" y="302">LAN, HTTPS</text><text class="s amber" x="1445" y="302">forward_auth</text><text class="s" x="1540" y="302">PBS OIDC behind gate</text>
+  <text class="s" x="1215" y="319">Proxmox x3</text><text class="s ip" x="1330" y="319">LAN, HTTPS</text><text class="s amber" x="1445" y="319">forward_auth</text><text class="s" x="1540" y="319">PVE OIDC behind gate</text>
+  <text class="s" x="1215" y="336">Pi-hole x2</text><text class="s ip" x="1330" y="336">LAN, HTTPS</text><text class="s amber" x="1445" y="336">forward_auth</text><text class="s" x="1540" y="336">gate, then Pi-hole password</text>
+  <text class="s" x="1215" y="353">Authelia</text><text class="s ip" x="1330" y="353">loopback</text><text class="s amber" x="1445" y="353">is the portal</text><text class="s" x="1540" y="353">password + WebAuthn or TOTP</text>
+  <text class="s m" x="1215" y="370">other names</text><text class="s m" x="1330" y="370">404</text>
+  <line class="rowline" x1="1215" y1="380" x2="1765" y2="380"/>
+
+  <text class="s amber" x="1215" y="398">12 admin names behind forward_auth since 2026-10-30.</text>
+  <text class="s m" x="1215" y="413">forward_auth goes to Authelia on the proxy host's loopback.</text>
+  <text class="s m" x="1215" y="428">OIDC clients in Authelia: Forgejo, Grafana, Proxmox VE, PBS, Arcane.</text>
+  <text class="s m" x="1215" y="443">Git forge stays off the gate: Git over HTTPS and API tokens would break.</text>
+  <text class="s m" x="1215" y="458">Outside the proxy: the gateway UI, and Kuma, Umami and ntfy on the VPS.</text>
+  <text class="s m" x="1215" y="473">Each app keeps a local break-glass admin.</text>
+
+  <rect class="panel" x="1200" y="605" width="580" height="175" rx="6"/>
+  <text class="h purple" x="1215" y="627">Tailscale paths</text>
+  <text class="s" x="1215" y="646">Tailscale routers 1 and 2 (one per main node): subnet routers into the LAN</text>
+  <text class="s" x="1215" y="662">off-LAN client → tailnet → subnet router → LAN host or internal proxy</text>
+  <text class="s" x="1215" y="678">internal names off-LAN: Tailscale split DNS; on the LAN: Pi-hole</text>
+  <text class="s" x="1215" y="694">Monitoring scrapes the VPS and the cloud VM over the <tspan class="tsip">tailnet</tspan></text>
+  <text class="s" x="1215" y="710">VPS admin UIs (Kuma, ntfy admin) through Tailscale Serve, tailnet only</text>
+  <text class="s" x="1215" y="726">Gateway UI direct to the UDM Pro, from the LAN or over Tailscale</text>
+  <text class="s m" x="1215" y="742">GCP relay: ephemeral public IP, reached over Tailscale</text>
+  <text class="s m" x="1215" y="758">Not on the tailnet: the Linux workstation.</text>
+
+  <rect class="panel" x="1200" y="795" width="580" height="385" rx="6"/>
+  <text class="h green" x="1215" y="817">Monitoring scrape flow · monitoring VM</text>
+  <text class="s m" x="1215" y="833">config as code: 15 jobs, 58 static targets · interval 15s, HTTPS probes 60s</text>
+
+  <rect class="vm-mon" x="1215" y="845" width="130" height="62" rx="3"/>
+  <text class="h12" x="1225" y="862">Prometheus</text>
+  <text class="s m" x="1225" y="877">30 alert rules</text>
+  <text class="s m" x="1225" y="891">retention 30 days</text>
+
+  <line class="flow" x1="1345" y1="860" x2="1370" y2="860" marker-end="url(#arr)"/>
+  <text class="s green" x="1378" y="856">node_infra · 16 hosts</text>
+  <text class="s" x="1378" y="869">3 Proxmox nodes · backup server · monitoring</text>
+  <text class="s" x="1378" y="882">automation · Git forge · CI runner · internal proxy</text>
+  <text class="s" x="1378" y="895">DNS x2 · Tailscale routers x2 · remote desktop · <tspan class="tsip">VPS, cloud VM</tspan></text>
+
+  <line class="flow" x1="1345" y1="925" x2="1370" y2="925" marker-end="url(#arr)"/>
+  <text class="s green" x="1378" y="921">blackbox probes</text>
+  <text class="s" x="1378" y="934">DNS over UDP: the VIP and both DNS VMs</text>
+  <text class="s" x="1378" y="947">TCP: 10 management ports · 3 Proxmox UIs · 3 remote desktop</text>
+  <text class="s" x="1378" y="960">HTTPS through the proxy: 2 open, 11 expect the gate</text>
+  <text class="s" x="1378" y="973">public HTTPS: portfolio, blog, status page, analytics script</text>
+
+  <line class="flow" x1="1345" y1="993" x2="1370" y2="993" marker-end="url(#arr)"/>
+  <text class="s green" x="1378" y="989">self and exporters</text>
+  <text class="s" x="1378" y="1002">prometheus · alertmanager · blackbox · grafana · loki</text>
+  <text class="s" x="1378" y="1015">PBS exporter for the backup server</text>
+
+  <line class="rowline" x1="1215" y1="1028" x2="1765" y2="1028"/>
+  <rect class="vm-mon" x="1215" y="1040" width="130" height="44" rx="3"/>
+  <text class="h12" x="1225" y="1057">Alertmanager</text>
+  <text class="s m" x="1225" y="1072">3 receivers</text>
+  <line class="flow" x1="1345" y1="1062" x2="1370" y2="1062" marker-end="url(#arr)"/>
+  <text class="s" x="1378" y="1050">every alert → n8n webhook → ntfy push (VPS)</text>
+  <text class="s" x="1378" y="1063">severity critical → Discord critical channel</text>
+  <text class="s" x="1378" y="1076">default → Discord alerts channel</text>
+  <text class="s m" x="1378" y="1089">critical inhibits warning on the same instance</text>
+
+  <line class="rowline" x1="1215" y1="1102" x2="1765" y2="1102"/>
+  <rect class="vm-mon" x="1215" y="1112" width="130" height="56" rx="3"/>
+  <text class="h12" x="1225" y="1129">Alloy</text>
+  <text class="s m" x="1225" y="1144">monitoring,</text>
+  <text class="s m" x="1225" y="1158">automation, Git</text>
+  <line class="flow" x1="1345" y1="1134" x2="1370" y2="1134" marker-end="url(#arr)"/>
+  <text class="s" x="1378" y="1124">journald (Git forge also containers) → Loki on monitoring</text>
+  <text class="s" x="1378" y="1137">Loki → Grafana datasource and log alerting · no public listener</text>
+  <text class="s m" x="1378" y="1150">live check 2026-10-31: 56 targets up</text>
+</svg>
