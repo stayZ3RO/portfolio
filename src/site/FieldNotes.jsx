@@ -2,7 +2,7 @@ import './fieldnotes.css';
 import Reveal from './Reveal';
 import SecHead from './SecHead';
 
-/* Real posts from the field manual (stayz3ro.dev), titles copied verbatim
+/* Real posts from the field manual (blog.chrisalorenzo.com), titles copied verbatim
    from frontmatter on 2026-09-29. All draft:false. URL pattern verified as
    https://<site>/blog/<slug> via src/pages/blog/[...slug].astro. */
 const BLOG = 'https://blog.chrisalorenzo.com';
