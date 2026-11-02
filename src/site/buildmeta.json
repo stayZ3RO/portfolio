@@ -1,66 +1,66 @@
 {
-  "builtAt": "2026-10-05T22:35:36.143Z",
-  "buildDate": "oct 5, 2026",
+  "builtAt": "2026-11-02T19:22:01.860Z",
+  "buildDate": "nov 2, 2026",
   "commits": [
     {
-      "hash": "dbb01ff",
-      "subject": "Adopt the Muse VM portfolio redesign, port forward GitHub's factual/security fixes (#37)"
+      "hash": "cc3df74",
+      "subject": "Merge pull request 'Lab as-built diagram, public version' (#11) from ash/lab-diagram into main"
     },
     {
-      "hash": "1ab0c48",
-      "subject": "chore(deps): fix audited dependencies (#36)"
+      "hash": "3bc60c9",
+      "subject": "Add public as-built lab diagram"
     },
     {
-      "hash": "c6af2af",
-      "subject": "Add Pages security headers and a real 404 (#34)"
+      "hash": "d54c784",
+      "subject": "Merge pull request 'Remove leaked proof screenshots and private-named redirect' (#10) from ash/remove-leaked-proof into main"
     },
     {
-      "hash": "7725c79",
-      "subject": "Update portfolio to current UniFi and VPS state (#33)"
+      "hash": "9eb23e5",
+      "subject": "Merge pull request 'Home redesign preview: light paper, petrol accent, work cards' (#9) from ash/home-redesign-preview into main"
     },
     {
-      "hash": "e4ffc4b",
-      "subject": "Add pinned read-only gitleaks scan (#35)"
+      "hash": "3f90dee",
+      "subject": "Remove leaked proof screenshots and private-named redirect"
     },
     {
-      "hash": "3dfa903",
-      "subject": "Rewrite docs in plain voice and remove em dashes (#32)"
+      "hash": "f505fa4",
+      "subject": "Home redesign preview: light paper, petrol accent, work cards"
     },
     {
-      "hash": "63ef436",
-      "subject": "README: accuracy and wording (#31)"
+      "hash": "a05718f",
+      "subject": "Merge pull request 'fix: update vulnerable build dependencies' (#8) from fix/npm-audit-2026-10-23 into main"
     },
     {
-      "hash": "db52ce1",
-      "subject": "Merge pull request #30 from stayZ3RO/ash/public-rename-links-2026-09-27"
+      "hash": "541b9c0",
+      "subject": "fix: update vulnerable build dependencies"
     },
     {
-      "hash": "9087bba",
-      "subject": "Update links to renamed public repos"
+      "hash": "65dbb46",
+      "subject": "Merge pull request 'ci: add Forgejo workflows' (#7) from ash/forgejo-ci into main"
     },
     {
-      "hash": "844de57",
-      "subject": "security: solid-blackout the DNS A-record IPs in vps-dns-records.webp (#28)"
+      "hash": "520a71e",
+      "subject": "ci: add Forgejo workflows"
     },
     {
-      "hash": "1aed8fe",
-      "subject": "feat: replace Z3 favicon with node-graph mark (#27)"
+      "hash": "b246e2a",
+      "subject": "Merge pull request 'Shared masthead, theme and motion toggles' (#6) from wip/portfolio-shared-checkout-2026-10-20 into main"
     },
     {
-      "hash": "b92c9e3",
-      "subject": "fix(a11y): stop hiding background canvas/texture and killing hover transitions under prefers-reduced-motion (#26)"
+      "hash": "1367b44",
+      "subject": "Ship the masthead with light, dark, and motion."
     },
     {
-      "hash": "a336daa",
-      "subject": "Merge pull request #25 from stayZ3RO/feat/dark-mode-toggle"
+      "hash": "c5fd7a3",
+      "subject": "wip: uncommitted changes recovered from the shared checkout"
     },
     {
-      "hash": "ea52714",
-      "subject": "feat(portfolio): add light/dark theme toggle"
+      "hash": "030d34a",
+      "subject": "Merge pull request 'Point field note links at the current blog' (#5) from ash/retire-stayz3ro-dev into main"
     },
     {
-      "hash": "b1c1fdc",
-      "subject": "Merge pull request #24 from stayZ3RO/feat/polish-animations"
+      "hash": "d6f68da",
+      "subject": "Point field note links at the current blog."
     }
   ]
 }
