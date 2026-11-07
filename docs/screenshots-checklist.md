@@ -6,7 +6,6 @@
 - [ ] File structure visible
 - [ ] Local server running
 - [ ] Homepage loaded locally
-- [ ] Project filter working
 - [ ] Mobile responsive test
 
 ## GitHub
@@ -14,15 +13,15 @@
 - [ ] Feature branch created
 - [ ] Pull request opened
 - [ ] Pull request merged
-- [ ] GitHub Pages settings
+- [ ] Cloudflare Pages deployment settings
 - [ ] Live site loaded
 
 ## Portfolio Proof
 
 - [ ] Hero section
 - [ ] Featured projects section
-- [ ] Skills section
-- [ ] Resume section
+- [ ] Lab section
+- [ ] About section
 - [ ] Contact links
 - [ ] Home Network Infrastructure Lab project card
 
