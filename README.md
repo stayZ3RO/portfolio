@@ -6,13 +6,13 @@ I'm an IT Service Desk Analyst II building toward cloud, network, and infrastruc
 
 ## Purpose
 
-I use this repository to build my public portfolio. It shows what I've built and validated, separates mature work from active buildouts and learning labs, and links to the repositories, resume, and contact channels for each project.
+I use this repository to build my public portfolio. It shows what I've built and validated, labels projects Running or Building, and links to the repositories, resume, and contact channels for each project.
 
 ## Key Portfolio Sections
 
 - **Hero**, a two-line headline with an availability pill, a short bio, and calls to action
 - **Systems**, work cards for each project with a color-coded status kicker (running / building)
-- **Lab**, the live lab status block
+- **Lab**, the lab block showing documented node state; the status feed is unset
 - **About**, experience, the Now block (a three-row status block with no timestamp), and an interlude
 - **Field Notes**, links to posts on the blog
 - **Contact**, ways to reach me
@@ -25,8 +25,8 @@ I use this repository to build my public portfolio. It shows what I've built and
 | [Managed Network Infrastructure Lab](https://github.com/stayZ3RO/netlab) | Running | UDM Pro and USW-24-PoE have been the core since 2026-09-27; the LAN remains flat, Deco nodes are APs, and VLAN/firewall segmentation is planned. Earlier Omada evidence is labeled historical. |
 | [AWS Network Automation Lab](https://github.com/stayZ3RO/cloud-netlab) | Building, CI-validated | Reusable Terraform/OpenTofu VPC module + Python drift-detection CLI, tested and CI-gated, no cloud resources applied |
 | [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-lab) | Running | Netcup VPS with Caddy HTTPS. Kuma monitors: see the status page. Discord and self-hosted ntfy alerts have been live since 2026-09-28. Umami is on the public sites. |
-| Service desk automation platform | Building | n8n workflows plus native and Grafana dashboards for the ticketing queue; workflows are staged pending approval |
-| Homelab command center | Building | Self-hosted ops console for the lab (React, FastAPI, MongoDB); v1 is code-complete locally and not yet deployed against the live lab |
+| Service desk automation platform | Building | Automation workflows plus native and Grafana dashboards for the ticketing queue; workflows are staged pending approval |
+| Homelab command center | Building | Self-hosted operations console for the lab (React, FastAPI, MongoDB); v1 is code-complete locally and not yet deployed against the live lab |
 | Service desk diagnostic toolkit | Running | Portable PowerShell and WPF diagnostics toolkit for Windows triage, with sanitized ticket-ready summaries |
 
 ## Technology Stack
