@@ -21,10 +21,13 @@ I use this repository to build my public portfolio. It shows what I've built and
 
 | Project | Status | What it shows |
 |---|---|---|
-| [Home Network Infrastructure / HA DNS](https://github.com/stayZ3RO/dns) | Mature | Pi-hole + Unbound + Keepalived HA DNS, Prometheus/Grafana/Alertmanager monitoring, validated failover |
-| [Managed Network Infrastructure Lab](https://github.com/stayZ3RO/netlab) | Active | UDM Pro and USW-24-PoE have been the core since 2026-09-27; the LAN remains flat, Deco nodes are APs, and VLAN/firewall segmentation is planned. Earlier Omada evidence is labeled historical. |
-| [AWS Network Automation Lab](https://github.com/stayZ3RO/cloud-netlab) | Learning lab, CI-validated | Reusable Terraform/OpenTofu VPC module + Python drift-detection CLI, tested and CI-gated, no cloud resources applied |
-| [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-lab) | In progress | Netcup VPS with Caddy HTTPS. Kuma monitors: see the status page. Discord and self-hosted ntfy alerts have been live since 2026-09-28. Umami is on the public sites. |
+| [Home Network Infrastructure / HA DNS](https://github.com/stayZ3RO/dns) | Running | Pi-hole + Unbound + Keepalived HA DNS, Prometheus/Grafana/Alertmanager monitoring, validated failover |
+| [Managed Network Infrastructure Lab](https://github.com/stayZ3RO/netlab) | Running | UDM Pro and USW-24-PoE have been the core since 2026-09-27; the LAN remains flat, Deco nodes are APs, and VLAN/firewall segmentation is planned. Earlier Omada evidence is labeled historical. |
+| [AWS Network Automation Lab](https://github.com/stayZ3RO/cloud-netlab) | Building, CI-validated | Reusable Terraform/OpenTofu VPC module + Python drift-detection CLI, tested and CI-gated, no cloud resources applied |
+| [VPS Cloud Infrastructure Lab](https://github.com/stayZ3RO/vps-lab) | Running | Netcup VPS with Caddy HTTPS. Kuma monitors: see the status page. Discord and self-hosted ntfy alerts have been live since 2026-09-28. Umami is on the public sites. |
+| Service desk automation platform | Building | n8n workflows plus native and Grafana dashboards for the ticketing queue; workflows are staged pending approval |
+| Homelab command center | Building | Self-hosted ops console for the lab (React, FastAPI, MongoDB); v1 is code-complete locally and not yet deployed against the live lab |
+| Service desk diagnostic toolkit | Running | Portable PowerShell and WPF diagnostics toolkit for Windows triage, with sanitized ticket-ready summaries |
 
 ## Technology Stack
 
