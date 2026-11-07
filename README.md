@@ -13,7 +13,7 @@ I use this repository to build my public portfolio. It shows what I've built and
 - **Hero**, a two-line headline with an availability pill, a short bio, and calls to action
 - **Systems**, work cards for each project with a color-coded status kicker (running / building)
 - **Lab**, the live lab status block
-- **About**, experience, the Now block, and an interlude
+- **About**, experience, the Now block (a three-row status block with no timestamp), and an interlude
 - **Field Notes**, links to posts on the blog
 - **Contact**, ways to reach me
 
