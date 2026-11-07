@@ -10,11 +10,12 @@ I use this repository to build my public portfolio. It shows what I've built and
 
 ## Key Portfolio Sections
 
-- **Hero**, terminal-style intro (`whoami` / `ls ~/projects`) with clickable repo, blog, and dashboard links, plus a one-line positioning statement and status pill
-- **Now**, a timestamped project-status snapshot with a relative "updated X ago" label
-- **Work**, a horizontal-scroll strip of project panels (architecture diagram or code snippet, tool stack, status) that moves as you scroll
-- **Detail**, a ruled Problem / Implementation / Validation / Outcome breakdown for each project, with the color-coded status kicker (mature / active / learning lab / in progress)
-- **Links**, cards to the blog, the public status dashboard, and GitHub
+- **Hero**, a two-line headline with an availability pill, a short bio, and calls to action
+- **Systems**, work cards for each project with a color-coded status kicker (running / building)
+- **Lab**, the live lab status block
+- **About**, experience, the Now block, and an interlude
+- **Field Notes**, links to posts on the blog
+- **Contact**, ways to reach me
 
 ## Featured Engineering Projects
 
