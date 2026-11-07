@@ -9,7 +9,11 @@ was replaced by a light, corporate-neutral palette (see the current
 `src/site/site.css`). This document is retained as the
 historical execution record for the restyle effort, not the active spec. The
 final direction was a light neutral base, petrol/slate accent, terminal hero,
-horizontal-scroll work strip, and ruled per-project detail, following the neutral, professional, corporate direction expected by a director of IT infrastructure. See the repo README for the current section map.
+horizontal-scroll work strip, and ruled per-project detail, following the neutral, professional, corporate direction expected by a director of IT infrastructure. That direction was itself replaced later
+by a light paper, petrol accent, work cards design. See `src/site/Site.jsx` for the
+current section map. The component names in the "step 3, done" list below
+(`About.jsx`, `CurrentFocus.jsx`, `Skills.jsx`, `Resume.jsx`, `Header.jsx`) are
+historical and no longer in the tree.
 
 ## Direction
 
