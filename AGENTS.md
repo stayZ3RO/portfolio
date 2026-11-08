@@ -20,4 +20,4 @@ No commits or pushes without my explicit go. Open pull requests on Forgejo. No A
 
 ## CI
 
-Workflows run on the GitHub mirror, on push only.
+Workflows run on push on Forgejo and on the GitHub mirror. The secret scan also runs weekly and on manual dispatch.
