@@ -146,21 +146,21 @@ export const SYSTEMS = [
 export const NODE_CARDS = [
   {
     id: 'node1',
-    label: 'Primary node',
+    label: 'node a',
     role: 'PRIMARY',
     spec: 'OptiPlex 7060 Micro · i5-8500T · 32GB RAM · 256GB NVMe',
     svcs: ['DNS', 'tailscale router'],
   },
   {
     id: 'node2',
-    label: 'Second node',
+    label: 'node b',
     role: null,
     spec: 'OptiPlex 3070 Micro · 32GB RAM · 256GB NVMe',
     svcs: ['DNS secondary', 'tailscale router', 'container host', 'monitoring', 'remote access'],
   },
   {
     id: 'node3',
-    label: 'Third node',
+    label: 'node c',
     role: 'BACKUP',
     spec: 'EliteDesk 800 G3 DM · i5-6500T · 16GB RAM · 256GB NVMe',
     svcs: ['Backup server · PBS'],
@@ -168,14 +168,14 @@ export const NODE_CARDS = [
 ];
 
 export const FLEET = [
-  ['DNS', 'node1', 'Primary node', 'DNS + network-wide filtering'],
-  ['Tailscale router', 'node1', 'Primary node', 'Tailscale subnet router'],
-  ['DNS secondary', 'node2', 'Second node', 'DNS secondary'],
-  ['Tailscale router (secondary)', 'node2', 'Second node', 'Tailscale subnet router'],
-  ['Container host', 'node2', 'Second node', 'container management'],
-  ['Monitoring', 'node2', 'Second node', 'Prometheus + Grafana'],
-  ['Remote access', 'node2', 'Second node', 'remote desktop'],
-  ['Backup server', 'node3', 'Third node', 'Proxmox Backup Server'],
+  ['DNS', 'node1', 'node a', 'DNS + network-wide filtering'],
+  ['Tailscale router', 'node1', 'node a', 'Tailscale subnet router'],
+  ['DNS secondary', 'node2', 'node b', 'DNS secondary'],
+  ['Tailscale router (secondary)', 'node2', 'node b', 'Tailscale subnet router'],
+  ['Container host', 'node2', 'node b', 'container management'],
+  ['Monitoring', 'node2', 'node b', 'Prometheus + Grafana'],
+  ['Remote access', 'node2', 'node b', 'remote desktop'],
+  ['Backup server', 'node3', 'node c', 'Proxmox Backup Server'],
   ['caddy', 'vps-edge', 'VPS edge', 'reverse proxy + HTTPS'],
   ['blog', 'vps-edge', 'VPS edge', 'engineering blog'],
   ['uptime-kuma', 'vps-edge', 'VPS edge', 'status monitoring'],
