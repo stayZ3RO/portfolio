@@ -52,8 +52,8 @@ const FIGS = {
         <line className="l" x1="212" y1="140" x2="316" y2="100" />
         <Node x={36} y={100} label="clients" />
         <Node x={122} y={100} label="VIP" hot />
-        <Node x={212} y={60} label="node a" />
-        <Node x={212} y={140} label="node b" />
+        <Node x={212} y={60} label="dns1" />
+        <Node x={212} y={140} label="dns2" />
         <Node x={316} y={100} label="root DNS" />
       </>
     ),
