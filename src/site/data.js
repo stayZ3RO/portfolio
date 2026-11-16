@@ -58,9 +58,16 @@ export const SYSTEMS = [
     status: 'running',
     title: 'Managed network infrastructure lab',
     diagram: 'net',
-    outcome: 'UniFi UDM Pro and USW-24-PoE live since 2026-09-27; flat LAN today, VLAN segmentation planned.',
-    pills: ['UniFi UDM Pro', 'USW-24-PoE', 'Deco AP mode', 'VLANs'],
-    links: { github: 'https://github.com/stayZ3RO/netlab' },
+    outcome: 'UniFi UDM Pro and USW-24-PoE since 2026-09-27; stations and Wi-Fi moved onto their own segments behind zone policies in November 2026, servers next.',
+    pills: ['UniFi UDM Pro', 'USW-24-PoE', 'Zone firewall', 'VLANs'],
+    /* When the blog post "The segmentation tests that passed for the wrong
+       reason" is published, point writeup at it
+       (https://blog.chrisalorenzo.com/blog/the-segmentation-tests-that-passed-for-the-wrong-reason/)
+       and point github at the Phase 2 folder below. */
+    links: {
+      writeup: 'https://github.com/stayZ3RO/netlab/tree/main/docs/phase-2-vlan-segmentation',
+      github: 'https://github.com/stayZ3RO/netlab',
+    },
     body: {
       type: 'declog',
       blocks: [
@@ -73,8 +80,20 @@ export const SYSTEMS = [
           text: 'The second Proxmox node went through a full chassis transplant mid-project and came back as an OptiPlex 3070 Micro with 32GB RAM. The inventory needed a correction afterward, which is why reconciliation is now a documented step instead of an afterthought.',
         },
         {
-          label: 'WHAT IS NEXT',
-          text: 'The LAN is still flat. VLAN segmentation and firewall policy are the next phase, with the addressing plan drafted on paper first.',
+          label: 'THE PROBLEM',
+          text: 'One flat LAN meant any client or Wi-Fi device could reach every server port, the hypervisor consoles included.',
+        },
+        {
+          label: 'WHAT I DID',
+          text: 'Seven segments by role, each in its own zone, blocked between zones by default. Then a short list of narrow allows: DNS to the resolver, HTTPS to the reverse proxy, admin ports from named stations, the VPN port to the two subnet routers, the remote desktop ports. Devices moved in order over two days in November: one canary workstation, the other wired stations, the whole Wi-Fi mesh, my admin station last.',
+        },
+        {
+          label: 'THE RESULT',
+          text: 'Workstations and Wi-Fi are segmented and a blocked port times out from each of them. Four tests passed for the wrong reason first: the VPN client accepted subnet routes and went around the firewall, remote desktop only broke once that was off, a container-published git port ignored the host firewall, and one of two redundant routers had a host firewall the other did not. Each is fixed. Servers have not moved yet.',
+        },
+        {
+          label: 'WHAT I LEARNED',
+          text: 'A test only counts if it would fail without the firewall in the path. A blocked port must time out, and every reachable result needs the first hop of a trace next to it.',
         },
       ],
     },
