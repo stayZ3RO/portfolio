@@ -10,6 +10,11 @@ This is my public portfolio. The site is https://chrisalorenzo.com. The reposito
 - No names of private repositories.
 - No screenshots without redaction.
 
+## Design
+
+Read `DESIGN.md` before any change to layout, CSS, tokens, fonts, images,
+motion or page copy. It is the UI and UX instruction file for this site.
+
 ## Voice
 
 Plain first-person engineer notes. No em dashes.
