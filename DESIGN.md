@@ -5,8 +5,9 @@ layout, CSS, tokens, fonts, images, motion or page copy. The blog
 (blog.chrisalorenzo.com) carries the same rules in its own DESIGN.md; the
 two sites are one person's work and share one type system and one palette.
 
-Direction: **Field notes**, chosen 2026-11-17. Evidence first, restraint
-everywhere else.
+Direction, chosen 2026-11-17: slab headings, a reading serif, mono for
+data, plain rules between sections. Evidence first, restraint everywhere
+else.
 
 Status: this file describes the target. The site does not match it yet.
 Until the redesign lands, a change to existing pages follows this file
