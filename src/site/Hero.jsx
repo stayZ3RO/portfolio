@@ -30,9 +30,6 @@ export default function Hero() {
     <div className="hero">
       <HeroCanvas />
       <div className="hero-copy">
-        <div className="avail-pill hero-fade" style={{ transitionDelay: '.05s' }}>
-          <span className="dot"></span>Open to platform / systems engineering roles
-        </div>
         <h1 className="kinetic">
           <span className="mask">
             {kineticLine('I study systems', 0.15)}
@@ -43,7 +40,7 @@ export default function Hero() {
           <span className="sr-only">I study systems by building them.</span>
         </h1>
         <p className="title-line hero-fade" style={{ transitionDelay: '.56s' }}>
-          IT Service Desk Analyst II, Global Service Desk · Hialeah, FL · Hybrid
+          IT Service Desk Analyst II · Tier 2 escalations · Hialeah, FL
         </p>
         <p className="bio hero-fade" style={{ transitionDelay: '.62s' }}>
           I&apos;m into tech, AI, and building things. I run a homelab where I teach myself how

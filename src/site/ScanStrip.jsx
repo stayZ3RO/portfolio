@@ -2,8 +2,7 @@ import './scanstrip.css';
 
 const FACTS = [
   ['loc', 'Hialeah, FL'],
-  ['target', 'Platform / Systems Engineering'],
-  ['open to', 'Hybrid · Remote'],
+  ['supports', 'Windows · macOS · iOS · M365 · Entra ID'],
 ];
 
 const STACK = [

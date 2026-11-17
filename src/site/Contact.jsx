@@ -7,7 +7,9 @@ export default function Contact() {
       <SecHead name="Contact" />
       <Reveal className="contact-grid">
         <div>
-          <p className="contact-big">Let&apos;s talk.</p>
+          <p className="contact-line">
+            Email reaches me fastest. I check LinkedIn less often.
+          </p>
           <a className="email-link" href="mailto:stayz3ro@gmail.com">stayz3ro@gmail.com</a>
         </div>
         <div className="contact-side">
