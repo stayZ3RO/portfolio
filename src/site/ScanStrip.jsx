@@ -2,7 +2,7 @@ import './scanstrip.css';
 
 const FACTS = [
   ['loc', 'Hialeah, FL'],
-  ['focus', 'Endpoints · identity · infrastructure'],
+  ['supports', 'Windows · macOS · iOS · M365 · Entra ID'],
 ];
 
 const STACK = [

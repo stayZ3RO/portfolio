@@ -40,7 +40,7 @@ export default function Hero() {
           <span className="sr-only">I study systems by building them.</span>
         </h1>
         <p className="title-line hero-fade" style={{ transitionDelay: '.56s' }}>
-          IT Service Desk Analyst II · Tier 2 endpoint and infrastructure support · Hialeah, FL
+          IT Service Desk Analyst II · Tier 2 escalations · Hialeah, FL
         </p>
         <p className="bio hero-fade" style={{ transitionDelay: '.62s' }}>
           I&apos;m into tech, AI, and building things. I run a homelab where I teach myself how
