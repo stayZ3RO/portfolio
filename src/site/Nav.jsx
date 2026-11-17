@@ -35,7 +35,7 @@ export default function Nav() {
       <div className="site-inner">
         <div className="brand-block">
           <a href="/" className="brand" aria-label="Christopher Lorenzo home">Christopher Lorenzo</a>
-          <p className="tagline">systems, the lab, and the road to platform engineering</p>
+          <p className="tagline">endpoint and infrastructure support, and the lab behind it</p>
         </div>
         <nav aria-label="Primary">
           {SECTIONS.map(([label, id]) => (

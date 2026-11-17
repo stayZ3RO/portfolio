@@ -7,7 +7,10 @@ export default function Contact() {
       <SecHead name="Contact" />
       <Reveal className="contact-grid">
         <div>
-          <p className="contact-big">Let&apos;s talk.</p>
+          <p className="contact-line">
+            I like work where the fix is written down and the next person can repeat it.
+            Email is the easiest way to reach me.
+          </p>
           <a className="email-link" href="mailto:stayz3ro@gmail.com">stayz3ro@gmail.com</a>
         </div>
         <div className="contact-side">
