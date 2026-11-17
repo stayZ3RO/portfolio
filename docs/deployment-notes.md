@@ -14,7 +14,7 @@ Local checkout
   |
 git push origin main
   |
-Forgejo (primary): https://git.chrisalorenzo.com/ash/portfolio
+Forgejo (primary, self-hosted)
   |
 GitHub (push mirror): https://github.com/stayZ3RO/portfolio
   |
